@@ -19,7 +19,6 @@ cp -r ~/IHT/swaylock ~/.config
 cp -r ~/IHT/nvim ~/.config
 cp -r ~/IHT/noctalia ~/.config
 cp -r ~/IHT/wofi ~/.config
-cp -r ~/IHT/wlogout ~/.config
 ##########################################################################
 # END OF SCRIPT                                                          #
 ##########################################################################
