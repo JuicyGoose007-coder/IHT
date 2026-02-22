@@ -14,8 +14,6 @@ cp -r ~/IHT/ghostty ~/.config
 cp -r ~/IHT/niri ~/.config
 cp -r ~/IHT/helix ~/.config
 cp -r ~/IHT/wallpapers ~/Pictures
-cp -r ~/IHT/.zshrc ~ 
-cp -r ~/IHT/yazi ~/.config
 cp -r ~/IHT/solaar ~/.config
 cp -r ~/IHT/swaylock ~/.config
 cp -r ~/IHT/nvim ~/.config
