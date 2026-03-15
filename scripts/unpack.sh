@@ -19,6 +19,7 @@ cp -r ~/IHT/noctalia ~/.config
 cp -r ~/IHT/wofi ~/.config
 cp -r ~/IHT/wlogout ~/.config
 cp -r ~/IHT/yazi ~/.config
+cp -r ~/IHT/superfile ~/.config
 ##########################################################################
 # END OF SCRIPT                                                          #
 ##########################################################################
