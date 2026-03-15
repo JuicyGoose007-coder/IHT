@@ -12,14 +12,13 @@
 cp -r ~/IHT/fastfetch ~/.config
 cp -r ~/IHT/ghostty ~/.config
 cp -r ~/IHT/niri ~/.config
-cp -r ~/IHT/helix ~/.config
 cp -r ~/IHT/wallpapers ~/Pictures
 cp -r ~/IHT/swaylock ~/.config
 cp -r ~/IHT/nvim ~/.config
-cp -r ~/IHT/nvim.bak ~/.config
 cp -r ~/IHT/noctalia ~/.config
 cp -r ~/IHT/wofi ~/.config
 cp -r ~/IHT/wlogout ~/.config
+cp -r ~/IHT/yazi ~/.config
 ##########################################################################
 # END OF SCRIPT                                                          #
 ##########################################################################
