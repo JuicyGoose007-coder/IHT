@@ -9,7 +9,7 @@
 ##########################################################################
 # base pkgs
 ##########################################################################
-paru -S --noconfirm steam neovim helix vesktop protonplus faugus-launcher gnome-disk-utility ghostty gamescope ttf-jetbrains-mono-nerd mpv mpv-mpris qbittorrent nwg-look adw-gtk-theme noctalia-shell solaar zoxide brave-bin
+paru -S --noconfirm steam neovim vesktop protonplus faugus-launcher gnome-disk-utility ghostty gamescope ttf-jetbrains-mono-nerd mpv mpv-mpris qbittorrent nwg-look adw-gtk-theme noctalia-shell solaar zoxide brave-bin
 ##########################################################################
 # END OF SCRIPT                                                          #
 ##########################################################################
