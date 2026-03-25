@@ -1,0 +1,97 @@
+/* Theme: sushi-2.jpg — app launcher */
+
+configuration {
+    show-icons: true;
+}
+
+* {
+    font: "JetBrainsMono Nerd Font 12";
+    bg0: #0b0e13e6;
+    bg1: #191c20e6;
+    fg0: #c3c6cf;
+    fg1: #e1e2e8;
+    accent: #a2c9fd;
+    accent-light: #bbc7db;
+    accent-lblue: #a2c9fd;
+    transparent: #00000000;
+}
+
+window {
+    background-color: @transparent;
+    border: 0;
+    width: 600px;
+    location: center;
+    anchor: center;
+}
+
+mainbox {
+    background-color: @bg0;
+    border-radius: 24px;
+    border: 2px solid;
+    border-color: #a2c9fd40;
+    padding: 20px;
+}
+
+inputbar {
+    background-color: @bg1;
+    border-radius: 24px;
+    border: 2px solid;
+    border-color: #bbc7db59;
+    padding: 14px 18px;
+    margin: 0 4px 16px 4px;
+    children: [prompt, entry];
+    spacing: 10px;
+}
+
+prompt {
+    background-color: @transparent;
+    text-color: @accent-lblue;
+}
+
+entry {
+    background-color: @transparent;
+    text-color: @fg1;
+    cursor: text;
+    placeholder: "Search...";
+    placeholder-color: #272a2f;
+}
+
+listview {
+    background-color: @transparent;
+    columns: 1;
+    lines: 10;
+    scrollbar: false;
+    spacing: 3px;
+    fixed-height: true;
+}
+
+element {
+    background-color: @bg0;
+    border-radius: 24px;
+    border: 1px solid;
+    border-color: @transparent;
+    padding: 10px 14px;
+    spacing: 14px;
+}
+
+element selected {
+    background-color: #bbc7db26;
+    border-color: #bbc7db80;
+}
+
+element-icon {
+    background-color: #a2c9fd19;
+    border-radius: 12px;
+    size: 32px;
+}
+
+element-text {
+    background-color: @transparent;
+    text-color: @fg0;
+    font: "JetBrainsMono Nerd Font 12";
+    vertical-align: 0.5;
+}
+
+element-text selected {
+    text-color: @accent-light;
+}
