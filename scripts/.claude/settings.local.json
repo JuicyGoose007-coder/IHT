@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pacman -Qe)",
+      "Bash(pacman -Qqg cachyos-niri)",
+      "Bash(pacman -Sg cachyos-niri)",
+      "Read(//etc/**)",
+      "Bash(pacman -Qii cachyos-niri-settings)"
+    ]
+  }
+}
