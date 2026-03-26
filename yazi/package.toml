@@ -1,0 +1,12 @@
+[plugin]
+deps = []
+
+[[flavor.deps]]
+use = "ZimCodes/yazi-flavors:obsidian-glow"
+rev = "c64630b"
+hash = "cbc1d946c81cff90db37b0c696f13b17"
+
+[[flavor.deps]]
+use = "gosxrgxx/flexoki-dark"
+rev = "25d28ce"
+hash = "8e6dd7e42a127173e4535993d3e0e393"
