@@ -2,6 +2,7 @@
 
 configuration {
     show-icons: false;
+    hover-select: false;
 }
 
 * {
@@ -63,6 +64,7 @@ listview {
     scrollbar: false;
     spacing: 3px;
     fixed-height: true;
+    hover-select: false;
 }
 
 element {

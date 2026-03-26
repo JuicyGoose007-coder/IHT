@@ -25,10 +25,11 @@ TMPENTRIES=$(mktemp)
 echo "$HISTORY" | jq -r '.data[0][].id.data' > "$TMPIDS"
 
 printf '  Clear All\n' > "$TMPENTRIES"
-echo "$HISTORY" | jq -r '
+BOOT_EPOCH=$(date -d "$(uptime -s)" +%s)
+echo "$HISTORY" | jq -r --argjson boot "$BOOT_EPOCH" '
     .data[0][] |
     now as $now |
-    (.timestamp.data / 1000000) as $ts |
+    ($boot + (.timestamp.data / 1000000)) as $ts |
     (($now - $ts) |
         if   . < 60    then "just now"
         elif . < 3600  then ((. / 60  | floor | tostring) + "m ago")

@@ -18,12 +18,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 # POWERLEVEL10K CONFIGURATION (disabled - using starship instead)
 # ============================================================================
 
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-zinit ice depth=1
-zinit light romkatv/powerlevel10k
+# zinit ice depth=1
+# zinit light romkatv/powerlevel10k
 
 # ============================================================================
 # BASIC ZSH CONFIGURATION
@@ -276,21 +272,15 @@ unsetopt BEEP
 # FINAL SETUP
 # ============================================================================
 
-# # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # Starship prompt
-# export STARSHIP_CONFIG=~/.config/starship/starship.toml
-# eval "$(starship init zsh)"
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+eval "$(starship init zsh)"
 
 # Load any local customizations
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 # Display system info (run last to avoid affecting prompt colors)
-if [[ -o interactive ]]; then
-    fastfetch
-fi
+# if [[ -o interactive ]]; then
+#     fastfetch
+# fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export ANTHROPIC_API_KEY="YOUR_ANTHROPIC_API_KEY"

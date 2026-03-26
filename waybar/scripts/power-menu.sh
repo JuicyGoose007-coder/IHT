@@ -1,6 +1,6 @@
 #!/bin/bash
 options="Shutdown\nReboot\nLogout\nSuspend\nHibernate\nLock\nExit"
-chosen=$(echo -e "$options" | rofi -dmenu -i -p "Power Menu" -theme ~/.config/rofi/power-menu.rasi)
+chosen=$(echo -e "$options" | rofi -dmenu -i -p "Power Menu" -theme ~/.config/rofi/power-menu.rasi -hover-select false)
 
 case $chosen in
   "Shutdown") systemctl poweroff ;;

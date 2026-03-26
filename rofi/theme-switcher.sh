@@ -1368,33 +1368,8 @@ EOF
 }
 
 generate_starship() {
-  local file="$HOME/.config/starship.toml"
+  local file="$HOME/.config/starship/starship.toml"
   [[ -f "$file" ]] || return 0
-
-  # Replace all hardcoded oxocarbon hex values with current palette
-  sed -i \
-    -e "s/#161616/${BG0}/g" \
-    -e "s/#262626/${BG1}/g" \
-    -e "s/#393939/${BG2}/g" \
-    -e "s/#525252/${BG3}/g" \
-    -e "s/#f2f4f8/${FG1}/g" \
-    -e "s/#dde1e6/${FG0}/g" \
-    -e "s/#78a9ff/${ACCENT_BLUE}/g" \
-    -e "s/#33b1ff/${ACCENT_LBLUE}/g" \
-    -e "s/#be95ff/${ACCENT_PURPLE}/g" \
-    -e "s/#ff7eb6/${ACCENT_MAGENTA}/g" \
-    -e "s/#ee5396/${ACCENT_PINK}/g" \
-    -e "s/#42be65/${ACCENT_GREEN}/g" \
-    -e "s/#08bdba/${ACCENT_CYAN}/g" \
-    -e "s/#3ddbd9/${ACCENT_TEAL}/g" \
-    -e "s/#82cfff/${ACCENT_SKY}/g" \
-    "$file"
-
-  # Update the palette name and values
-  sed -i \
-    -e 's/^palette = "oxocarbon"/palette = "noctalia"/' \
-    -e 's/^\[palettes\.oxocarbon\]/[palettes.noctalia]/' \
-    "$file"
 
   # Update palette values
   sed -i \

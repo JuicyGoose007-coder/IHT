@@ -6,7 +6,7 @@
     ### Geometry ###
     width = 420
     origin = top-right
-    offset = 8x8
+    offset = (8, 8)
     gap_size = 4
     notification_limit = 10
 
@@ -28,7 +28,6 @@
     ellipsize = middle
     ignore_newline = no
     stack_duplicates = true
-    show_count = true
 
     ### Icons ###
     icon_position = left
@@ -58,14 +57,16 @@
     foreground = "#c3c6cf"
     frame_color = "#3c485880"
     highlight = "#bbc7db"
-    timeout = 5
+    timeout = 10
+
 
 [urgency_normal]
     background = "#191c20f0"
     foreground = "#c3c6cf"
     frame_color = "#a2c9fd80"
     highlight = "#a2c9fd"
-    timeout = 8
+    timeout = 5
+
 
 [urgency_critical]
     background = "#191c20f0"
@@ -73,3 +74,4 @@
     frame_color = "#ffb4ab"
     highlight = "#ffb4ab"
     timeout = 0
+

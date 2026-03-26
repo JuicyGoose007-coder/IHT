@@ -1,93 +1,20 @@
-/* Theme: chinese-poem-life-is-a-dream-teal.jpg */
-@define-color bg0     #090f10;
-@define-color bg1     #171d1d;
-@define-color bg2     #1a2121;
-@define-color bg3     #252b2c;
-@define-color fg0     #bec8ca;
-@define-color fg1     #dee4e4;
+/* Theme: sushi-2.jpg */
+@define-color bg0     #0b0e13;
+@define-color bg1     #191c20;
+@define-color bg2     #1d2024;
+@define-color bg3     #272a2f;
+@define-color fg0     #c3c6cf;
+@define-color fg1     #e1e2e8;
 @define-color white   #ffffff;
-@define-color cyan    #004f56;
-@define-color teal    #324b4e;
-@define-color blue    #81d3de;
+@define-color cyan    #1c4875;
+@define-color teal    #3c4858;
+@define-color blue    #a2c9fd;
 @define-color pink    #ffb4ab;
-@define-color lblue   #81d3de;
-@define-color magenta #b8c6ea;
-@define-color green   #394764;
-@define-color purple  #b1cbcf;
-@define-color sky     #81d3de;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@define-color lblue   #a2c9fd;
+@define-color magenta #d8bde4;
+@define-color green   #533f5f;
+@define-color purple  #bbc7db;
+@define-color sky     #a2c9fd;
 
 
 
@@ -136,10 +63,10 @@ window#waybar.hidden {
 #memory,
 #network,
 #wireplumber,
-#custom-power,
 #battery,
-#custom-exit,
-#custom-notification {
+#custom-power,
+#custom-notification,
+#custom-window {
     background-color: alpha(@bg0, 0.85);
     color: @fg0;
     border-radius: 24px;
@@ -260,6 +187,13 @@ window#waybar.hidden {
     background-color: @bg2;
 }
 
+/* ---- Window pill ---- */
+
+#custom-window {
+    color: @fg0;
+    padding: 2px 14px;
+}
+
 /* ---- Center ---- */
 
 #clock {
@@ -331,7 +265,7 @@ window#waybar.hidden {
 }
 
 #wireplumber {
-    color: @green;
+    color: @darkpurple;
     font-size: 18px;
 }
 
@@ -340,13 +274,13 @@ window#waybar.hidden {
 }
 
 #battery {
-    color: @green;
+    color: @darkpurple;
 }
 
 #battery.charging,
 #battery.plugged {
     color: @bg0;
-    background-color: @green;
+    background-color: @darkpurple;
 }
 
 #battery.warning:not(.charging) {
@@ -387,22 +321,10 @@ window#waybar.hidden {
     transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-#custom-exit {
-    color: @pink;
-    font-size: 15px;
-    padding: 2px 12px;
-}
-
-#custom-exit:hover {
-    background-color: @pink;
-    color: @bg0;
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
 #custom-power {
     color: @pink;
     font-size: 15px;
-    padding: 2px 13px 2px 11px;
+    padding: 2px 14px 2px 10px;
 }
 
 #custom-power:hover {

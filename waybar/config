@@ -10,7 +10,8 @@
         "custom/logo",
         "custom/temp-outside",
         "tray",
-        "wlr/taskbar"
+        "wlr/taskbar",
+        "custom/window"
     ],
     "modules-center": [
         "clock",
@@ -24,9 +25,7 @@
         "network",
         "wireplumber",
         "custom/notification",
-        "custom/power",
-        "battery",
-        "custom/exit"
+        "custom/power"
     ],
 
     "custom/logo": {
@@ -35,8 +34,8 @@
         "on-click": "wofi --show drun"
     },
 
-    "custom/exit": {
-        "format": "",
+    "custom/power": {
+        "format": "⏻",
         "tooltip-format": "Power Menu",
         "on-click": "~/.config/waybar/scripts/power-menu.sh",
         "tooltip": false
@@ -49,13 +48,6 @@
         "on-click-middle": "close",
         "tooltip": true,
         "tooltip-format": "{title} | {app_id}"
-    },
-
-    "custom/power": {
-        "format": "⏻",
-        "tooltip-format": "Power Menu",
-        "tooltip": false,
-        "on-click": "~/.config/waybar/scripts/power-menu.sh"
     },
 
     "niri/workspaces": {
@@ -71,7 +63,7 @@
         "format": "  {:%a %d %b  %I:%M %p}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "  {:%d-%m-%Y}",
-        "interval": 1
+        "interval": 60
     },
 
     "custom/temp-outside": {
@@ -94,7 +86,8 @@
     "custom/gpu": {
         "interval": 10,
         "format": "󰢮",
-        "exec": "echo '{\"text\": \"󰢮\", \"tooltip\": \"GPU: '$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits)'%\"}'",
+        "exec": "~/.config/waybar/scripts/gpu-usage.sh",
+        "exec-if": "command -v nvidia-smi",
         "return-type": "json",
         "on-click": "ghostty -e btop",
         "tooltip": true
@@ -165,6 +158,13 @@
     "tray": {
         "icon-size": 16,
         "spacing": 8
+    },
+
+    "custom/window": {
+        "exec": "~/.config/waybar/window_pill.py",
+        "return-type": "json",
+        "interval": "once",
+        "tooltip": true
     },
 
     "custom/keybinds": {
