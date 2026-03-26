@@ -1,0 +1,12 @@
+{
+  "notes": [
+    {
+      "id": "1774202544242",
+      "title": "API key",
+      "content": "YOUR_ANTHROPIC_API_KEY",
+      "modifiedAt": "2026-03-22T18:02:24.242Z"
+    }
+  ],
+  "showCountInBar": true,
+  "count": 1
+}

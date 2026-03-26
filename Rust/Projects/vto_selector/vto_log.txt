@@ -1,0 +1,13 @@
+[March 07, 2026] --- List manually reset ---
+[March 07, 2026] Aimee - Present: Yes | VTO: Yes
+[March 07, 2026] Mike - Present: No
+[March 07, 2026] Jake - Present: No
+[March 07, 2026] Ron - Present: Yes | VTO: No
+[March 07, 2026] John - Present: Yes | VTO: No
+[March 07, 2026] Carl - Present: Yes | VTO: Yes
+[March 07, 2026] Jake - Present: Yes | VTO: Yes
+[March 07, 2026] Mike - Present: Yes | VTO: No
+[March 07, 2026] --- List automatically refreshed (all names selected) ---
+[March 07, 2026] Carl - Present: Yes | VTO: No
+[March 07, 2026] Aimee - Present: Yes | VTO: Yes
+[March 07, 2026] --- List manually reset ---

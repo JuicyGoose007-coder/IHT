@@ -1,0 +1,124 @@
+/* Notification Center — sushi-2.jpg palette */
+
+configuration {
+    show-icons: true;
+}
+
+* {
+    font:           "JetBrainsMono Nerd Font 12";
+    bg0:            #0b0e13ee;
+    bg1:            #191c20ee;
+    fg0:            #c3c6cf;
+    fg1:            #e1e2e8;
+    accent:         #a2c9fd;
+    accent-dim:     #a2c9fd30;
+    accent-border:  #a2c9fd50;
+    muted:          #3c4858;
+    transparent:    #00000000;
+}
+
+window {
+    background-color: @transparent;
+    border:           0;
+    width:            460px;
+    location:         north east;
+    anchor:           north east;
+    x-offset:         -8px;
+    y-offset:         48px;
+}
+
+mainbox {
+    background-color: @bg0;
+    border-radius:    16px;
+    border:           2px solid;
+    border-color:     @accent-border;
+    padding:          12px;
+    spacing:          0;
+    children:         [inputbar, listview];
+}
+
+inputbar {
+    background-color: @bg1;
+    border-radius:    12px;
+    border:           1px solid;
+    border-color:     @accent-dim;
+    padding:          10px 14px;
+    margin:           0 0 10px 0;
+    spacing:          10px;
+    children:         [prompt, entry];
+}
+
+prompt {
+    background-color: @transparent;
+    text-color:       @accent;
+    font:             "JetBrainsMono Nerd Font Bold 12";
+}
+
+entry {
+    background-color: @transparent;
+    text-color:       @fg0;
+    cursor:           text;
+    placeholder:      "Filter…";
+    placeholder-color: @muted;
+}
+
+message {
+    background-color: @bg1;
+    border-radius:    10px;
+    border:           1px solid;
+    border-color:     @accent-dim;
+    padding:          12px 14px;
+    margin:           0 0 10px 0;
+}
+
+textbox {
+    background-color: @transparent;
+    text-color:       @fg0;
+    word-wrap:        true;
+}
+
+listview {
+    background-color: @transparent;
+    columns:          1;
+    lines:            8;
+    scrollbar:        false;
+    spacing:          4px;
+    fixed-height:     false;
+}
+
+element {
+    background-color: @bg1;
+    border-radius:    10px;
+    border:           1px solid;
+    border-color:     @transparent;
+    padding:          8px 12px;
+    spacing:          10px;
+    orientation:      horizontal;
+}
+
+element normal normal {
+    background-color: @bg1;
+    border-color:     @transparent;
+}
+
+element selected normal {
+    background-color: @accent-dim;
+    border-color:     @accent-border;
+}
+
+element-icon {
+    background-color: @transparent;
+    size:             28px;
+    border-radius:    6px;
+    vertical-align:   0.5;
+}
+
+element-text {
+    background-color: @transparent;
+    text-color:       @fg0;
+    vertical-align:   0.5;
+}
+
+element-text selected {
+    text-color: @fg1;
+}

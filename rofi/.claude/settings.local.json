@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rofi:*)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(identify /tmp/wallpaper-switcher-thumbs/space.jpg)",
+      "Bash(chmod +x /home/juicygoose007/.config/rofi/launcher.sh)",
+      "Bash(echo \"exit:$?\")",
+      "Bash(bash -n /home/juicygoose007/.config/rofi/wallpaper-switcher.sh)",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(bash -n /home/juicygoose007/.config/rofi/theme-switcher.sh)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(python3 -m json.tool)",
+      "Read(//home/juicygoose007/.config/**)",
+      "Read(//etc/dunst/**)",
+      "Bash(bash -n ~/.config/rofi/notification-center.sh)"
+    ]
+  }
+}

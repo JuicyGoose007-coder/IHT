@@ -1,0 +1,75 @@
+[global]
+    ### Display ###
+    monitor = 0
+    follow = none
+
+    ### Geometry ###
+    width = 420
+    origin = top-right
+    offset = 8x8
+    gap_size = 4
+    notification_limit = 10
+
+    ### Layout ###
+    padding = 12
+    horizontal_padding = 14
+    text_icon_padding = 14
+    frame_width = 2
+    corner_radius = 14
+
+    ### Text ###
+    font = JetBrainsMono Nerd Font 11
+    line_height = 2
+    markup = full
+    format = <b>%s</b>\n%b
+    alignment = left
+    vertical_alignment = center
+    word_wrap = yes
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    show_count = true
+
+    ### Icons ###
+    icon_position = left
+    min_icon_size = 24
+    max_icon_size = 48
+    icon_corner_radius = 6
+
+    ### History ###
+    sticky_history = yes
+    history_length = 20
+
+    ### Misc ###
+    show_indicators = no
+    layer = top
+    dmenu = /usr/bin/rofi -dmenu
+    browser = /usr/bin/xdg-open
+    title = Dunst
+    class = Dunst
+
+    ### Mouse ###
+    mouse_left_click = close_current
+    mouse_right_click = do_action
+    mouse_middle_click = close_all
+
+[urgency_low]
+    background = "#191c20f0"
+    foreground = "#c3c6cf"
+    frame_color = "#3c485880"
+    highlight = "#bbc7db"
+    timeout = 5
+
+[urgency_normal]
+    background = "#191c20f0"
+    foreground = "#c3c6cf"
+    frame_color = "#a2c9fd80"
+    highlight = "#a2c9fd"
+    timeout = 8
+
+[urgency_critical]
+    background = "#191c20f0"
+    foreground = "#e1e2e8"
+    frame_color = "#ffb4ab"
+    highlight = "#ffb4ab"
+    timeout = 0

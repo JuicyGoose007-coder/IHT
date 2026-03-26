@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/juicygoose007/.local/bin/**)",
+      "Bash(swww --version)",
+      "Bash(ls -d /home/juicygoose007/.config/*/)",
+      "Bash(xargs -I {} basename {})",
+      "Bash(grep -r \"wallpaper\\\\|swww\" /home/juicygoose007/.config --include=*.conf --include=*.config)",
+      "Bash(swww img:*)",
+      "Bash(find /home/juicygoose007/.config/niri -name *.kdl)",
+      "Bash(chmod:*)",
+      "Read(//usr/share/doc/**)",
+      "Read(//etc/xdg/**)",
+      "Bash(wofi -D help)",
+      "Bash(pacman -Q)",
+      "Bash(find ~/.config -name *.kdl)",
+      "Bash(pacman -Q imagemagick)",
+      "Bash(cat /home/juicygoose007/.config/noctalia/colorschemes/'GitHub Dark'/*.json)",
+      "Bash(find /home/juicygoose007/.config/btop -name *.theme)",
+      "Bash(find /usr/share/Kvantum -name *Nordic* -type f)",
+      "Read(//home/juicygoose007/.config/swaylock/**)",
+      "Read(//home/juicygoose007/.config/wlogout/**)",
+      "Read(//home/juicygoose007/.config/starship/**)",
+      "Read(//home/juicygoose007/.config/**)",
+      "Bash(bash -n /home/juicygoose007/.config/wofi/theme-switcher.sh 2>&1)",
+      "Bash(matugen image:*)"
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /home/juicygoose007/.local/share/nvim/lazy -name *keymap* -type f)"
+    ]
+  }
+}
