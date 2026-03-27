@@ -1391,6 +1391,8 @@ generate_starship() {
     -e "s/^mauve = .*/mauve = \"${ACCENT_PURPLE}\"/" \
     -e "s/^red = .*/red = \"${ACCENT_PINK}\"/" \
     -e "s/^maroon = .*/maroon = \"${ACCENT_MAGENTA}\"/" \
+    -e "s/^peach = .*/peach = \"${ACCENT_MAGENTA}\"/" \
+    -e "s/^yellow = .*/yellow = \"$(lighten_color "$ACCENT_MAGENTA" 20)\"/" \
     -e "s/^green = .*/green = \"${ACCENT_GREEN}\"/" \
     -e "s/^teal = .*/teal = \"${ACCENT_TEAL}\"/" \
     -e "s/^sky = .*/sky = \"${ACCENT_SKY}\"/" \

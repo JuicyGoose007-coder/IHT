@@ -1,20 +1,26 @@
-/* Theme: sword.jpg */
-@define-color bg0     #130c0f;
-@define-color bg1     #21191c;
-@define-color bg2     #251d21;
-@define-color bg3     #30282b;
-@define-color fg0     #d4c2c8;
-@define-color fg1     #eedfe3;
+/* Theme: chinese-poem-life-is-a-dream-teal.jpg */
+@define-color bg0     #090f10;
+@define-color bg1     #171d1d;
+@define-color bg2     #1a2121;
+@define-color bg3     #252b2c;
+@define-color fg0     #bec8ca;
+@define-color fg1     #dee4e4;
 @define-color white   #ffffff;
-@define-color cyan    #6d3351;
-@define-color teal    #59404a;
-@define-color blue    #feb0d3;
+@define-color cyan    #004f56;
+@define-color teal    #324b4e;
+@define-color blue    #81d3de;
 @define-color pink    #ffb4ab;
-@define-color lblue   #feb0d3;
-@define-color magenta #f2bb99;
-@define-color green   #643e24;
-@define-color purple  #e0bdcb;
-@define-color sky     #feb0d3;
+@define-color lblue   #81d3de;
+@define-color magenta #b8c6ea;
+@define-color green   #394764;
+@define-color purple  #b1cbcf;
+@define-color sky     #81d3de;
+
+
+
+
+
+
 
 
 

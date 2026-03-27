@@ -65,6 +65,10 @@ setopt SHARE_HISTORY # Share history between all sessions
 # PLUGINS & TOOLS (via Zinit)
 # ============================================================================
 
+# Vi mode (must load before other plugins)
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
 # Fast Syntax Highlighting - must be loaded BEFORE zsh-autocomplete
 zinit ice wait lucid
 zinit light zdharma-continuum/fast-syntax-highlighting
@@ -137,9 +141,6 @@ fi
 
 # Use emacs key bindings
 # bindkey -e
-
-# Use vim key bindings
-bindkey -v
 
 # History search
 bindkey '^R' history-incremental-search-backward
@@ -271,6 +272,37 @@ unsetopt BEEP
 # ============================================================================
 # FINAL SETUP
 # ============================================================================
+
+# Vim mode indicator for Starship via zsh-vi-mode
+export VIM_INSERT="INS"
+unset VIM_NORMAL VIM_VISUAL
+
+function zvm_after_select_vi_mode {
+  unset VIM_NORMAL VIM_INSERT VIM_VISUAL
+  case $ZVM_MODE in
+    $ZVM_MODE_NORMAL)      export VIM_NORMAL="NOR" ;;
+    $ZVM_MODE_VISUAL)      export VIM_VISUAL="VIS" ;;
+    $ZVM_MODE_VISUAL_LINE) export VIM_VISUAL="VIS" ;;
+    *)                     export VIM_INSERT="INS" ;;
+  esac
+}
+
+# Re-apply custom keybindings after zsh-vi-mode initialises
+function zvm_after_init {
+  bindkey '^R' history-incremental-search-backward
+  bindkey '^S' history-incremental-search-forward
+  bindkey '^[[1;5C' forward-word
+  bindkey '^[[1;5D' backward-word
+  bindkey '^A' beginning-of-line
+  bindkey '^E' end-of-line
+  bindkey '^X^K' kill-line
+  bindkey '^X^L' clear-screen
+  bindkey '^U' kill-whole-line
+  bindkey '^W' backward-kill-word
+  bindkey '^[[3~' delete-char
+  bindkey '^[[H' beginning-of-line
+  bindkey '^[[F' end-of-line
+}
 
 # Starship prompt
 export STARSHIP_CONFIG=~/.config/starship/starship.toml

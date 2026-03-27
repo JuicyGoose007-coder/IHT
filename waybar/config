@@ -89,7 +89,7 @@
         "exec": "~/.config/waybar/scripts/gpu-usage.sh",
         "exec-if": "command -v nvidia-smi",
         "return-type": "json",
-        "on-click": "ghostty -e btop",
+        "on-click": "ghostty -e nvtop",
         "tooltip": true
     },
 
