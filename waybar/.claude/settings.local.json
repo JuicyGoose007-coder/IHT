@@ -10,7 +10,8 @@
       "Bash(echo \"$XDG_CURRENT_DESKTOP\")",
       "Bash(waybar --version)",
       "Bash(lspci)",
-      "Bash(nvidia-smi:*)"
+      "Bash(nvidia-smi:*)",
+      "Bash(chmod:*)"
     ]
   }
 }

@@ -1,20 +1,23 @@
-/* Theme: sushi-2.jpg */
-@define-color bg0 #0b0e13;
-@define-color bg1 #191c20;
-@define-color bg2 #1d2024;
-@define-color bg3 #272a2f;
-@define-color fg0 #c3c6cf;
-@define-color fg1 #e1e2e8;
-@define-color white #ffffff;
-@define-color cyan #1c4875;
-@define-color teal #3c4858;
-@define-color blue #a2c9fd;
-@define-color pink #ffb4ab;
-@define-color lblue #a2c9fd;
-@define-color magenta #d8bde4;
-@define-color green #533f5f;
-@define-color purple #bbc7db;
-@define-color sky #a2c9fd;
+/* Theme: 12.png */
+@define-color bg0     #0e0e13;
+@define-color bg1     #1b1b21;
+@define-color bg2     #201f25;
+@define-color bg3     #2a292f;
+@define-color fg0     #c8c5d0;
+@define-color fg1     #e5e1e9;
+@define-color white   #ffffff;
+@define-color cyan    #424078;
+@define-color teal    #464559;
+@define-color blue    #c3c0ff;
+@define-color pink    #ffb4ab;
+@define-color lblue   #c3c0ff;
+@define-color magenta #eab9d1;
+@define-color green   #603c50;
+@define-color purple  #c7c4dd;
+@define-color sky     #c3c0ff;
+
+
+
 
 
 
@@ -36,7 +39,7 @@
   border: none;
   border-radius: 0;
   font-family: "JetBrainsMono Nerd Font Propo", "Inter Medium", "Font Awesome 7 Free", Roboto, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   min-height: 0;
 }
 
@@ -202,7 +205,7 @@ window#waybar.hidden {
   color: @purple;
   background-color: alpha(@bg0, 0.85);
   padding: 2px 26px 2px 8px;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.5px;
 }
 
@@ -237,19 +240,19 @@ window#waybar.hidden {
 
 #cpu {
   color: @blue;
-  font-size: 18px;
+  font-size: 14px;
   padding: 2px 10px;
 }
 
 #custom-gpu {
   color: @teal;
-  font-size: 18px;
+  font-size: 14px;
   padding: 2px 10px;
 }
 
 #memory {
   color: @purple;
-  font-size: 18px;
+  font-size: 14px;
   padding: 2px 10px;
 }
 
@@ -268,7 +271,7 @@ window#waybar.hidden {
 
 #wireplumber {
   color: @darkpurple;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 #wireplumber.muted {
@@ -325,7 +328,7 @@ window#waybar.hidden {
 
 #custom-power {
   color: @pink;
-  font-size: 15px;
+  font-size: 14px;
   padding: 2px 10px;
 }
 
