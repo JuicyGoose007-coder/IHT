@@ -1,20 +1,22 @@
 /* Theme: sushi-2.jpg */
-@define-color bg0     #0b0e13;
-@define-color bg1     #191c20;
-@define-color bg2     #1d2024;
-@define-color bg3     #272a2f;
-@define-color fg0     #c3c6cf;
-@define-color fg1     #e1e2e8;
-@define-color white   #ffffff;
-@define-color cyan    #1c4875;
-@define-color teal    #3c4858;
-@define-color blue    #a2c9fd;
-@define-color pink    #ffb4ab;
-@define-color lblue   #a2c9fd;
+@define-color bg0 #0b0e13;
+@define-color bg1 #191c20;
+@define-color bg2 #1d2024;
+@define-color bg3 #272a2f;
+@define-color fg0 #c3c6cf;
+@define-color fg1 #e1e2e8;
+@define-color white #ffffff;
+@define-color cyan #1c4875;
+@define-color teal #3c4858;
+@define-color blue #a2c9fd;
+@define-color pink #ffb4ab;
+@define-color lblue #a2c9fd;
 @define-color magenta #d8bde4;
-@define-color green   #533f5f;
-@define-color purple  #bbc7db;
-@define-color sky     #a2c9fd;
+@define-color green #533f5f;
+@define-color purple #bbc7db;
+@define-color sky #a2c9fd;
+
+
 
 
 
@@ -31,20 +33,20 @@
 
 
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "Inter Medium", "JetBrainsMono Nerd Font", "Font Awesome 7 Free", Roboto, sans-serif;
-    font-size: 13px;
-    min-height: 0;
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrainsMono Nerd Font Propo", "Inter Medium", "Font Awesome 7 Free", Roboto, sans-serif;
+  font-size: 13px;
+  min-height: 0;
 }
 
 
 window#waybar {
-    background: transparent;
+  background: transparent;
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+  opacity: 0.2;
 }
 
 /* ---- Pill shape base for all modules ---- */
@@ -67,281 +69,281 @@ window#waybar.hidden {
 #custom-power,
 #custom-notification,
 #custom-window {
-    background-color: alpha(@bg0, 0.85);
-    color: @fg0;
-    border-radius: 24px;
-    padding: 2px 10px;
-    margin: 3px 2px;
-    font-weight: bold;
-    min-height: 24px;
+  background-color: alpha(@bg0, 0.85);
+  color: @fg0;
+  border-radius: 24px;
+  padding: 2px 10px;
+  margin: 3px 2px;
+  font-weight: bold;
+  min-height: 24px;
 }
 
 /* ---- Left modules ---- */
 
 #custom-keybinds {
-    color: @purple;
-    font-size: 21px;
+  color: @purple;
+  font-size: 21px;
 }
 
 #custom-keybinds:hover {
-    color: @magenta;
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  color: @magenta;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 #custom-logo {
-    background-color: @blue;
-    color: @bg0;
-    font-size: 16px;
-    padding: 2px 12px;
+  background-color: @blue;
+  color: @bg0;
+  font-size: 16px;
+  padding: 2px 12px;
 }
 
 #custom-logo:hover {
-    background-color: @lblue;
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  background-color: @lblue;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 /* ---- Workspaces ---- */
 
 #workspaces {
-    padding: 2px 6px;
+  padding: 2px 6px;
 }
 
 #workspaces button {
-    color: @bg0;
-    background-color: @teal;
-    padding: 2px 8px;
-    border-radius: 24px;
-    margin: 0 2px;
-    font-weight: bold;
+  color: @bg0;
+  background-color: @teal;
+  padding: 2px 8px;
+  border-radius: 24px;
+  margin: 0 2px;
+  font-weight: bold;
 }
 
 #workspaces button.empty {
-    color: @bg0;
-    background-color: @blue;
+  color: @bg0;
+  background-color: @blue;
 }
 
 #workspaces button:hover {
-    color: @fg0;
-    background-color: @bg2;
+  color: @fg0;
+  background-color: @bg2;
 }
 
 #workspaces button.active {
-    color: @bg0;
-    background-color: @purple;
+  color: @bg0;
+  background-color: @purple;
 }
 
 #workspaces button.urgent {
-    color: @bg0;
-    background-color: @pink;
+  color: @bg0;
+  background-color: @pink;
 }
 
 #custom-weather {
-    color: @sky;
+  color: @sky;
 }
 
 #custom-weather.sunnyDay {
-    color: #f9e2af;
+  color: #f9e2af;
 }
 
 #custom-weather.clearNight {
-    color: @purple;
+  color: @purple;
 }
 
 #custom-weather.cloudyFoggyDay,
 #custom-weather.cloudyFoggyNight {
-    color: @fg0;
+  color: @fg0;
 }
 
 #custom-weather.rainyDay,
 #custom-weather.rainyNight {
-    color: @teal;
+  color: @teal;
 }
 
 #custom-weather.snowyIcyDay,
 #custom-weather.snowyIcyNight {
-    color: @sky;
+  color: @sky;
 }
 
 #custom-weather.severe {
-    color: @pink;
+  color: @pink;
 }
 
 /* ---- Taskbar ---- */
 
 #taskbar {
-    padding: 2px 8px;
+  padding: 2px 8px;
 }
 
 #taskbar button {
-    background: transparent;
-    padding: 2px 4px;
-    border-radius: 24px;
-    margin: 0 2px;
+  background: transparent;
+  padding: 2px 4px;
+  border-radius: 24px;
+  margin: 0 2px;
 }
 
 #taskbar button:hover {
-    background-color: @bg2;
+  background-color: @bg2;
 }
 
 #taskbar button.active {
-    background-color: @bg2;
+  background-color: @bg2;
 }
 
 /* ---- Window pill ---- */
 
 #custom-window {
-    color: @fg0;
-    padding: 2px 14px;
+  color: @fg0;
+  padding: 2px 14px;
 }
 
 /* ---- Center ---- */
 
 #clock {
-    color: @purple;
-    background-color: alpha(@bg0, 0.85);
-    padding: 2px 26px 2px 8px;
-    font-size: 13px;
-    letter-spacing: 0.5px;
+  color: @purple;
+  background-color: alpha(@bg0, 0.85);
+  padding: 2px 26px 2px 8px;
+  font-size: 13px;
+  letter-spacing: 0.5px;
 }
 
 /* ---- Right modules ---- */
 
 #custom-deadbeef {
-    color: @magenta;
+  color: @magenta;
 }
 
 #tray {
-    padding: 2px 10px;
+  padding: 2px 10px;
 }
 
-#tray > .passive {
-    -gtk-icon-effect: dim;
+#tray>.passive {
+  -gtk-icon-effect: dim;
 }
 
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: @pink;
+#tray>.needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: @pink;
 }
 
 #tray menu {
-    background-color: @bg0;
-    border-radius: 12px;
-    border: 1px solid @bg2;
+  background-color: @bg0;
+  border-radius: 12px;
+  border: 1px solid @bg2;
 }
 
 #custom-temp-outside {
-    color: @teal;
+  color: @teal;
 }
 
 #cpu {
-    color: @blue;
-    font-size: 18px;
-    padding: 2px 14px 2px 6px;
+  color: @blue;
+  font-size: 18px;
+  padding: 2px 10px;
 }
 
 #custom-gpu {
-    color: @teal;
-    font-size: 18px;
-    padding: 2px 14px 2px 6px;
+  color: @teal;
+  font-size: 18px;
+  padding: 2px 10px;
 }
 
 #memory {
-    color: @purple;
-    font-size: 18px;
-    padding: 2px 12px 2px 8px;
+  color: @purple;
+  font-size: 18px;
+  padding: 2px 10px;
 }
 
 #network {
-    color: @cyan;
-    padding: 2px 12px 2px 8px;
+  color: @cyan;
+  padding: 2px 10px;
 }
 
 #network.disconnected {
-    color: @pink;
+  color: @pink;
 }
 
 #network.linked {
-    color: @purple;
+  color: @purple;
 }
 
 #wireplumber {
-    color: @darkpurple;
-    font-size: 18px;
+  color: @darkpurple;
+  font-size: 18px;
 }
 
 #wireplumber.muted {
-    color: @bg3;
+  color: @bg3;
 }
 
 #battery {
-    color: @darkpurple;
+  color: @darkpurple;
 }
 
 #battery.charging,
 #battery.plugged {
-    color: @bg0;
-    background-color: @darkpurple;
+  color: @bg0;
+  background-color: @darkpurple;
 }
 
 #battery.warning:not(.charging) {
-    color: @bg0;
-    background-color: #ff7eb6;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  color: @bg0;
+  background-color: #ff7eb6;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 #battery.critical:not(.charging) {
-    color: @white;
-    background-color: @pink;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  color: @white;
+  background-color: @pink;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 @keyframes blink {
-    to {
-        background-color: @bg0;
-        color: @pink;
-    }
+  to {
+    background-color: @bg0;
+    color: @pink;
+  }
 }
 
 #custom-notification {
-    color: @blue;
-    font-size: 16px;
-    padding: 2px 12px 2px 11px;
+  color: @blue;
+  font-size: 16px;
+  padding: 2px 10px;
 }
 
 #custom-notification:hover {
-    color: @lblue;
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  color: @lblue;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 #custom-power {
-    color: @pink;
-    font-size: 15px;
-    padding: 2px 14px 2px 10px;
+  color: @pink;
+  font-size: 15px;
+  padding: 2px 10px;
 }
 
 #custom-power:hover {
-    background-color: @pink;
-    color: @bg0;
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  background-color: @pink;
+  color: @bg0;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 /* ---- Tooltip ---- */
 
 tooltip {
-    border-radius: 12px;
-    background-color: alpha(@bg0, 0.9);
-    border: 1px solid @bg2;
-    padding: 8px;
+  border-radius: 12px;
+  background-color: alpha(@bg0, 0.9);
+  border: 1px solid @bg2;
+  padding: 8px;
 }
 
 tooltip label {
-    color: @fg1;
+  color: @fg1;
 }
