@@ -39,7 +39,7 @@ window {
 }
 
 mainbox {
-    background-color: @purple-dim;
+    background-color: @surface;
     border-radius:    20px;
     border:           2px solid;
     border-color:     @blue-border;

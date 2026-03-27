@@ -38,7 +38,7 @@ window {
 }
 
 mainbox {
-    background-color: @purple-dim;
+    background-color: @surface;
     border-radius:    20px;
     border:           2px solid;
     border-color:     @blue-border;
@@ -118,7 +118,7 @@ element-icon {
 }
 
 element-text {
-    background-color: @transparent;
+    background-color: @blue-dim;
     text-color:       @teal;
     font:             "JetBrainsMono Nerd Font Bold 14";
     horizontal-align: 0.5;
