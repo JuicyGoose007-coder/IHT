@@ -15,6 +15,9 @@ set -e
 REPO="https://github.com/JuicyGoose007-coder/IHT.git"
 DEST="$HOME/IHT"
 
+echo ">> Ensuring directories exist..."
+mkdir -p ~/.config ~/Pictures
+
 echo ">> Cloning dotfiles..."
 if [ -d "$DEST" ]; then
     echo ">> $DEST already exists, pulling latest..."
@@ -24,7 +27,7 @@ else
 fi
 
 echo ">> Installing packages..."
-bash "$DEST/scripts/pkgs.sh"
+bash "$DEST/scripts/pkgs.sh" || echo ">> Warning: some packages failed to install, continuing..."
 
 echo ">> Unpacking dotfiles..."
 cp "$DEST/zshrc" ~/.zshrc
