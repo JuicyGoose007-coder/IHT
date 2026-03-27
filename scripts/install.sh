@@ -23,6 +23,9 @@ else
     git clone "$REPO" "$DEST"
 fi
 
+echo ">> Installing packages..."
+bash "$DEST/scripts/pkgs.sh"
+
 echo ">> Unpacking dotfiles..."
 cp "$DEST/zshrc" ~/.zshrc
 cp -r "$DEST/fastfetch" ~/.config/
