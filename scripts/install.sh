@@ -31,6 +31,7 @@ bash "$DEST/scripts/pkgs.sh" || echo ">> Warning: some packages failed to instal
 
 echo ">> Unpacking dotfiles..."
 cp "$DEST/zshrc" ~/.zshrc
+sudo cp "$DEST/sddm.conf" /etc/sddm.conf
 cp -r "$DEST/starship" ~/.config/
 cp -r "$DEST/fastfetch" ~/.config/
 cp -r "$DEST/ghostty" ~/.config/
