@@ -31,7 +31,6 @@ bash "$DEST/scripts/pkgs.sh" || echo ">> Warning: some packages failed to instal
 
 echo ">> Unpacking dotfiles..."
 cp "$DEST/zshrc" ~/.zshrc
-sudo cp "$DEST/sddm.conf" /etc/sddm.conf
 cp -r "$DEST/starship" ~/.config/
 cp -r "$DEST/fastfetch" ~/.config/
 cp -r "$DEST/ghostty" ~/.config/
@@ -49,6 +48,9 @@ cp -r "$DEST/rofi" ~/.config/
 cp -r "$DEST/wlogout" ~/.config/
 cp -r "$DEST/scripts" ~/
 cp -r "$DEST/Rust" ~/
+
+echo ">> Applying system configs (requires sudo)..."
+sudo cp "$DEST/sddm.conf" /etc/sddm.conf
 
 echo ">> Done! Dotfiles installed."
 

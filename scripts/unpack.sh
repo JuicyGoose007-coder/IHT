@@ -10,7 +10,6 @@
 # base pkgs
 ##########################################################################
 cp ~/IHT/zshrc ~/.zshrc
-sudo cp ~/IHT/sddm.conf /etc/sddm.conf
 cp -r ~/IHT/starship ~/.config
 cp -r ~/IHT/fastfetch ~/.config
 cp -r ~/IHT/ghostty ~/.config
@@ -28,6 +27,7 @@ cp -r ~/IHT/rofi ~/.config
 cp -r ~/IHT/wlogout ~/.config
 cp -r ~/IHT/scripts ~/scripts
 cp -r ~/IHT/Rust ~/Rust
+sudo cp ~/IHT/sddm.conf /etc/sddm.conf
 ##########################################################################
 # END OF SCRIPT                                                          #
 ##########################################################################
