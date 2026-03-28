@@ -1,0 +1,98 @@
+/* Keybind cheatsheet */
+
+configuration {
+    show-icons: false;
+}
+
+* {
+    font: "JetBrainsMono Nerd Font 11";
+
+    base:          #161616ff;
+    surface:       #262626ff;
+    overlay:       #393939ff;
+    muted:         #525252ff;
+    subtle:        #6f6f6fff;
+    text:          #f2f4f8ff;
+    subtext:       #dde1e6ff;
+    blue:          #78a9ffff;
+    purple:        #be95ffff;
+    teal:          #08bdbaff;
+    pink:          #ff7eb6ff;
+
+    transparent:   #00000000;
+    blue-dim:      #78a9ff20;
+    blue-border:   #78a9ff50;
+    purple-dim:    #be95ff15;
+    purple-border: #be95ff45;
+}
+
+window {
+    background-color: @transparent;
+    border:           0;
+    width:            1400px;
+    location:         center;
+    anchor:           center;
+}
+
+mainbox {
+    background-color: @surface;
+    border-radius:    20px;
+    border:           2px solid;
+    border-color:     @blue-border;
+    padding:          18px;
+    spacing:          0;
+    children:         [message, listview];
+}
+
+message {
+    background-color: @overlay;
+    border-radius:    12px;
+    padding:          10px 16px;
+    margin:           0 0 12px 0;
+}
+
+textbox {
+    background-color: @transparent;
+    text-color:       @blue;
+    font:             "JetBrainsMono Nerd Font Bold 13";
+    horizontal-align: 0.5;
+    expand:           true;
+}
+
+listview {
+    background-color: @transparent;
+    columns:          2;
+    scrollbar:        false;
+    spacing:          2px;
+    fixed-height:     false;
+}
+
+element {
+    background-color: @transparent;
+    border-radius:    8px;
+    border:           1px solid;
+    border-color:     @transparent;
+    padding:          4px 10px;
+    orientation:      horizontal;
+}
+
+element normal normal {
+    background-color: @transparent;
+    border-color:     @transparent;
+}
+
+element selected normal {
+    background-color: @blue-dim;
+    border-color:     @blue-border;
+}
+
+element-text {
+    background-color: @transparent;
+    text-color:       @blue;
+    font:             "JetBrainsMono Nerd Font 11";
+    vertical-align:   0.5;
+}
+
+element-text selected {
+    text-color: @teal;
+}

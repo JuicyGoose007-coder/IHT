@@ -1640,8 +1640,8 @@ reload_all() {
   # Niri: reload config
   niri msg action load-config-file 2>/dev/null || true
 
-  # Ghostty: reload config via IPC
-  ghostty +reload-config 2>/dev/null || true
+  # Ghostty: reload config via SIGUSR2
+  pkill -SIGUSR2 ghostty 2>/dev/null || true
 
   # Kitty: live color reload
   if command -v kitty &>/dev/null && pgrep -x kitty &>/dev/null; then

@@ -53,7 +53,7 @@ gestures {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
 
 binds {
-    MOD+SHIFT+ESCAPE                     { show-hotkey-overlay; }
+    MOD+SHIFT+ESCAPE                     { spawn-sh "~/.config/rofi/keybinds.sh"; }
 
     // ─── Applications ───
     MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty"; }

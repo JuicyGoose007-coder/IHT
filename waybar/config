@@ -173,6 +173,6 @@
         "exec": "~/.config/waybar/scripts/niri-keybinds.sh",
         "interval": "once",
         "tooltip": true,
-        "on-click": "niri msg action show-hotkey-overlay"
+        "on-click": "~/.config/rofi/keybinds.sh"
     }
 }
