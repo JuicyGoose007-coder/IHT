@@ -1,23 +1,23 @@
-/* Theme: sushi-2.jpg — app launcher */
+/* Theme: 12.png — app launcher */
 
 configuration {
     show-icons: true;
 }
 
 * {
-    font: "JetBrainsMono Nerd Font 12";
-    bg0: #0b0e13e6;
-    bg1: #191c20e6;
-    fg0: #c3c6cf;
-    fg1: #e1e2e8;
-    accent: #a2c9fd;
-    accent-light: #bbc7db;
-    accent-lblue: #a2c9fd;
+    font: "Inter Medium 13";
+    bg0: #0e0e13;
+    bg1: #1b1b21;
+    fg0: #c8c5d0;
+    fg1: #e5e1e9;
+    accent: #c3c0ff;
+    accent-light: #c7c4dd;
+    accent-lblue: #c3c0ff;
     transparent: #00000000;
 }
 
 window {
-    background-color: @transparent;
+    background-color: @bg0;
     border: 0;
     width: 600px;
     location: center;
@@ -28,7 +28,7 @@ mainbox {
     background-color: @bg0;
     border-radius: 24px;
     border: 2px solid;
-    border-color: #a2c9fd40;
+    border-color: #c3c0ff40;
     padding: 20px;
 }
 
@@ -36,7 +36,7 @@ inputbar {
     background-color: @bg1;
     border-radius: 24px;
     border: 2px solid;
-    border-color: #bbc7db59;
+    border-color: #c7c4dd59;
     padding: 14px 18px;
     margin: 0 4px 16px 4px;
     children: [prompt, entry];
@@ -53,7 +53,7 @@ entry {
     text-color: @fg1;
     cursor: text;
     placeholder: "Search...";
-    placeholder-color: #272a2f;
+    placeholder-color: #2a292f;
 }
 
 listview {
@@ -75,12 +75,12 @@ element {
 }
 
 element selected {
-    background-color: #bbc7db26;
-    border-color: #bbc7db80;
+    background-color: #c7c4dd26;
+    border-color: #c7c4dd80;
 }
 
 element-icon {
-    background-color: #a2c9fd19;
+    background-color: #c3c0ff19;
     border-radius: 12px;
     size: 32px;
 }
@@ -88,7 +88,7 @@ element-icon {
 element-text {
     background-color: @transparent;
     text-color: @fg0;
-    font: "JetBrainsMono Nerd Font 12";
+    font: "Inter Medium 13";
     vertical-align: 0.5;
 }
 

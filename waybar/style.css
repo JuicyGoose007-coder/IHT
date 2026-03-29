@@ -1,20 +1,44 @@
-/* Theme: chinese-poem-life-is-a-dream-teal.jpg */
-@define-color bg0     #090f10;
-@define-color bg1     #171d1d;
-@define-color bg2     #1a2121;
-@define-color bg3     #252b2c;
-@define-color fg0     #bec8ca;
-@define-color fg1     #dee4e4;
+/* Theme: 12.png */
+@define-color bg0     #0e0e13;
+@define-color bg1     #1b1b21;
+@define-color bg2     #201f25;
+@define-color bg3     #2a292f;
+@define-color fg0     #c8c5d0;
+@define-color fg1     #e5e1e9;
 @define-color white   #ffffff;
-@define-color cyan    #004f56;
-@define-color teal    #324b4e;
-@define-color blue    #81d3de;
+@define-color cyan    #424078;
+@define-color teal    #464559;
+@define-color blue    #c3c0ff;
 @define-color pink    #ffb4ab;
-@define-color lblue   #81d3de;
-@define-color magenta #b8c6ea;
-@define-color green   #394764;
-@define-color purple  #b1cbcf;
-@define-color sky     #81d3de;
+@define-color lblue   #c3c0ff;
+@define-color magenta #eab9d1;
+@define-color green   #603c50;
+@define-color purple  #c7c4dd;
+@define-color sky     #c3c0ff;
+
+
+
+
+
+
+
+
+
+
+
+
+
+@define-color darkpurple #9d8fd4;
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -2,24 +2,6 @@ return {
 	-- Disable LazyVim's built-in neo-tree (using yazi/superfile instead)
 	{ "nvim-neo-tree/neo-tree.nvim", enabled = false },
 
-	-- File explorer (superfile - terminal file manager)
-	{
-		"anaypurohit0907/superfile.nvim",
-		main = "superfile",
-		opts = { key = false },
-		keys = {
-			{
-				"<C-s>",
-				function()
-					require("superfile").open()
-				end,
-				mode = { "n", "t" },
-				desc = "Open/Focus Superfile",
-				silent = true,
-			},
-		},
-	},
-
 	-- File explorer (yazi - terminal file manager)
 	{
 		"mikavilpas/yazi.nvim",
