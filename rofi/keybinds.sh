@@ -7,9 +7,14 @@
 CONFIG="$HOME/.config/niri/config.kdl"
 STYLE="$HOME/.config/rofi/keybinds.rasi"
 
-# Colors for markup
-C_KEY="<span foreground='#78a9ff'>"
-C_DESC="<span foreground='#dde1e6'>"
+# Colors for markup — sourced from theme-switcher cache, fallback to Oxocarbon
+THEME_COLOR_KEY="#78a9ff"
+THEME_COLOR_DESC="#dde1e6"
+THEME_COLOR_HEADER="#08bdba"
+# shellcheck source=/dev/null
+[[ -f "$HOME/.cache/theme-switcher/colors.sh" ]] && source "$HOME/.cache/theme-switcher/colors.sh"
+C_KEY="<span foreground='${THEME_COLOR_KEY}'>"
+C_DESC="<span foreground='${THEME_COLOR_DESC}'>"
 C_END="</span>"
 KEY_WIDTH=22  # max real key length is 20 (Mod+Shift+Ctrl+Right)
 
@@ -22,7 +27,7 @@ _entry=""
 
 flush_header() {
     [[ -n "$pending_header" ]] && \
-        entries+=("<span foreground='#08bdba'>── ${pending_header} ──</span>") && \
+        entries+=("<span foreground='${THEME_COLOR_HEADER}'>── ${pending_header} ──</span>") && \
         pending_header=""
 }
 

@@ -1,3 +1,4 @@
+@import "/home/juicygoose007/.config/rofi/colors.rasi"
 /* Keybind cheatsheet */
 
 configuration {
@@ -7,23 +8,23 @@ configuration {
 * {
     font: "JetBrainsMono Nerd Font 11";
 
-    base:          #161616ff;
-    surface:       #262626ff;
-    overlay:       #393939ff;
-    muted:         #525252ff;
-    subtle:        #6f6f6fff;
-    text:          #f2f4f8ff;
-    subtext:       #dde1e6ff;
-    blue:          #78a9ffff;
-    purple:        #be95ffff;
-    teal:          #08bdbaff;
-    pink:          #ff7eb6ff;
+    base:          @r-base;
+    surface:       @r-surface;
+    overlay:       @r-overlay;
+    muted:         @r-muted;
+    subtle:        @r-subtle;
+    text:          @r-text;
+    subtext:       @r-subtext;
+    blue:          @r-blue;
+    purple:        @r-purple;
+    teal:          @r-teal;
+    pink:          @r-pink;
 
     transparent:   #00000000;
-    blue-dim:      #78a9ff20;
-    blue-border:   #78a9ff50;
-    purple-dim:    #be95ff15;
-    purple-border: #be95ff45;
+    blue-dim:      @r-blue-dim;
+    blue-border:   @r-blue-border;
+    purple-dim:    @r-purple-dim;
+    purple-border: @r-purple-border;
 }
 
 window {
@@ -94,5 +95,5 @@ element-text {
 }
 
 element-text selected {
-    text-color: @teal;
+    text-color: @purple;
 }

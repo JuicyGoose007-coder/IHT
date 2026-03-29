@@ -39,4 +39,26 @@
     r-ts-sel:        #c3c0ff26;
     r-ts-sel-b:      #c3c0ff80;
     r-ts-icon:       #c3c0ff19;
+
+    /* Power menu */
+    r-pm-bg0:        #0e0e13e6;
+    r-pm-bg1:        #1b1b21e6;
+    r-pm-accent:     #c3c0ff;
+    r-pm-al:         #c3c0ff;
+    r-pm-b1:         #c3c0ff40;
+    r-pm-b2:         #c3c0ff59;
+    r-pm-sel:        #c3c0ff26;
+    r-pm-sel-b:      #c3c0ff80;
+
+    /* Keybinds (reuses launcher vars + extras) */
+    r-subtle:        #c8c5d0ff;
+    r-pink:          #ffb4abff;
+
+    /* Notification center */
+    r-nc-bg0:        #0e0e13ee;
+    r-nc-bg1:        #1b1b21ee;
+    r-nc-accent:     #c3c0ff;
+    r-nc-adim:       #c3c0ff30;
+    r-nc-aborder:    #c3c0ff50;
+    r-nc-muted:      #2a292f;
 }

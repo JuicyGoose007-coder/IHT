@@ -18,7 +18,7 @@ while IFS= read -r file; do
 done < <(find "$WALLPAPER_DIR" -maxdepth 1 -type f \
   \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \
   -o -iname '*.webp' -o -iname '*.gif' \) |
-  sort -r)
+  sort)
 
 selection=$(printf "$entries" | rofi -dmenu \
   -p "󰋩  Wallpapers" \

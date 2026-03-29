@@ -1,3 +1,4 @@
+@import "/home/juicygoose007/.config/rofi/colors.rasi"
 /* Power Menu */
 
 configuration {
@@ -7,12 +8,12 @@ configuration {
 
 * {
     font: "JetBrainsMono Nerd Font 12";
-    bg0: #0b0e13e6;
-    bg1: #191c20e6;
-    fg0: #c3c6cf;
-    fg1: #e1e2e8;
-    accent: #a2c9fd;
-    accent-light: #bbc7db;
+    bg0: @r-pm-bg0;
+    bg1: @r-pm-bg1;
+    fg0: @r-fg0;
+    fg1: @r-fg1;
+    accent: @r-pm-accent;
+    accent-light: @r-pm-al;
     transparent: #00000000;
 }
 
@@ -29,7 +30,7 @@ mainbox {
     background-color: @bg0;
     border-radius: 24px;
     border: 2px solid;
-    border-color: #a2c9fd40;
+    border-color: @r-pm-b1;
     padding: 20px;
 }
 
@@ -37,7 +38,7 @@ inputbar {
     background-color: @bg1;
     border-radius: 24px;
     border: 2px solid;
-    border-color: #bbc7db59;
+    border-color: @r-pm-b2;
     padding: 14px 18px;
     margin: 0 4px 16px 4px;
     children: [prompt, entry];
@@ -76,8 +77,8 @@ element {
 }
 
 element selected {
-    background-color: #bbc7db26;
-    border-color: #bbc7db80;
+    background-color: @r-pm-sel;
+    border-color: @r-pm-sel-b;
 }
 
 element-text {

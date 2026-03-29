@@ -1,4 +1,5 @@
-/* Notification Center — sushi-2.jpg palette */
+@import "/home/juicygoose007/.config/rofi/colors.rasi"
+/* Notification Center */
 
 configuration {
     show-icons: true;
@@ -6,14 +7,14 @@ configuration {
 
 * {
     font:           "JetBrainsMono Nerd Font 12";
-    bg0:            #0b0e13ee;
-    bg1:            #191c20ee;
-    fg0:            #c3c6cf;
-    fg1:            #e1e2e8;
-    accent:         #a2c9fd;
-    accent-dim:     #a2c9fd30;
-    accent-border:  #a2c9fd50;
-    muted:          #3c4858;
+    bg0:            @r-nc-bg0;
+    bg1:            @r-nc-bg1;
+    fg0:            @r-fg0;
+    fg1:            @r-fg1;
+    accent:         @r-nc-accent;
+    accent-dim:     @r-nc-adim;
+    accent-border:  @r-nc-aborder;
+    muted:          @r-nc-muted;
     transparent:    #00000000;
 }
 
