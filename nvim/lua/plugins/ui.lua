@@ -23,6 +23,16 @@ return {
 		},
 	},
 
+	-- Disable blink.cmp ghost text (Supermaven handles this)
+	{
+		"saghen/blink.cmp",
+		opts = {
+			completion = {
+				ghost_text = { enabled = false },
+			},
+		},
+	},
+
 	-- Indent guides
 	{
 		"lukas-reineke/indent-blankline.nvim",

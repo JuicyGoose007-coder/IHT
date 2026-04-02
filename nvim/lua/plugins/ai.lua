@@ -8,7 +8,7 @@ return {
 			keymaps = {
 				accept_suggestion = "<Tab>",
 				clear_suggestion = "<C-]>",
-				accept_word = "<C-e>",
+				accept_word = "<M-e>",
 			},
 		},
 	},
