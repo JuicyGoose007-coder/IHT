@@ -12,7 +12,6 @@ configuration {
     bg1: @r-bg1;
     fg0: @r-fg0;
     fg1: @r-fg1;
-    accent: @r-ts-accent;
     accent-light: @r-ts-al;
     transparent: #00000000;
 }

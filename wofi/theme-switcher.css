@@ -1,4 +1,4 @@
-/* Theme: 12.png — theme switcher */
+/* Theme: 48.png — theme switcher */
 
 * {
     font-family: "Inter Medium", "Iosevka Term", "Font Awesome 6 Free", Roboto, sans-serif;
@@ -13,9 +13,9 @@ window {
 #outer-box {
     margin: 0px;
     padding: 20px;
-    background-color: alpha(#0e0e13, 0.85);
+    background-color: alpha(#120c10, 0.85);
     border-radius: 24px;
-    border: 2px solid alpha(#424078, 0.25);
+    border: 2px solid alpha(#69345a, 0.25);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
 }
 
@@ -28,15 +28,15 @@ window {
     margin: 0px 4px 16px 4px;
     padding: 14px 18px;
     border-radius: 24px;
-    border: 2px solid alpha(#464559, 0.35);
-    background-color: alpha(#1b1b21, 0.85);
-    color: #e5e1e9;
-    caret-color: #464559;
+    border: 2px solid alpha(#57404e, 0.35);
+    background-color: alpha(#201a1e, 0.85);
+    color: #eddfe4;
+    caret-color: #57404e;
 }
 
 #input:focus {
-    border-color: #424078;
-    background-color: alpha(#424078, 0.08);
+    border-color: #69345a;
+    background-color: alpha(#69345a, 0.08);
 }
 
 #scroll {
@@ -48,33 +48,33 @@ window {
     padding: 10px 14px;
     margin: 3px 2px;
     border-radius: 24px;
-    background-color: alpha(#0e0e13, 0.85);
+    background-color: alpha(#120c10, 0.85);
     border: 1px solid transparent;
     transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 #entry:selected {
-    background-color: alpha(#424078, 0.15);
-    border: 1px solid alpha(#424078, 0.5);
+    background-color: alpha(#69345a, 0.15);
+    border: 1px solid alpha(#69345a, 0.5);
     border-radius: 24px;
 }
 
 #text {
     padding: 8px 12px;
-    color: #c8c5d0;
+    color: #d2c2ca;
     font-size: 13px;
     font-weight: bold;
 }
 
 #text:selected {
-    color: #464559;
+    color: #57404e;
     font-weight: bold;
 }
 
 #img {
     margin: 6px 14px 6px 6px;
     border-radius: 14px;
-    background-color: alpha(#424078, 0.1);
+    background-color: alpha(#69345a, 0.1);
     min-width: 256px;
     min-height: 144px;
 }

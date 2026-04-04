@@ -20,7 +20,7 @@ done < <(find "$WALLPAPER_DIR" -maxdepth 1 -type f \
   -o -iname '*.webp' -o -iname '*.gif' \) |
   sort)
 
-selection=$(printf "$entries" | rofi -dmenu \
+selection=$(printf '%b' "$entries" | rofi -dmenu \
   -p "󰋩  Wallpapers" \
   -theme "$STYLE" \
   -show-icons \

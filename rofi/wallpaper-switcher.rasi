@@ -12,7 +12,6 @@ configuration {
     bg1: @r-bg1;
     fg0: @r-fg0;
     fg1: @r-fg1;
-    accent: @r-wp-accent;
     accent-light: @r-wp-al;
     transparent: #00000000;
 }
@@ -31,6 +30,7 @@ mainbox {
     border: 2px solid;
     border-color: @r-wp-b1;
     padding: 20px;
+    children: [inputbar, listview];
 }
 
 inputbar {

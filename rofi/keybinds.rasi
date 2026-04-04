@@ -12,13 +12,10 @@ configuration {
     surface:       @r-surface;
     overlay:       @r-overlay;
     muted:         @r-muted;
-    subtle:        @r-subtle;
     text:          @r-text;
     subtext:       @r-subtext;
     blue:          @r-blue;
     purple:        @r-purple;
-    teal:          @r-teal;
-    pink:          @r-pink;
 
     transparent:   #00000000;
     blue-dim:      @r-blue-dim;
@@ -75,11 +72,6 @@ element {
     border-color:     @transparent;
     padding:          4px 10px;
     orientation:      horizontal;
-}
-
-element normal normal {
-    background-color: @transparent;
-    border-color:     @transparent;
 }
 
 element selected normal {

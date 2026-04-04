@@ -1,37 +1,21 @@
 #!/usr/bin/env python3
-import sys
 import json
 import subprocess
 import html
 import re
 import time
 
-# Configuration
 MAX_TITLE_LEN = 42
 
-def get_niri_windows():
+def niri_query(subcommand, default=None):
     try:
-        output = subprocess.check_output(["niri", "msg", "-j", "windows"], text=True)
+        output = subprocess.check_output(["niri", "msg", "-j", subcommand], text=True)
         return json.loads(output)
     except Exception:
-        return []
-
-def get_niri_focused_window():
-    try:
-        output = subprocess.check_output(["niri", "msg", "-j", "focused-window"], text=True)
-        return json.loads(output)
-    except Exception:
-        return None
-
-def get_niri_workspaces():
-    try:
-        output = subprocess.check_output(["niri", "msg", "-j", "workspaces"], text=True)
-        return json.loads(output)
-    except Exception:
-        return []
+        return default
 
 def print_status():
-    window = get_niri_focused_window()
+    window = niri_query("focused-window")
 
     top_line = "Desktop"
     bottom_line = ""
@@ -39,10 +23,9 @@ def print_status():
     if window and window.get("app_id"):
         top_line = window.get("app_id", "Unknown") or "Unknown"
         title = window.get("title", "") or ""
-
         app_id = (window.get("app_id") or "").lower()
 
-        # Remove Discord/Vesktop unread counter like "(209) "
+        # Remove Discord/Vesktop unread counter like "(209) " and channel prefix
         if "discord" in app_id or "vesktop" in app_id:
             title = re.sub(r"^\(\d+\)\s*", "", title)
             title = re.sub(r"^Discord\s*\|\s*", "", title)
@@ -52,7 +35,7 @@ def print_status():
 
         bottom_line = title
     else:
-        workspaces = get_niri_workspaces()
+        workspaces = niri_query("workspaces", [])
         active = next((ws for ws in workspaces if ws.get("is_focused")), None)
         ws_id = active.get("idx", 1) if active else 1
         top_line = f"Workspace {ws_id}"
@@ -71,10 +54,8 @@ def print_status():
         "tooltip": f"{top_line}: {bottom_line}"
     }), flush=True)
 
-# Initial run
 print_status()
 
-# Poll for updates (niri doesn't have a socket event stream like Hyprland)
 try:
     proc = subprocess.Popen(
         ["niri", "msg", "event-stream"],
@@ -84,7 +65,6 @@ try:
         if "window" in line.lower() or "workspace" in line.lower():
             print_status()
 except Exception:
-    # Fallback: poll every second
     while True:
         time.sleep(1)
         print_status()

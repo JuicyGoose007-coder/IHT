@@ -8,8 +8,7 @@ if [ -z "$DATA" ]; then
     exit 0
 fi
 
-TEMP=$(echo "$DATA" | jq '.current.temperature_2m')
-CODE=$(echo "$DATA" | jq '.current.weather_code')
+read -r TEMP CODE <<< "$(echo "$DATA" | jq -r '[.current.temperature_2m, .current.weather_code] | @tsv')"
 
 case $CODE in
     0) COND="Clear sky"; ICON="☀️" ;;

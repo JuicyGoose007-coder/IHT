@@ -6,9 +6,6 @@ configuration {
     display-drun:        "  Apps";
     drun-display-format: "{name}";
     icon-size:           48;
-    hover-select:        true;
-    me-select-entry:     "MousePrimary";
-    me-accept-entry:     "MouseSecondary";
 }
 
 * {
@@ -90,12 +87,6 @@ element {
     border-color:     @transparent;
     padding:          10px 14px;
     spacing:          14px;
-    orientation:      horizontal;
-}
-
-element normal normal {
-    background-color: @transparent;
-    border-color:     @transparent;
 }
 
 element selected normal {
@@ -103,17 +94,9 @@ element selected normal {
     border-color:     @purple-border;
 }
 
-element normal urgent {
-    background-color: @transparent;
-}
-
 element selected urgent {
     background-color: @blue-dim;
     border-color:     @blue-border;
-}
-
-element normal active {
-    background-color: @transparent;
 }
 
 element selected active {

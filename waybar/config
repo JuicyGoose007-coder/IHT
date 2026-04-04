@@ -36,7 +36,6 @@
 
     "custom/power": {
         "format": "⏻",
-        "tooltip-format": "Power Menu",
         "on-click": "~/.config/waybar/scripts/power-menu.sh",
         "tooltip": false
     },
@@ -87,7 +86,6 @@
         "interval": 10,
         "format": "{}",
         "exec": "~/.config/waybar/scripts/gpu-usage.sh",
-        "exec-if": "command -v nvidia-smi",
         "return-type": "json",
         "on-click": "ghostty -e nvtop",
         "tooltip": true
@@ -109,19 +107,6 @@
         "tooltip": false,
         "on-click": "~/.config/rofi/notification-center.sh",
         "on-click-right": "dunstctl history-clear"
-    },
-
-
-    "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", ""]
     },
 
     "network": {
@@ -151,7 +136,7 @@
         "interval": 10,
         "exec": "deadbeef --nowplaying-tf '{\"text\": \"%title%\", \"tooltip\":\"%artist% - %title%\",\"class\":\"$if(%isplaying%,playing,not-playing)\"}'",
         "return-type": "json",
-        "exec-if": "pgrep deadbeef",
+        "exec-if": "pgrep -x deadbeef",
         "on-click": "deadbeef --toggle-pause"
     },
 

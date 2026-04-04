@@ -1,115 +1,25 @@
-/* Theme: 12.png */
-@define-color bg0     #0e0e13;
-@define-color bg1     #1b1b21;
-@define-color bg2     #201f25;
-@define-color bg3     #2a292f;
-@define-color fg0     #c8c5d0;
-@define-color fg1     #e5e1e9;
+/* Theme: 48.png */
+@define-color bg0     #120c10;
+@define-color bg1     #201a1e;
+@define-color bg2     #251e22;
+@define-color bg3     #2f282c;
+@define-color fg0     #d2c2ca;
+@define-color fg1     #eddfe4;
 @define-color white   #ffffff;
-@define-color cyan    #424078;
-@define-color teal    #464559;
-@define-color blue    #c3c0ff;
+@define-color cyan    #69345a;
+@define-color teal    #57404e;
+@define-color blue    #f7b1de;
 @define-color pink    #ffb4ab;
-@define-color lblue   #c3c0ff;
-@define-color magenta #eab9d1;
-@define-color green   #603c50;
-@define-color purple  #c7c4dd;
-@define-color sky     #c3c0ff;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@define-color lblue   #f7b1de;
+@define-color magenta #f5b9a1;
+@define-color green   #663c2a;
+@define-color purple  #ddbecf;
+@define-color sky     #f7b1de;
 
 
 
 
 @define-color darkpurple #9d8fd4;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 * {
   border: none;
@@ -118,7 +28,6 @@
   font-size: 14px;
   min-height: 0;
 }
-
 
 window#waybar {
   background: transparent;
@@ -132,7 +41,6 @@ window#waybar.hidden {
 
 #custom-keybinds,
 #custom-logo,
-#custom-weather,
 #workspaces,
 #taskbar,
 #clock,
@@ -144,7 +52,6 @@ window#waybar.hidden {
 #memory,
 #network,
 #wireplumber,
-#battery,
 #custom-power,
 #custom-notification,
 #custom-window {
@@ -157,6 +64,15 @@ window#waybar.hidden {
   min-height: 24px;
 }
 
+/* ---- Shared hover transition ---- */
+
+#custom-keybinds:hover,
+#custom-logo:hover,
+#custom-notification:hover,
+#custom-power:hover {
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
 /* ---- Left modules ---- */
 
 #custom-keybinds {
@@ -166,7 +82,6 @@ window#waybar.hidden {
 
 #custom-keybinds:hover {
   color: @magenta;
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 #custom-logo {
@@ -178,7 +93,6 @@ window#waybar.hidden {
 
 #custom-logo:hover {
   background-color: @lblue;
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 /* ---- Workspaces ---- */
@@ -216,37 +130,6 @@ window#waybar.hidden {
   background-color: @pink;
 }
 
-#custom-weather {
-  color: @sky;
-}
-
-#custom-weather.sunnyDay {
-  color: #f9e2af;
-}
-
-#custom-weather.clearNight {
-  color: @purple;
-}
-
-#custom-weather.cloudyFoggyDay,
-#custom-weather.cloudyFoggyNight {
-  color: @fg0;
-}
-
-#custom-weather.rainyDay,
-#custom-weather.rainyNight {
-  color: @teal;
-}
-
-#custom-weather.snowyIcyDay,
-#custom-weather.snowyIcyNight {
-  color: @sky;
-}
-
-#custom-weather.severe {
-  color: @pink;
-}
-
 /* ---- Taskbar ---- */
 
 #taskbar {
@@ -279,9 +162,7 @@ window#waybar.hidden {
 
 #clock {
   color: @purple;
-  background-color: alpha(@bg0, 0.85);
   padding: 2px 26px 2px 8px;
-  font-size: 14px;
   letter-spacing: 0.5px;
 }
 
@@ -295,11 +176,11 @@ window#waybar.hidden {
   padding: 2px 10px;
 }
 
-#tray>.passive {
+#tray > .passive {
   -gtk-icon-effect: dim;
 }
 
-#tray>.needs-attention {
+#tray > .needs-attention {
   -gtk-icon-effect: highlight;
   background-color: @pink;
 }
@@ -316,25 +197,18 @@ window#waybar.hidden {
 
 #cpu {
   color: @blue;
-  font-size: 14px;
-  padding: 2px 10px;
 }
 
 #custom-gpu {
   color: @teal;
-  font-size: 14px;
-  padding: 2px 10px;
 }
 
 #memory {
   color: @purple;
-  font-size: 14px;
-  padding: 2px 10px;
 }
 
 #network {
   color: @cyan;
-  padding: 2px 10px;
 }
 
 #network.disconnected {
@@ -347,71 +221,28 @@ window#waybar.hidden {
 
 #wireplumber {
   color: @darkpurple;
-  font-size: 14px;
 }
 
 #wireplumber.muted {
   color: @bg3;
 }
 
-#battery {
-  color: @darkpurple;
-}
-
-#battery.charging,
-#battery.plugged {
-  color: @bg0;
-  background-color: @darkpurple;
-}
-
-#battery.warning:not(.charging) {
-  color: @bg0;
-  background-color: #ff7eb6;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-#battery.critical:not(.charging) {
-  color: @white;
-  background-color: @pink;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-@keyframes blink {
-  to {
-    background-color: @bg0;
-    color: @pink;
-  }
-}
-
 #custom-notification {
   color: @blue;
   font-size: 16px;
-  padding: 2px 10px;
 }
 
 #custom-notification:hover {
   color: @lblue;
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 #custom-power {
   color: @pink;
-  font-size: 14px;
-  padding: 2px 10px;
 }
 
 #custom-power:hover {
   background-color: @pink;
   color: @bg0;
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 /* ---- Tooltip ---- */

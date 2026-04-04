@@ -65,7 +65,6 @@ listview {
     scrollbar: false;
     spacing: 3px;
     fixed-height: true;
-    hover-select: false;
 }
 
 element {
