@@ -423,7 +423,7 @@ EOF
 }
 
 generate_niri() {
-  local file="$HOME/.config/niri/noctalia.kdl"
+  local file="$HOME/.config/niri/colors.kdl"
   [[ -d "$(dirname "$file")" ]] || return 0
 
   local inactive_tab

@@ -516,4 +516,4 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
 	    open-on-output "DP-1"
     }
 
-include "./noctalia.kdl"
+include "./colors.kdl"

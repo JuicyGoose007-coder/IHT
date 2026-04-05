@@ -136,7 +136,10 @@ extract_palette() {
   ACCENT_SKY=$(_mc surface_tint)
 
   # Validate — if any color is empty/null, fall back
-  for c in "$BG0" "$FG1" "$ACCENT_BLUE"; do
+  for c in "$BG0" "$BG1" "$BG2" "$BG3" "$FG0" "$FG1" \
+    "$ACCENT_BLUE" "$ACCENT_LBLUE" "$ACCENT_PURPLE" \
+    "$ACCENT_MAGENTA" "$ACCENT_CYAN" "$ACCENT_TEAL" \
+    "$ACCENT_GREEN" "$ACCENT_PINK" "$ACCENT_SKY"; do
     if [[ -z "$c" || "$c" == "null" ]]; then
       load_oxocarbon
       return
@@ -597,6 +600,7 @@ EOF
 }
 
 generate_wofi_app() {
+  [[ -d "$HOME/.config/wofi" ]] || return 0
   cat >"$HOME/.config/wofi/style.css" <<EOF
 /* Theme: $THEME_NAME — app launcher */
 
@@ -680,6 +684,7 @@ EOF
 }
 
 generate_wofi_wallpaper() {
+  [[ -d "$HOME/.config/wofi" ]] || return 0
   cat >"$HOME/.config/wofi/wallpaper-switcher.css" <<EOF
 /* Theme: $THEME_NAME — wallpaper switcher */
 
@@ -764,6 +769,7 @@ EOF
 }
 
 generate_wofi_theme() {
+  [[ -d "$HOME/.config/wofi" ]] || return 0
   cat >"$HOME/.config/wofi/theme-switcher.css" <<EOF
 /* Theme: $THEME_NAME — theme switcher */
 
@@ -849,7 +855,7 @@ EOF
 }
 
 generate_niri() {
-  local file="$HOME/.config/niri/noctalia.kdl"
+  local file="$HOME/.config/niri/colors.kdl"
   [[ -d "$(dirname "$file")" ]] || return 0
 
   local inactive_tab
@@ -1805,7 +1811,7 @@ main() {
   local oxo_thumb="$THUMB_DIR/oxocarbon-default.png"
   local current_wall
   current_wall=$(awww query 2>/dev/null | grep -oP '(?<=image: ).*' | head -1)
-  if [[ -n "$current_wall" && -f "$current_wall" && ( ! -f "$oxo_thumb" || "$current_wall" -nt "$oxo_thumb" ) ]]; then
+  if [[ -n "$current_wall" && -f "$current_wall" && (! -f "$oxo_thumb" || "$current_wall" -nt "$oxo_thumb") ]]; then
     magick "$current_wall" -resize 256x144^ -gravity center -extent 256x144 "$oxo_thumb" 2>/dev/null
   elif [[ ! -f "$oxo_thumb" ]]; then
     magick -size 256x144 "xc:${oxo_BG0}" \
@@ -1836,7 +1842,7 @@ main() {
 
   # Launch rofi
   local selection
-  selection=$(printf "$entries" | rofi -dmenu \
+  selection=$(printf '%b' "$entries" | rofi -dmenu \
     -p " Theme" \
     -theme "$STYLE" \
     -show-icons \
