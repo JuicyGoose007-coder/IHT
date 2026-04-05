@@ -1,11 +1,8 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
 REPO="https://github.com/JuicyGoose007-coder/IHT.git"
 DEST="$HOME/IHT"
-
-# Cache sudo credentials before the long install
-sudo -v
 
 mkdir -p ~/.config ~/Pictures
 
@@ -27,7 +24,7 @@ for dir in starship fastfetch ghostty niri swaylock nvim yazi waybar tmux dunst 
   cp -rfT "$DEST/$dir" ~/.config/$dir
 done
 
-cp -r "$DEST/wallpapers" ~/Pictures/
+cp -rfT "$DEST/wallpapers" ~/Pictures/wallpapers
 cp -rfT "$DEST/scripts" ~/scripts
 cp -rfT "$DEST/Rust" ~/Rust
 
