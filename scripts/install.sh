@@ -1,29 +1,20 @@
 #!/bin/bash
-##########################################################################
-# _____ _   _               _____           _                            #
-#|_   _| | | |             |_   _|         | |  DATE:XX/XX/XXXX          #
-#  | | | |_| | __ ___   _____| | __ _ _ __ | |_ _ __ _   _ _ __ ___  ___ #
-#  | | |  _  |/ _` \ \ / / _ \ |/ _` | '_ \| __| '__| | | | '_ ` _ \/ __|#
-# _| |_| | | | (_| |\ V /  __/ | (_| | | | | |_| |  | |_| | | | | | \__ \#
-# \___/\_| |_/\__,_| \_/ \___\_/\__,_|_| |_|\__|_|   \__,_|_| |_| |_|___/#
-##########################################################################
-# install script
-##########################################################################
-
 set -e
 
 REPO="https://github.com/JuicyGoose007-coder/IHT.git"
 DEST="$HOME/IHT"
 
-echo ">> Ensuring directories exist..."
+# Cache sudo credentials before the long install
+sudo -v
+
 mkdir -p ~/.config ~/Pictures
 
-echo ">> Cloning dotfiles..."
 if [ -d "$DEST" ]; then
-    echo ">> $DEST already exists, pulling latest..."
-    git -C "$DEST" pull
+  echo ">> $DEST already exists, pulling latest..."
+  git -C "$DEST" pull
 else
-    git clone "$REPO" "$DEST"
+  echo ">> Cloning dotfiles..."
+  git clone "$REPO" "$DEST"
 fi
 
 echo ">> Installing packages..."
@@ -31,29 +22,16 @@ bash "$DEST/scripts/pkgs.sh" || echo ">> Warning: some packages failed to instal
 
 echo ">> Unpacking dotfiles..."
 cp "$DEST/zshrc" ~/.zshrc
-cp -r "$DEST/starship" ~/.config/
-cp -r "$DEST/fastfetch" ~/.config/
-cp -r "$DEST/ghostty" ~/.config/
-cp -r "$DEST/niri" ~/.config/
-cp -r "$DEST/noctalia" ~/.config/
+
+for dir in starship fastfetch ghostty niri swaylock nvim yazi waybar tmux dunst wofi rofi wlogout; do
+  cp -rfT "$DEST/$dir" ~/.config/$dir
+done
+
 cp -r "$DEST/wallpapers" ~/Pictures/
-cp -r "$DEST/swaylock" ~/.config/
-cp -r "$DEST/nvim" ~/.config/
-cp -r "$DEST/yazi" ~/.config/
-cp -r "$DEST/waybar" ~/.config/
-cp -r "$DEST/tmux" ~/.config/
-cp -r "$DEST/dunst" ~/.config/
-cp -r "$DEST/wofi" ~/.config/
-cp -r "$DEST/rofi" ~/.config/
-cp -r "$DEST/wlogout" ~/.config/
-cp -r "$DEST/scripts" ~/
-cp -r "$DEST/Rust" ~/
+cp -rfT "$DEST/scripts" ~/scripts
+cp -rfT "$DEST/Rust" ~/Rust
 
 echo ">> Applying system configs (requires sudo)..."
 sudo cp "$DEST/sddm.conf" /etc/sddm.conf
 
 echo ">> Done! Dotfiles installed."
-
-##########################################################################
-# END OF SCRIPT                                                          #
-##########################################################################
