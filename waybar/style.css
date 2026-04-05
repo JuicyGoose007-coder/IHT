@@ -1,20 +1,95 @@
-/* Theme: 48.png */
-@define-color bg0     #120c10;
-@define-color bg1     #201a1e;
-@define-color bg2     #251e22;
-@define-color bg3     #2f282c;
-@define-color fg0     #d2c2ca;
-@define-color fg1     #eddfe4;
+/* Theme: mnt-painting.jpg */
+@define-color bg0     #0d0e13;
+@define-color bg1     #1a1b21;
+@define-color bg2     #1e1f25;
+@define-color bg3     #292a2f;
+@define-color fg0     #c5c6d0;
+@define-color fg1     #e3e2e9;
 @define-color white   #ffffff;
-@define-color cyan    #69345a;
-@define-color teal    #57404e;
-@define-color blue    #f7b1de;
+@define-color cyan    #314578;
+@define-color teal    #404659;
+@define-color blue    #b2c5ff;
 @define-color pink    #ffb4ab;
-@define-color lblue   #f7b1de;
-@define-color magenta #f5b9a1;
-@define-color green   #663c2a;
-@define-color purple  #ddbecf;
-@define-color sky     #f7b1de;
+@define-color lblue   #b2c5ff;
+@define-color magenta #e1bbdc;
+@define-color green   #5a3d59;
+@define-color purple  #c0c6dd;
+@define-color sky     #b2c5ff;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
