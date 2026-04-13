@@ -136,12 +136,8 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ~='cd ~'
-alias c='clear'
 alias h='history'
 alias j='jobs'
-alias r='reboot'
-alias nv='nvim'
-alias y='yazi'
 
 alias g='git'
 alias gs='git status'
@@ -229,3 +225,4 @@ if command -v zoxide >/dev/null 2>&1; then
     eval "$(zoxide init zsh)"
     alias cd='z'
 fi
+

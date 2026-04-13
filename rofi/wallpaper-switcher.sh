@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WALLPAPER_DIR="$HOME/Pictures/wallpapers"
-THUMB_DIR="/tmp/wallpaper-switcher-thumbs"
+THUMB_DIR="$HOME/.cache/wallpaper-switcher/thumbs"
 STYLE="$HOME/.config/rofi/wallpaper-switcher.rasi"
 TRANSITIONS=("simple" "fade" "left" "right" "top" "bottom" "wipe" "wave" "grow" "center" "any" "outer" "random")
 
@@ -11,7 +11,7 @@ while IFS= read -r file; do
   name=$(basename "$file")
   thumb="$THUMB_DIR/$name"
   if [[ ! -f "$thumb" || "$file" -nt "$thumb" ]]; then
-    magick "$file" -resize 480x480^ -gravity center -extent 480x480 "$thumb" 2>/dev/null
+    magick "$file" -resize 256x256^ -gravity center -extent 256x256 "$thumb" 2>/dev/null
   fi
   # Use full filename as key — no extension stripping, no ambiguous re-matching
   entries+="${name}\0icon\x1f${thumb}\n"
