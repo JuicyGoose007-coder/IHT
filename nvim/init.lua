@@ -228,6 +228,12 @@ require("conform").setup({
 
 -- Keymaps
 
+-- Save / quit
+vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save" })
+vim.keymap.set("n", "<C-q>", "<cmd>q<cr>", { desc = "Quit" })
+vim.keymap.set("n", "<leader>wq", "<cmd>wq<cr>", { desc = "Save and quit" })
+vim.keymap.set("n", "<leader>so", "<cmd>so %<cr>", { desc = "Source file" })
+
 -- File explorer
 vim.keymap.set("n", "<leader>e", "<cmd>Oil<cr>", { desc = "File explorer" })
 
@@ -258,6 +264,7 @@ vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Find files"
 vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<cr>", { desc = "Live grep" })
 vim.keymap.set("n", "<leader>/", "<cmd>FzfLua blines<cr>", { desc = "Search current file" })
 vim.keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Find buffers" })
+vim.keymap.set("n", "<leader>fc", "<cmd>FzfLua commands<cr>", { desc = "Commands" })
 
 -- Harpoon
 vim.keymap.set("n", "<leader>ha", function()
