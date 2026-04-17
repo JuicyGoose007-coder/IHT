@@ -71,7 +71,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_set_hl(0, "DashboardIcon", { fg = "#42be65" })
 	end,
 })
-
 require("dashboard").setup({
 	theme = "hyper",
 	config = {
@@ -111,6 +110,18 @@ require("dashboard").setup({
 				group = "DashboardShortCut",
 				action = "Oil",
 				key = "e",
+			},
+			{
+				desc = "  New File",
+				group = "DashboardShortCut",
+				action = function()
+					vim.ui.input({ prompt = "New file: " }, function(input)
+						if input and input ~= "" then
+							vim.cmd("edit " .. vim.fn.fnameescape(input))
+						end
+					end)
+				end,
+				key = "n",
 			},
 			{
 				desc = "  Quit",
@@ -187,8 +198,13 @@ require("nvim-treesitter.config").setup({
 		"vimdoc",
 		"markdown",
 	},
-	highlight = { enable = true },
-	indent = { enable = true },
+})
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function(args)
+		if pcall(vim.treesitter.start, args.buf) then
+			vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+		end
+	end,
 })
 
 -- LSP
@@ -212,7 +228,7 @@ vim.diagnostic.config({
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-		python = { "black" },
+		python = { "ruff_organize_imports", "ruff_format" },
 		rust = { "rustfmt" },
 		html = { "prettier" },
 		css = { "prettier" },
