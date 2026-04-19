@@ -7,6 +7,7 @@ vim.pack.add({ { src = "https://github.com/nyoom-engineering/oxocarbon.nvim" } }
 vim.pack.add({ { src = "https://github.com/mason-org/mason.nvim" } }, { load = true })
 vim.pack.add({ { src = "https://github.com/stevearc/conform.nvim" } }, { load = true })
 vim.pack.add({ { src = "https://github.com/christoomey/vim-tmux-navigator" } }, { load = true })
+-- TODO(human): pick strategy A (pin version) or B (PackChanged autocmd rebuild)
 vim.pack.add({ { src = "https://github.com/Saghen/blink.cmp", build = "cargo build --release" } }, { load = true })
 vim.pack.add({ { src = "https://github.com/rafamadriz/friendly-snippets" } }, { load = true })
 vim.pack.add({ { src = "https://github.com/jiaoshijie/undotree" } }, { load = true })
@@ -46,6 +47,30 @@ vim.opt.cursorline = true
 
 -- Colorscheme
 vim.cmd.colorscheme("oxocarbon")
+
+require("vim._core.ui2").enable({
+	enable = true, -- Whether to enable or disable the UI.
+	msg = { -- Options related to the message module.
+		---@type 'cmd'|'msg' Default message target, either in the
+		---cmdline or in a separate ephemeral message window.
+		---@type string|table<string, 'cmd'|'msg'|'pager'> Default message target
+		---or table mapping |ui-messages| kinds and triggers to a target.
+		targets = "cmd",
+		cmd = { -- Options related to messages in the cmdline window.
+			height = 0.5, -- Maximum height while expanded for messages beyond 'cmdheight'.
+		},
+		dialog = { -- Options related to dialog window.
+			height = 0.5, -- Maximum height.
+		},
+		msg = { -- Options related to msg window.
+			height = 0.5, -- Maximum height.
+			timeout = 4000, -- Time a message is visible in the message window.
+		},
+		pager = { -- Options related to message window.
+			height = 1, -- Maximum height.
+		},
+	},
+})
 
 -- Force Transparent background
 -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -109,7 +134,7 @@ require("dashboard").setup({
 			{
 				desc = "  Explorer",
 				group = "DashboardShortCut",
-				action = "Oil",
+				action = "Yazi",
 				key = "e",
 			},
 			{
@@ -241,6 +266,7 @@ require("nvim-treesitter.config").setup({
 		"vim",
 		"vimdoc",
 		"markdown",
+		"kde",
 	},
 })
 vim.api.nvim_create_autocmd("FileType", {
@@ -293,6 +319,7 @@ vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save" })
 vim.keymap.set("n", "<C-q>", "<cmd>q<cr>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>wq", "<cmd>wq<cr>", { desc = "Save and quit" })
 vim.keymap.set("n", "<leader>so", "<cmd>so %<cr>", { desc = "Source file" })
+vim.keymap.set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart nvim" })
 
 -- File explorer
 vim.keymap.set("n", "<leader>e", "<cmd>Yazi<cr>", { desc = "File explorer" })
@@ -326,6 +353,7 @@ vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<cr>", { desc = "Live gr
 vim.keymap.set("n", "<leader>/", "<cmd>FzfLua blines<cr>", { desc = "Search current file" })
 vim.keymap.set("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Find buffers" })
 vim.keymap.set("n", "<leader>fc", "<cmd>FzfLua commands<cr>", { desc = "Commands" })
+vim.keymap.set("n", "<leader>fk", "<cmd>FzfLua keymaps<cr>", { desc = "Keymaps" })
 
 -- Harpoon
 vim.keymap.set("n", "<leader>ha", function()
@@ -353,7 +381,7 @@ vim.keymap.set("n", "<leader>cf", function()
 end, { desc = "Format file" })
 
 -- Undotree
-vim.keymap.set("n", "<leader>~", "<cmd>lua require('undotree').toggle()<cr>", { desc = "Undotree" })
+vim.keymap.set("n", "<leader>u", "<cmd>lua require('undotree').toggle()<cr>", { desc = "Undotree" })
 
 -- Tmux navigation
 for key, dir in pairs({ h = "Left", j = "Down", k = "Up", l = "Right" }) do
