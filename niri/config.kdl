@@ -348,7 +348,7 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
         match app-id=r#"^gnome-calculator$"#
         match app-id=r#"^galculator$"#
         match app-id=r#"^blueman-manager$"#
-        //match app-id=r#"^org\.gnome\.Nautilus$"#
+        match app-id=r#"^org\.gnome\.Nautilus$"#
         match app-id=r#"^xdg-desktop-portal$"#
         open-floating true
     }
@@ -390,7 +390,6 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
 
     window-rule{
         match app-id=r#"^steam$"#
-        //open-maximized true
         default-column-width { proportion 0.5; }
         open-focused false
         open-on-workspace "Gaming"
@@ -405,7 +404,6 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
     window-rule{
       match title="Battle.net"
         match app-id="steam_app_0"
-        //open-maximized true
         default-column-width { proportion 0.5; }
         open-focused false
         open-on-workspace "Gaming"
@@ -414,7 +412,6 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
     window-rule{
       match title="Battle.net Login"
         match app-id="steam_app_0"
-        //open-maximized true
         default-column-width { proportion 0.5; }
         open-focused false
         open-on-workspace "Gaming"
@@ -428,7 +425,6 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
 
     window-rule{
         match title="Discord"
-	//open-maximized true
         open-focused false
         open-on-workspace "Discord"
 	    open-on-output "DP-1"
@@ -459,8 +455,6 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
 
     window-rule{
         match app-id="org.kde.kdevelop"
-        //match title="Welcome - Visual Studio Code"
-        //exclude title="Visual Studio Code"
         open-focused true
         open-maximized true
         opacity 0.95
@@ -469,15 +463,12 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
 
     window-rule{
         match app-id="steam_app_0"
-        //match app-id="steam_app_default"
         exclude title="Duet Night Abyss  "
         open-focused false
         open-on-workspace "Discord"
     }
 
     window-rule{
-        //match app-id="steam_app_0"
-        //exclude title=
         match title="OverseasLoginWnd"
         open-fullscreen false
         open-on-workspace "Gaming"
