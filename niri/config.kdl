@@ -58,7 +58,7 @@ binds {
     // ─── Applications ───
     MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty"; }
     MOD+D                               hotkey-overlay-title="Open App Launcher: rofi" { spawn-sh "~/.config/rofi/launcher.sh"; }
-    MOD+B                               hotkey-overlay-title="Open Browser: brave" { spawn-sh "brave"; }
+    MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "pkill -x swayidle; swayidle -w timeout 15 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' & swaylock; pkill -x swayidle"; }
     MOD+G                               hotkey-overlay-title="Open Games Launcher: Faugus" { spawn "faugus-launcher"; }
     MOD+P                               hotkey-overlay-title="Wallpaper Switcher" { spawn-sh "~/.config/rofi/wallpaper-switcher.sh"; }
@@ -235,7 +235,7 @@ spawn-sh-at-startup "waybar"
 spawn-sh-at-startup "awww-daemon" // Wallpaper daemon
 spawn-sh-at-startup "sleep 0.5 && awww img ~/Pictures/wallpapers/sushi-2.jpg"// Set wallpaper
 spawn-sh-at-startup "dunst"
-spawn-at-startup "brave"
+spawn-at-startup "firefox"
 spawn-at-startup "steam"
 spawn-sh-at-startup "vesktop"
 spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
