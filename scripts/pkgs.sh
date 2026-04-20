@@ -9,7 +9,7 @@
 ##########################################################################
 # all pkgs
 ##########################################################################
-paru -S --noconfirm steam neovim vesktop protonplus faugus-launcher gnome-disk-utility ghostty gamescope ttf-jetbrains-mono-nerd mpv mpv-mpris qbittorrent nwg-look adw-gtk-theme solaar zoxide brave-bin dunst rofi tmux mangohud umu-launcher virt-manager qemu-desktop libvirt edk2-ovmf vlc-plugins-all yt-dlp ffmpegthumbnailer helix lazygit yazi ripgrep pv duf wiremix rust-analyzer vim-plug-git obsidian zen-browser-bin meld matugen stoat-desktop-git claude-code ttf-meslo-nerd networkmanager-openvpn ufw pavucontrol swayidle perl-image-exiftool glances ggshield trash-cli
+paru -S --noconfirm steam neovim vesktop protonplus faugus-launcher gnome-disk-utility ghostty gamescope ttf-jetbrains-mono-nerd mpv mpv-mpris qbittorrent nwg-look adw-gtk-theme solaar zoxide brave-bin dunst rofi tmux mangohud umu-launcher virt-manager qemu-desktop libvirt edk2-ovmf vlc-plugins-all yt-dlp ffmpegthumbnailer helix lazygit yazi ripgrep pv duf wiremix rust-analyzer vim-plug-git obsidian zen-browser-bin meld matugen stoat-desktop-git claude-code ttf-meslo-nerd networkmanager-openvpn ufw pavucontrol swayidle perl-image-exiftool glances ggshield trash-cli via-bin
 ##########################################################################
 # END OF SCRIPT                                                          #
 ##########################################################################
