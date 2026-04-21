@@ -240,7 +240,11 @@ harpoon:setup()
 
 -- Completion
 require("blink.cmp").setup({
-	keymap = { preset = "enter" },
+	keymap = {
+		preset = "enter",
+		["<Tab>"] = { "select_next", "fallback" },
+		["<S-Tab>"] = { "select_prev", "fallback" },
+	},
 	completion = {
 		ghost_text = {
 			enabled = true,
