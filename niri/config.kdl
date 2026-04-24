@@ -60,7 +60,6 @@ binds {
     MOD+D                               hotkey-overlay-title="Open App Launcher: rofi" { spawn-sh "~/.config/rofi/launcher.sh"; }
     MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "pkill -x swayidle; swayidle -w timeout 15 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' & swaylock; pkill -x swayidle"; }
-    MOD+G                               hotkey-overlay-title="Open Games Launcher: Faugus" { spawn "faugus-launcher"; }
     MOD+P                               hotkey-overlay-title="Wallpaper Switcher" { spawn-sh "~/.config/rofi/wallpaper-switcher.sh"; }
     MOD+SHIFT+D                         hotkey-overlay-title="Theme Switcher" { spawn-sh "~/.config/rofi/theme-switcher.sh"; }
     MOD+T                               hotkey-overlay-title="Toggle Opacity" { toggle-window-rule-opacity; }
@@ -165,15 +164,15 @@ binds {
     Mod+Ctrl+WheelScrollRight { move-column-right; }
     Mod+Ctrl+WheelScrollLeft  { move-column-left; }
 
-    Mod+Shift+WheelScrollDown      { focus-column-right; }
+
     Mod+Shift+WheelScrollUp        { focus-column-left; }
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
     // === Numbered Workspaces ===
-    Mod+1 { focus-workspace 1; }
-    Mod+2 { focus-workspace 2; }
-    Mod+3 { focus-workspace 3; }
+    Mod+G { focus-workspace 1; }
+    Mod+M { focus-workspace 2; }
+    Mod+N { focus-workspace 3; }
     Mod+4 { focus-workspace 4; }
     Mod+5 { focus-workspace 5; }
     Mod+6 { focus-workspace 6; }
@@ -182,9 +181,9 @@ binds {
     Mod+9 { focus-workspace 9; }
 
     // === Move to Numbered Workspaces ===
-    Mod+Shift+1 { move-column-to-workspace 1; }
-    Mod+Shift+2 { move-column-to-workspace 2; }
-    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+G { move-column-to-workspace 1; }
+    Mod+Shift+M { move-column-to-workspace 2; }
+    Mod+Shift+N { move-column-to-workspace 3; }
     Mod+Shift+4 { move-column-to-workspace 4; }
     Mod+Shift+5 { move-column-to-workspace 5; }
     Mod+Shift+6 { move-column-to-workspace 6; }
@@ -496,13 +495,13 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
     }
 
     workspace "Gaming"{
-
+        open-on-output "DP-2"
     }
 
     workspace "Main"{
-
+        open-on-output "DP-2"
     }
-
+    
     workspace "Discord"{
 	    open-on-output "DP-1"
     }
