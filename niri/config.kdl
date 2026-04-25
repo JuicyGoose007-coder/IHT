@@ -167,6 +167,7 @@ binds {
     Mod+Ctrl+WheelScrollLeft  { move-column-left; }
 
 
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
     Mod+Shift+WheelScrollUp        { focus-column-left; }
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
@@ -309,7 +310,7 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
             spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
         }
     }
-
+    
 // ────────────── Window Rules ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 
@@ -368,6 +369,12 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
     window-rule {
         match is-active=false
         opacity 0.9
+    }
+
+    window-rule {
+        background-effect {
+            blur true
+        }
     }
 
     window-rule {
@@ -440,6 +447,21 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
         open-focused true
         default-column-width { proportion 0.5; }
         opacity 0.9
+        background-effect {
+            blur true
+        }
+    }
+
+    window-rule{
+        match title="kitty"
+        match app-id="kitty"
+        open-fullscreen false
+        open-focused true
+        default-column-width { proportion 0.5; }
+        opacity 0.9
+        background-effect {
+            blur true
+        }
     }
 
     window-rule{
@@ -462,22 +484,6 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
         opacity 0.95
 
     }
-
-    window-rule{
-        match app-id="steam_app_0"
-        exclude title="Duet Night Abyss  "
-        open-focused false
-        open-on-workspace "Discord"
-    }
-
-    window-rule{
-        match title="OverseasLoginWnd"
-        open-fullscreen false
-        open-on-workspace "Gaming"
-        open-focused true
-        open-floating true
-    }
-
 
 // ────────────── Environment Variables ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#environment
@@ -509,4 +515,8 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
 	    open-on-output "DP-1"
     }
 
+    blur {
+        passes 2
+        offset 0.75
+    }
 include "./colors.kdl"
