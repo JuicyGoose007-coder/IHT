@@ -27,12 +27,13 @@ input {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 
 // Outputs from existing configuration
+
 output "DP-2" {
 	position x=1920 y=0
 	mode "2560x1440@164.999" // Set resolution and refresh rate
 	// mode "1920x1080@164.999" // Set resolution and refresh rate
 	scale 1 // No scaling (use 2 for HiDPI)
-//	variable-refresh-rate
+	// variable-refresh-rate 
 	focus-at-startup
 }
 
@@ -59,6 +60,7 @@ binds {
     MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty"; }
     MOD+D                               hotkey-overlay-title="Open App Launcher: rofi" { spawn-sh "~/.config/rofi/launcher.sh"; }
     MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox"; }
+    MOD+O                               hotkey-overlay-title="Open Browser: brave" { spawn-sh "brave"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "pkill -x swayidle; swayidle -w timeout 15 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' & swaylock; pkill -x swayidle"; }
     MOD+P                               hotkey-overlay-title="Wallpaper Switcher" { spawn-sh "~/.config/rofi/wallpaper-switcher.sh"; }
     MOD+SHIFT+D                         hotkey-overlay-title="Theme Switcher" { spawn-sh "~/.config/rofi/theme-switcher.sh"; }
@@ -234,9 +236,10 @@ spawn-sh-at-startup "waybar"
 spawn-sh-at-startup "awww-daemon" // Wallpaper daemon
 spawn-sh-at-startup "sleep 0.5 && awww img ~/Pictures/wallpapers/sushi-2.jpg"// Set wallpaper
 spawn-sh-at-startup "dunst"
-spawn-at-startup "firefox"
-spawn-at-startup "steam"
+spawn-sh-at-startup "firefox"
+spawn-sh-at-startup "steam"
 spawn-sh-at-startup "vesktop"
+spawn-sh-at-startup "via"
 spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
 
     prefer-no-csd // Disable program decorations
@@ -395,9 +398,9 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
     }
 
     window-rule{
-      match app-id="faugus-launcher"
-      open-focused true
-      open-on-workspace "Gaming"
+      match title="Via"
+      match app-id="via-nativia"
+      open-on-output "DP-1"
     }
 
     window-rule{
