@@ -7,7 +7,6 @@ vim.pack.add({ { src = "https://github.com/nyoom-engineering/oxocarbon.nvim" } }
 vim.pack.add({ { src = "https://github.com/mason-org/mason.nvim" } }, { load = true })
 vim.pack.add({ { src = "https://github.com/stevearc/conform.nvim" } }, { load = true })
 vim.pack.add({ { src = "https://github.com/christoomey/vim-tmux-navigator" } }, { load = true })
--- TODO(human): pick strategy A (pin version) or B (PackChanged autocmd rebuild)
 vim.pack.add({ { src = "https://github.com/Saghen/blink.cmp", build = "cargo build --release" } }, { load = true })
 vim.pack.add({ { src = "https://github.com/rafamadriz/friendly-snippets" } }, { load = true })
 vim.pack.add({ { src = "https://github.com/jiaoshijie/undotree" } }, { load = true })
