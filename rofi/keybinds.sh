@@ -16,9 +16,10 @@ THEME_COLOR_HEADER="#08bdba"
 C_KEY="<span foreground='${THEME_COLOR_KEY}'>"
 C_DESC="<span foreground='${THEME_COLOR_DESC}'>"
 C_END="</span>"
-KEY_WIDTH=22  # max real key length is 20 (Mod+Shift+Ctrl+Right)
+KEY_WIDTH=18
 
 declare -a entries
+declare -a header_positions
 declare -A seen_actions
 in_binds=false
 brace_depth=0
@@ -26,9 +27,11 @@ pending_header=""
 _entry=""
 
 flush_header() {
-    [[ -n "$pending_header" ]] && \
-        entries+=("<span foreground='${THEME_COLOR_HEADER}'>── ${pending_header} ──</span>") && \
+    if [[ -n "$pending_header" ]]; then
+        header_positions+=("${#entries[@]}")
+        entries+=("<span foreground='${THEME_COLOR_HEADER}'>── ${pending_header} ──</span>")
         pending_header=""
+    fi
 }
 
 # Title-case a hyphenated string; result in $_entry (no subshell)
@@ -85,8 +88,6 @@ while IFS= read -r line; do
     # Standard action binds
     if [[ "$stripped" =~ ^(Mod|MOD|CTRL)[^\ ]*\ .*\{\ *[a-z] ]]; then
         [[ "$stripped" == *WheelScroll* ]] && continue
-        [[ "$stripped" =~ ^Mod\+[0-9][[:space:]] ]] && continue
-        [[ "$stripped" =~ ^Mod\+Shift\+[0-9][[:space:]] ]] && continue
 
         keys="${stripped%%\{*}"
         keys="${keys//repeat=false/}"; keys="${keys//allow-inhibiting=false/}"
@@ -95,7 +96,38 @@ while IFS= read -r line; do
 
         tmp="${stripped#*\{}"; tmp="${tmp#"${tmp%%[! ]*}"}"
         action="${tmp%% *}"; action="${action%%;*}"
-        [[ "$action" == "spawn" || "$action" == "spawn-sh" ]] && continue
+
+        if [[ "$action" == "spawn" || "$action" == "spawn-sh" ]]; then
+            if [[ "$stripped" == *"toggle-overview"* ]]; then
+                label="Toggle Overview"
+            else
+                spawn_arg="${stripped#*\"}"
+                spawn_arg="${spawn_arg%%\"*}"
+                label="${spawn_arg##*/}"
+                label="${label%.sh}"
+                title_case "$label"
+                label="$_entry"
+            fi
+            if [[ -z "${seen_actions[$label]}" ]]; then
+                seen_actions["$label"]=1
+                flush_header
+                add_entry "$keys" "$label"
+            fi
+            continue
+        fi
+
+        # Workspace actions: include arg in dedup key and description
+        if [[ "$action" == "focus-workspace" || "$action" == "move-column-to-workspace" ]]; then
+            ws_arg="${tmp#* }"; ws_arg="${ws_arg%%;*}"; ws_arg="${ws_arg%% }"
+            dedup_key="${action}:${ws_arg}"
+            if [[ -z "${seen_actions[$dedup_key]}" ]]; then
+                seen_actions["$dedup_key"]=1
+                flush_header
+                title_case "$action"
+                add_entry "$keys" "$_entry $ws_arg"
+            fi
+            continue
+        fi
 
         if [[ -z "${seen_actions[$action]}" ]]; then
             seen_actions["$action"]=1
@@ -107,9 +139,36 @@ while IFS= read -r line; do
 done < "$CONFIG"
 
 total=${#entries[@]}
-lines=$(( (total + 1) / 2 ))
 
-printf '%s\n' "${entries[@]}" | rofi \
+# Find section boundary that minimises padding (balances column lengths)
+best_split=0
+best_diff=$total
+for pos in "${header_positions[@]}"; do
+    diff=$(( pos - (total - pos) ))
+    (( diff < 0 )) && diff=$(( -diff ))
+    if (( diff < best_diff )); then
+        best_diff=$diff
+        best_split=$pos
+    fi
+done
+split_at=$best_split
+
+col1=("${entries[@]:0:$split_at}")
+col2=("${entries[@]:$split_at}")
+
+# Pad shorter column with blanks so interleave produces a full rectangle
+while (( ${#col1[@]} < ${#col2[@]} )); do col1+=(""); done
+while (( ${#col2[@]} < ${#col1[@]} )); do col2+=(""); done
+
+# Interleave: rofi fills left→right so col1[i],col2[i] land on same row
+final=()
+for (( i=0; i<${#col1[@]}; i++ )); do
+    final+=("${col1[$i]}" "${col2[$i]}")
+done
+
+lines=${#col1[@]}
+
+printf '%s\n' "${final[@]}" | rofi \
     -dmenu \
     -p "" \
     -mesg "Keybinds" \
