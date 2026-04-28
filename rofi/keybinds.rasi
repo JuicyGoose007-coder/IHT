@@ -27,8 +27,7 @@ configuration {
 window {
     background-color: @transparent;
     border:           0;
-    width:            50%;
-    height:           95%;
+    width:            1400px;
     location:         center;
     anchor:           center;
 }
@@ -38,7 +37,7 @@ mainbox {
     border-radius:    20px;
     border:           2px solid;
     border-color:     @blue-border;
-    padding:          12px;
+    padding:          18px;
     spacing:          0;
     children:         [message, listview];
 }
@@ -47,7 +46,7 @@ message {
     background-color: @overlay;
     border-radius:    12px;
     padding:          6px 16px;
-    margin:           0 0 6px 0;
+    margin:           0 0 12px 0;
 }
 
 textbox {
@@ -62,8 +61,8 @@ listview {
     background-color: @transparent;
     columns:          2;
     scrollbar:        true;
-    spacing:          0px;
-    fixed-height:     true;
+    spacing:          2px;
+    fixed-height:     false;
 }
 
 scrollbar {
@@ -79,7 +78,7 @@ element {
     border-radius:    8px;
     border:           1px solid;
     border-color:     @transparent;
-    padding:          0px 6px;
+    padding:          4px 10px;
     orientation:      horizontal;
 }
 

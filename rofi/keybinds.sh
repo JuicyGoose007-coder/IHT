@@ -19,7 +19,6 @@ C_END="</span>"
 KEY_WIDTH=18
 
 declare -a entries
-declare -a header_positions
 declare -A seen_actions
 in_binds=false
 brace_depth=0
@@ -28,7 +27,6 @@ _entry=""
 
 flush_header() {
     if [[ -n "$pending_header" ]]; then
-        header_positions+=("${#entries[@]}")
         entries+=("<span foreground='${THEME_COLOR_HEADER}'>── ${pending_header} ──</span>")
         pending_header=""
     fi
@@ -97,24 +95,7 @@ while IFS= read -r line; do
         tmp="${stripped#*\{}"; tmp="${tmp#"${tmp%%[! ]*}"}"
         action="${tmp%% *}"; action="${action%%;*}"
 
-        if [[ "$action" == "spawn" || "$action" == "spawn-sh" ]]; then
-            if [[ "$stripped" == *"toggle-overview"* ]]; then
-                label="Toggle Overview"
-            else
-                spawn_arg="${stripped#*\"}"
-                spawn_arg="${spawn_arg%%\"*}"
-                label="${spawn_arg##*/}"
-                label="${label%.sh}"
-                title_case "$label"
-                label="$_entry"
-            fi
-            if [[ -z "${seen_actions[$label]}" ]]; then
-                seen_actions["$label"]=1
-                flush_header
-                add_entry "$keys" "$label"
-            fi
-            continue
-        fi
+        [[ "$action" == "spawn" || "$action" == "spawn-sh" ]] && continue
 
         # Workspace actions: include arg in dedup key and description
         if [[ "$action" == "focus-workspace" || "$action" == "move-column-to-workspace" ]]; then
@@ -139,36 +120,9 @@ while IFS= read -r line; do
 done < "$CONFIG"
 
 total=${#entries[@]}
+lines=$(( (total + 1) / 2 ))
 
-# Find section boundary that minimises padding (balances column lengths)
-best_split=0
-best_diff=$total
-for pos in "${header_positions[@]}"; do
-    diff=$(( pos - (total - pos) ))
-    (( diff < 0 )) && diff=$(( -diff ))
-    if (( diff < best_diff )); then
-        best_diff=$diff
-        best_split=$pos
-    fi
-done
-split_at=$best_split
-
-col1=("${entries[@]:0:$split_at}")
-col2=("${entries[@]:$split_at}")
-
-# Pad shorter column with blanks so interleave produces a full rectangle
-while (( ${#col1[@]} < ${#col2[@]} )); do col1+=(""); done
-while (( ${#col2[@]} < ${#col1[@]} )); do col2+=(""); done
-
-# Interleave: rofi fills left→right so col1[i],col2[i] land on same row
-final=()
-for (( i=0; i<${#col1[@]}; i++ )); do
-    final+=("${col1[$i]}" "${col2[$i]}")
-done
-
-lines=${#col1[@]}
-
-printf '%s\n' "${final[@]}" | rofi \
+printf '%s\n' "${entries[@]}" | rofi \
     -dmenu \
     -p "" \
     -mesg "Keybinds" \
