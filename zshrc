@@ -96,6 +96,8 @@ fi
 
 # Re-apply custom keybindings after zsh-vi-mode initialises
 function zvm_after_init {
+   export VIM_INSERT="I"
+
   _accept_suggestion() { zle autosuggest-accept }
   zle -N _accept_suggestion
 
@@ -213,10 +215,10 @@ unsetopt BEEP
 function zvm_after_select_vi_mode {
   unset VIM_NORMAL VIM_INSERT VIM_VISUAL
   case $ZVM_MODE in
-    $ZVM_MODE_NORMAL)      export VIM_NORMAL="NOR" ;;
-    $ZVM_MODE_VISUAL)      export VIM_VISUAL="VIS" ;;
-    $ZVM_MODE_VISUAL_LINE) export VIM_VISUAL="VIS" ;;
-    *)                     export VIM_INSERT="INS" ;;
+    $ZVM_MODE_NORMAL)      export VIM_NORMAL="N" ;;
+    $ZVM_MODE_VISUAL)      export VIM_VISUAL="V" ;;
+    $ZVM_MODE_VISUAL_LINE) export VIM_VISUAL="VL" ;;
+    *)                     export VIM_INSERT="I" ;;
   esac
 }
 
