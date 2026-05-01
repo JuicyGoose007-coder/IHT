@@ -18,6 +18,7 @@ input {
     }
 
     focus-follows-mouse // Automatically focus windows under the mouse pointer
+    warp-mouse-to-focus // Moves mouse to window that is focused
     workspace-auto-back-and-forth // Enable workspace back & forth switching
 }
 
@@ -214,9 +215,9 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // ─── Screenshots ───
-    CTRL+SHIFT+1                        { screenshot; }
-    CTRL+SHIFT+2                        { screenshot-screen; }
-    CTRL+SHIFT+3                        { screenshot-window; }
+    CTRL+P                        { screenshot; }
+    CTRL+SHIFT+P                        { screenshot-screen; }
+    CTRL+SHIFT+W                        { screenshot-window; }
 
     // ─── Emergency Escape Key ───
     // Use this when a fullscreen app blocks your keybinds.
@@ -375,7 +376,7 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
         background-effect {
             blur true
         }
-    }
+    } 
 
     window-rule {
         match app-id=r#"firefox$"# title="^Picture-in-Picture$"
@@ -437,7 +438,7 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
         open-focused false
         open-on-workspace "Discord"
 	    open-on-output "DP-1"
-        opacity 0.95
+        opacity 0.9
     }
 
     window-rule{
@@ -447,9 +448,6 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
         open-focused true
         default-column-width { proportion 0.5; }
         opacity 0.9
-        background-effect {
-            blur true
-        }
     }
 
     window-rule{
@@ -459,12 +457,6 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
         open-focused true
         default-column-width { proportion 0.5; }
         opacity 0.9
-        background-effect {
-            blur true
-        }
-    }
-
-    window-rule{
         match title="Solaar"
         match app-id="solaar"
 	    open-on-output "DP-1"
@@ -481,7 +473,7 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
         match app-id="org.kde.kdevelop"
         open-focused true
         open-maximized true
-        opacity 0.95
+        opacity 0.9
 
     }
 
