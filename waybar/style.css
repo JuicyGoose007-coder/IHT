@@ -16,11 +16,6 @@
 @define-color purple  #be95ff;
 @define-color sky     #82cfff;
 
-
-
-
-
-
 * {
   border: none;
   border-radius: 0;
@@ -127,7 +122,7 @@ window#waybar.hidden {
 
 #workspaces {
   background-color: transparent;
-  padding: 2px 6px 2px 10px;
+  padding: 2px 6px;
   margin: 0 2px;
 }
 
