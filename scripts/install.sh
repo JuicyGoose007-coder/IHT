@@ -4,7 +4,7 @@ set -euo pipefail
 REPO="https://github.com/JuicyGoose007-coder/IHT.git"
 DEST="$HOME/IHT"
 
-mkdir -p ~/.config ~/Pictures
+mkdir -p ~/.config ~/Pictures ~/.config/hypr
 
 if [ -d "$DEST" ]; then
   echo ">> $DEST already exists, pulling latest..."
@@ -24,11 +24,15 @@ for dir in starship fastfetch ghostty niri swaylock nvim yazi waybar tmux dunst 
   cp -rfT "$DEST/$dir" ~/.config/$dir
 done
 
+cp -f "$DEST/hypr/hyprlock.conf" ~/.config/hypr/hyprlock.conf
+
 cp -rfT "$DEST/wallpapers" ~/Pictures/wallpapers
 cp -rfT "$DEST/scripts" ~/scripts
 cp -rfT "$DEST/Rust" ~/Rust
 
 echo ">> Applying system configs (requires sudo)..."
 sudo cp "$DEST/sddm.conf" /etc/sddm.conf
+sudo mkdir -p /usr/share/sddm/themes
+sudo cp -rfT "$DEST/oxocarbon-death" /usr/share/sddm/themes/oxocarbon-death
 
 echo ">> Done! Dotfiles installed."
