@@ -11,7 +11,7 @@ exec 9>/tmp/theme-switcher.lock
 flock -n 9 || exit 1
 
 # ── Dependencies ─────────────────────────────────────────────────────
-for cmd in matugen jq; do
+for cmd in wallust jq; do
   command -v "$cmd" &>/dev/null || {
     notify-send -u critical "Theme Switcher" "Missing dependency: $cmd" 2>/dev/null
     exit 1
@@ -98,6 +98,21 @@ lighten_color() {
   rgb_to_hex "$r" "$g" "$b"
 }
 
+# Helper: hue-preserving brightness floor — scales RGB so brightest channel >= target
+brighten_floor() {
+  local hex="${1#\#}" target="${2:-200}"
+  local r=$((16#${hex:0:2})) g=$((16#${hex:2:2})) b=$((16#${hex:4:2}))
+  local maxc=$r
+  ((g > maxc)) && maxc=$g
+  ((b > maxc)) && maxc=$b
+  if ((maxc > 0 && maxc < target)); then
+    r=$((r * target / maxc)); ((r > 255)) && r=255
+    g=$((g * target / maxc)); ((g > 255)) && g=255
+    b=$((b * target / maxc)); ((b > 255)) && b=255
+  fi
+  printf "#%02x%02x%02x" "$r" "$g" "$b"
+}
+
 # Helper: hex color to hex with alpha suffix (e.g. #161616 -> #161616e6)
 hex_alpha() {
   local hex="${1#\#}"
@@ -105,35 +120,50 @@ hex_alpha() {
   printf '#%s%s' "$hex" "$alpha"
 }
 
-# ── Color extraction (matugen — Material You) ─────────────────────
+# ── Color extraction (wallust — dark16 palette) ───────────────────
 extract_palette() {
   local img="$1"
+  local cache="$HOME/.cache/theme-switcher/palette.json"
 
-  local json
-  json=$(matugen image --json hex --mode dark --prefer saturation \
-    -t scheme-tonal-spot "$img" 2>/dev/null) || {
+  wallust run "$img" >/dev/null 2>&1 || {
     load_oxocarbon
     return
   }
+  [[ -f "$cache" ]] || { load_oxocarbon; return; }
 
-  # Helper to pull a dark-mode color from the JSON
-  _mc() { echo "$json" | jq -r ".colors.${1}.dark.color"; }
+  local json
+  json=$(<"$cache")
 
-  BG0=$(_mc surface_container_lowest)
-  BG1=$(_mc surface_container_low)
-  BG2=$(_mc surface_container)
-  BG3=$(_mc surface_container_high)
-  FG0=$(_mc on_surface_variant)
-  FG1=$(_mc on_surface)
-  ACCENT_BLUE=$(_mc primary)
-  ACCENT_LBLUE=$(_mc primary_fixed_dim)
-  ACCENT_PURPLE=$(_mc secondary)
-  ACCENT_MAGENTA=$(_mc tertiary)
-  ACCENT_CYAN=$(_mc primary_container)
-  ACCENT_TEAL=$(_mc secondary_container)
-  ACCENT_GREEN=$(_mc tertiary_container)
-  ACCENT_PINK=$(_mc error)
-  ACCENT_SKY=$(_mc surface_tint)
+  # Helper to pull a slot from palette.json
+  _wc() { echo "$json" | jq -r ".${1}"; }
+
+  # Pick darker of {background, color0} as BG0 so backdrop stays deepest
+  local bg_main bg_zero
+  bg_main=$(_wc background)
+  bg_zero=$(_wc color0)
+  # Crude luminance: sum of RGB bytes; lower = darker
+  _lum() { local h="${1#\#}"; printf "%d" $((0x${h:0:2} + 0x${h:2:2} + 0x${h:4:2})); }
+  if (( $(_lum "$bg_zero") < $(_lum "$bg_main") )); then
+    BG0="$bg_zero"; BG1="$bg_main"
+  else
+    BG0="$bg_main"; BG1="$bg_zero"
+  fi
+  BG2=$(_wc color8)
+  BG3=$(_wc color7)
+  FG0=$(_wc color7)
+  FG1=$(_wc foreground)
+  ACCENT_PINK=$(brighten_floor "$(_wc color12)" 220)
+  ACCENT_GREEN=$(brighten_floor "$(_wc color11)" 220)
+  ACCENT_BLUE=$(brighten_floor "$(_wc color14)" 220)
+  ACCENT_PURPLE=$(brighten_floor "$(_wc color13)" 220)
+  ACCENT_CYAN=$(brighten_floor "$(_wc color10)" 220)
+  ACCENT_LBLUE=$(brighten_floor "$(_wc color9)" 220)
+  ACCENT_MAGENTA=$(brighten_floor "$(_wc color5)" 220)
+  ACCENT_TEAL=$(brighten_floor "$(_wc color3)" 220)
+  ACCENT_SKY=$(brighten_floor "$(_wc color4)" 220)
+  # Floor FG levels too so text reads on dark BGs
+  FG0=$(brighten_floor "$FG0" 180)
+  FG1=$(brighten_floor "$FG1" 230)
 
   # Validate — if any color is empty/null, fall back
   for c in "$BG0" "$BG1" "$BG2" "$BG3" "$FG0" "$FG1" \
