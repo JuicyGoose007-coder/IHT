@@ -62,7 +62,7 @@ binds {
     MOD+D                               hotkey-overlay-title="Open App Launcher: rofi" { spawn-sh "~/.config/rofi/launcher.sh"; }
     MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox"; }
     MOD+O                               hotkey-overlay-title="Open Browser: brave" { spawn-sh "brave"; }
-    MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "pkill -x swayidle; swayidle -w timeout 15 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' & swaylock; pkill -x swayidle"; }
+    MOD+ALT+L                           hotkey-overlay-title="Lock Screen: hyprlock" { spawn-sh "hyprlock"; }
     MOD+P                               hotkey-overlay-title="Wallpaper Switcher" { spawn-sh "~/.config/rofi/wallpaper-switcher.sh"; }
     MOD+SHIFT+D                         hotkey-overlay-title="Theme Switcher" { spawn-sh "~/.config/rofi/theme-switcher.sh"; }
     MOD+T                               hotkey-overlay-title="Toggle Opacity" { toggle-window-rule-opacity; }
@@ -238,6 +238,7 @@ spawn-sh-at-startup "waybar"
 spawn-sh-at-startup "awww-daemon" // Wallpaper daemon
 spawn-sh-at-startup "sleep 0.5 && awww img ~/Pictures/wallpapers/sushi-2.jpg"// Set wallpaper
 spawn-sh-at-startup "dunst"
+spawn-sh-at-startup "swayidle -w timeout 900 'hyprlock' timeout 930 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' before-sleep 'hyprlock'" // Auto-lock 15min, screen off 15:30, lock on suspend
 spawn-sh-at-startup "firefox"
 spawn-sh-at-startup "steam"
 spawn-sh-at-startup "vesktop"
