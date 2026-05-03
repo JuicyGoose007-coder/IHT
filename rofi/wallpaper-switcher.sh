@@ -41,3 +41,10 @@ awww img "$WALLPAPER_DIR/$selection" \
   --transition-duration 2 \
   --transition-fps 60 \
   --transition-step 90
+
+# Sync hyprlock background to new wallpaper
+HYPRLOCK="$HOME/.config/hypr/hyprlock.conf"
+if [[ -f "$HYPRLOCK" ]]; then
+  WP_ESC=$(printf '%s' "$WALLPAPER_DIR/$selection" | sed 's/[\/&]/\\&/g')
+  sed -i "s|^\(\s*path\s*=\s*\).*|\1$WP_ESC|" "$HYPRLOCK"
+fi
