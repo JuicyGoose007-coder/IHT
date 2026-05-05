@@ -131,36 +131,39 @@ extract_palette() {
   }
   [[ -f "$cache" ]] || { load_oxocarbon; return; }
 
-  local json
-  json=$(<"$cache")
+  # Pull all needed slots in one jq invocation (15 forks → 1)
+  local bg_main bg_zero c8 c7 fg_raw c12 c11 c14 c13 c10 c9 c5 c3 c4
+  {
+    read -r bg_main; read -r bg_zero
+    read -r c8;      read -r c7;      read -r fg_raw
+    read -r c12;     read -r c11;     read -r c14
+    read -r c13;     read -r c10;     read -r c9
+    read -r c5;      read -r c3;      read -r c4
+  } < <(jq -r '.background, .color0, .color8, .color7, .foreground,
+               .color12, .color11, .color14, .color13, .color10,
+               .color9, .color5, .color3, .color4' "$cache")
 
-  # Helper to pull a slot from palette.json
-  _wc() { echo "$json" | jq -r ".${1}"; }
-
-  # Pick darker of {background, color0} as BG0 so backdrop stays deepest
-  local bg_main bg_zero
-  bg_main=$(_wc background)
-  bg_zero=$(_wc color0)
-  # Crude luminance: sum of RGB bytes; lower = darker
+  # Pick darker of {background, color0} as BG0 so backdrop stays deepest.
+  # Crude luminance: sum of RGB bytes; lower = darker.
   _lum() { local h="${1#\#}"; printf "%d" $((0x${h:0:2} + 0x${h:2:2} + 0x${h:4:2})); }
   if (( $(_lum "$bg_zero") < $(_lum "$bg_main") )); then
     BG0="$bg_zero"; BG1="$bg_main"
   else
     BG0="$bg_main"; BG1="$bg_zero"
   fi
-  BG2=$(_wc color8)
-  BG3=$(_wc color7)
-  FG0=$(_wc color7)
-  FG1=$(_wc foreground)
-  ACCENT_PINK=$(brighten_floor "$(_wc color12)" 220)
-  ACCENT_GREEN=$(brighten_floor "$(_wc color11)" 220)
-  ACCENT_BLUE=$(brighten_floor "$(_wc color14)" 220)
-  ACCENT_PURPLE=$(brighten_floor "$(_wc color13)" 220)
-  ACCENT_CYAN=$(brighten_floor "$(_wc color10)" 220)
-  ACCENT_LBLUE=$(brighten_floor "$(_wc color9)" 220)
-  ACCENT_MAGENTA=$(brighten_floor "$(_wc color5)" 220)
-  ACCENT_TEAL=$(brighten_floor "$(_wc color3)" 220)
-  ACCENT_SKY=$(brighten_floor "$(_wc color4)" 220)
+  BG2="$c8"
+  BG3="$c7"
+  FG0="$c7"
+  FG1="$fg_raw"
+  ACCENT_PINK=$(brighten_floor "$c12" 220)
+  ACCENT_GREEN=$(brighten_floor "$c11" 220)
+  ACCENT_BLUE=$(brighten_floor "$c14" 220)
+  ACCENT_PURPLE=$(brighten_floor "$c13" 220)
+  ACCENT_CYAN=$(brighten_floor "$c10" 220)
+  ACCENT_LBLUE=$(brighten_floor "$c9" 220)
+  ACCENT_MAGENTA=$(brighten_floor "$c5" 220)
+  ACCENT_TEAL=$(brighten_floor "$c3" 220)
+  ACCENT_SKY=$(brighten_floor "$c4" 220)
   # Floor FG levels too so text reads on dark BGs
   FG0=$(brighten_floor "$FG0" 180)
   FG1=$(brighten_floor "$FG1" 230)
@@ -208,212 +211,6 @@ EOF
   local body
   body=$(sed -n '18,$p' "$file")
   printf '%s\n\n%s\n' "$header" "$body" >"$file"
-}
-
-generate_rofi_wallpaper() {
-  cat >"$HOME/.config/rofi/wallpaper-switcher.rasi" <<EOF
-/* Theme: $THEME_NAME — wallpaper switcher */
-
-configuration {
-    show-icons: true;
-    display-dmenu: " Wallpaper";
-}
-
-* {
-    font: "Inter Medium 13";
-    bg0: $(hex_alpha "$BG0" "d9");
-    bg1: $(hex_alpha "$BG1" "d9");
-    fg0: ${FG0};
-    fg1: ${FG1};
-    accent: ${ACCENT_PURPLE};
-    accent-light: ${ACCENT_MAGENTA};
-    transparent: #00000000;
-}
-
-window {
-    background-color: @transparent;
-    border: 0;
-    width: 800px;
-    location: center;
-    anchor: center;
-}
-
-mainbox {
-    background-color: @bg0;
-    border-radius: 24px;
-    border: 2px solid;
-    border-color: $(hex_alpha "$ACCENT_PURPLE" "40");
-    padding: 20px;
-    children: [inputbar, listview];
-}
-
-inputbar {
-    background-color: @bg1;
-    border-radius: 24px;
-    border: 2px solid;
-    border-color: $(hex_alpha "$ACCENT_MAGENTA" "59");
-    padding: 14px 18px;
-    margin: 0 4px 16px 4px;
-    children: [prompt, entry];
-    spacing: 10px;
-}
-
-prompt {
-    background-color: @transparent;
-    text-color: @accent-light;
-}
-
-entry {
-    background-color: @transparent;
-    text-color: @fg1;
-    cursor: text;
-    placeholder: "Search wallpapers...";
-    placeholder-color: ${BG3};
-}
-
-listview {
-    background-color: @transparent;
-    columns: 1;
-    lines: 6;
-    scrollbar: false;
-    spacing: 3px;
-    fixed-height: true;
-}
-
-element {
-    background-color: @bg0;
-    border-radius: 24px;
-    border: 1px solid;
-    border-color: @transparent;
-    padding: 10px 14px;
-    spacing: 14px;
-}
-
-element selected {
-    background-color: $(hex_alpha "$ACCENT_PURPLE" "26");
-    border-color: $(hex_alpha "$ACCENT_PURPLE" "80");
-}
-
-element-icon {
-    background-color: $(hex_alpha "$ACCENT_PURPLE" "19");
-    border-radius: 14px;
-    size: 256px;
-}
-
-element-text {
-    background-color: @transparent;
-    text-color: @fg0;
-    font: "Inter Medium Bold 13";
-    vertical-align: 0.5;
-}
-
-element-text selected {
-    text-color: @accent-light;
-}
-EOF
-}
-
-generate_rofi_theme() {
-  cat >"$HOME/.config/rofi/theme-switcher.rasi" <<EOF
-/* Theme: $THEME_NAME — theme switcher */
-
-configuration {
-    show-icons: true;
-    display-dmenu: " Theme";
-}
-
-* {
-    font: "Inter Medium 13";
-    bg0: $(hex_alpha "$BG0" "d9");
-    bg1: $(hex_alpha "$BG1" "d9");
-    fg0: ${FG0};
-    fg1: ${FG1};
-    accent: ${ACCENT_BLUE};
-    accent-light: ${ACCENT_LBLUE};
-    transparent: #00000000;
-}
-
-window {
-    background-color: @transparent;
-    border: 0;
-    width: 800px;
-    location: center;
-    anchor: center;
-}
-
-mainbox {
-    background-color: @bg0;
-    border-radius: 24px;
-    border: 2px solid;
-    border-color: $(hex_alpha "$ACCENT_BLUE" "40");
-    padding: 20px;
-    children: [inputbar, listview];
-}
-
-inputbar {
-    background-color: @bg1;
-    border-radius: 24px;
-    border: 2px solid;
-    border-color: $(hex_alpha "$ACCENT_LBLUE" "59");
-    padding: 14px 18px;
-    margin: 0 4px 16px 4px;
-    children: [prompt, entry];
-    spacing: 10px;
-}
-
-prompt {
-    background-color: @transparent;
-    text-color: @accent-light;
-}
-
-entry {
-    background-color: @transparent;
-    text-color: @fg1;
-    cursor: text;
-    placeholder: "Search themes...";
-    placeholder-color: ${BG3};
-}
-
-listview {
-    background-color: @transparent;
-    columns: 1;
-    lines: 6;
-    scrollbar: false;
-    spacing: 3px;
-    fixed-height: true;
-}
-
-element {
-    background-color: @bg0;
-    border-radius: 24px;
-    border: 1px solid;
-    border-color: @transparent;
-    padding: 10px 14px;
-    spacing: 14px;
-}
-
-element selected {
-    background-color: $(hex_alpha "$ACCENT_BLUE" "26");
-    border-color: $(hex_alpha "$ACCENT_BLUE" "80");
-}
-
-element-icon {
-    background-color: $(hex_alpha "$ACCENT_BLUE" "19");
-    border-radius: 14px;
-    size: 256px;
-}
-
-element-text {
-    background-color: @transparent;
-    text-color: @fg0;
-    font: "Inter Medium Bold 13";
-    vertical-align: 0.5;
-}
-
-element-text selected {
-    text-color: @accent-light;
-}
-EOF
 }
 
 generate_rofi_colors() {
@@ -1767,6 +1564,8 @@ generate_hyprlock() {
 
   local wp
   wp=$(current_wallpaper)
+  # Skip rewrite if no wallpaper resolvable — empty path = is rejected by hyprlock
+  [[ -n "$wp" ]] || return 0
 
   cat >"$file" <<EOF
 # Generated by theme-switcher — ${THEME_NAME}
@@ -1904,7 +1703,49 @@ reload_all() {
   # Niri: reload config
   niri msg action load-config-file 2>/dev/null || true
 
-  # Ghostty: reload config via SIGUSR2
+  # Ghostty: live update existing surfaces via OSC, plus SIGUSR2 for new windows.
+  # SIGUSR2 alone only applies palette/theme to *new* surfaces in 1.x; OSC pokes
+  # each open pty so currently-running shells repaint future output too.
+  ghostty_live_update() {
+    local osc=""
+    osc+="\033]11;${BG0}\033\\"
+    osc+="\033]10;${FG1}\033\\"
+    osc+="\033]12;${FG1}\033\\"
+    osc+="\033]4;0;${BG1}\033\\"
+    osc+="\033]4;1;${ACCENT_PINK}\033\\"
+    osc+="\033]4;2;${ACCENT_GREEN}\033\\"
+    osc+="\033]4;3;${ACCENT_SKY}\033\\"
+    osc+="\033]4;4;${ACCENT_LBLUE}\033\\"
+    osc+="\033]4;5;${ACCENT_MAGENTA}\033\\"
+    osc+="\033]4;6;${ACCENT_TEAL}\033\\"
+    osc+="\033]4;7;${FG0}\033\\"
+    osc+="\033]4;8;${BG2}\033\\"
+    osc+="\033]4;9;${ACCENT_PINK}\033\\"
+    osc+="\033]4;10;${ACCENT_GREEN}\033\\"
+    osc+="\033]4;11;${ACCENT_SKY}\033\\"
+    osc+="\033]4;12;${ACCENT_LBLUE}\033\\"
+    osc+="\033]4;13;${ACCENT_MAGENTA}\033\\"
+    osc+="\033]4;14;${ACCENT_TEAL}\033\\"
+    osc+="\033]4;15;#ffffff\033\\"
+
+    # Ghostty holds pty masters as /dev/ptmx (kernel doesn't label them by
+    # slave number). The slave path lives on the child shell's fd 0. Walk
+    # ghostty's descendants, collect unique /dev/pts/N, write OSC to each.
+    local uid gpid cpid tgt
+    uid=$(id -u)
+    declare -A seen=()
+    for gpid in $(pgrep -u "$uid" -x ghostty 2>/dev/null); do
+      while read -r cpid; do
+        [[ -z "$cpid" ]] && continue
+        tgt=$(readlink "/proc/$cpid/fd/0" 2>/dev/null) || continue
+        [[ "$tgt" == /dev/pts/* ]] || continue
+        [[ -n "${seen[$tgt]:-}" ]] && continue
+        seen[$tgt]=1
+        printf '%b' "$osc" >"$tgt" 2>/dev/null || true
+      done < <(pgrep -P "$gpid" 2>/dev/null)
+    done
+  }
+  ghostty_live_update
   pkill -SIGUSR2 ghostty 2>/dev/null || true
 
   # Kitty: live color reload
@@ -1948,7 +1789,7 @@ main() {
   # Oxocarbon default thumbnail — use current wallpaper if awww is running
   local oxo_thumb="$THUMB_DIR/oxocarbon-default.png"
   local current_wall
-  current_wall=$(awww query 2>/dev/null | grep -oP '(?<=image: ).*' | head -1)
+  current_wall=$(awww query 2>/dev/null | awk -F'image: ' '/image: /{print $2; exit}')
   if [[ -n "$current_wall" && -f "$current_wall" && (! -f "$oxo_thumb" || "$current_wall" -nt "$oxo_thumb") ]]; then
     magick "$current_wall" -resize 256x144^ -gravity center -extent 256x144 "$oxo_thumb" 2>/dev/null
   elif [[ ! -f "$oxo_thumb" ]]; then
