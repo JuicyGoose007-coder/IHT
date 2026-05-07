@@ -113,6 +113,76 @@ brighten_floor() {
   printf "#%02x%02x%02x" "$r" "$g" "$b"
 }
 
+# Helper: enforce minimum hue separation (degrees) between three hex colors.
+# Preserves saturation/lightness, only rotates hue. Echoes "hexA hexB hexC".
+# Used to guarantee starship vi-mode badges (red/sky/mauve) read distinct on
+# monochrome wallpapers where wallust collapses multiple slots to one hue.
+ensure_hue_separation() {
+  local thresh="${4:-30}"
+  hex_to_rgb "$1"; local ar=$R ag=$G ab=$B
+  hex_to_rgb "$2"; local br=$R bg=$G bb=$B
+  hex_to_rgb "$3"; local cr=$R cg=$G cb=$B
+  awk -v ar=$ar -v ag=$ag -v ab=$ab \
+      -v br=$br -v bg=$bg -v bb=$bb \
+      -v cr=$cr -v cg=$cg -v cb=$cb \
+      -v T=$thresh '
+    function rgb2hsl(r,g,b, out,   max,min,d,h,s,l) {
+      r/=255; g/=255; b/=255
+      max=(r>g)?((r>b)?r:b):((g>b)?g:b)
+      min=(r<g)?((r<b)?r:b):((g<b)?g:b)
+      l=(max+min)/2; d=max-min
+      if (d==0) { h=0; s=0 }
+      else {
+        s=(l>0.5)?d/(2-max-min):d/(max+min)
+        if (max==r)      h=((g-b)/d)+((g<b)?6:0)
+        else if (max==g) h=((b-r)/d)+2
+        else             h=((r-g)/d)+4
+        h*=60
+      }
+      out[0]=h; out[1]=s; out[2]=l
+    }
+    function h2c(p,q,t) {
+      if (t<0) t+=1; if (t>1) t-=1
+      if (t<1/6) return p+(q-p)*6*t
+      if (t<1/2) return q
+      if (t<2/3) return p+(q-p)*(2/3-t)*6
+      return p
+    }
+    function hsl2hex(h,s,l,   q,p,hh,r,g,b) {
+      hh=h/360
+      if (s==0) { r=l; g=l; b=l }
+      else {
+        q=(l<0.5)?l*(1+s):l+s-l*s; p=2*l-q
+        r=h2c(p,q,hh+1/3); g=h2c(p,q,hh); b=h2c(p,q,hh-1/3)
+      }
+      return sprintf("#%02x%02x%02x", int(r*255+0.5), int(g*255+0.5), int(b*255+0.5))
+    }
+    function hdist(x,y,   d) { d=x-y; if (d<0) d=-d; if (d>180) d=360-d; return d }
+    BEGIN {
+      rgb2hsl(ar,ag,ab,A); rgb2hsl(br,bg,bb,B); rgb2hsl(cr,cg,cb,C)
+      # Rotate B if it crowds A
+      if (hdist(A[0],B[0]) < T) {
+        c1=(A[0]+T*2)%360; c2=(A[0]-T*2+360)%360
+        B[0] = (hdist(c1,C[0]) > hdist(c2,C[0])) ? c1 : c2
+        # Boost saturation/lightness if rotating from a near-grey source
+        if (B[1] < 0.35) B[1] = 0.65
+        if (B[2] < 0.35) B[2] = 0.55
+      }
+      # Rotate C if it crowds either
+      if (hdist(A[0],C[0]) < T || hdist(B[0],C[0]) < T) {
+        for (off=0; off<360; off+=15) {
+          k=(A[0]+T*2+off)%360
+          if (hdist(A[0],k)>=T && hdist(B[0],k)>=T) { C[0]=k; break }
+          k=(A[0]-T*2-off+3600)%360
+          if (hdist(A[0],k)>=T && hdist(B[0],k)>=T) { C[0]=k; break }
+        }
+        if (C[1] < 0.35) C[1] = 0.65
+        if (C[2] < 0.35) C[2] = 0.55
+      }
+      printf "%s %s %s\n", hsl2hex(A[0],A[1],A[2]), hsl2hex(B[0],B[1],B[2]), hsl2hex(C[0],C[1],C[2])
+    }'
+}
+
 # Helper: hex color to hex with alpha suffix (e.g. #161616 -> #161616e6)
 hex_alpha() {
   local hex="${1#\#}"
@@ -1316,6 +1386,11 @@ generate_starship() {
   local file="$HOME/.config/starship/starship.toml"
   [[ -f "$file" ]] || return 0
 
+  # Vi-mode badges (red=N, sky=I, mauve=V) must stay visually distinct.
+  # On monochrome wallpapers wallust slots collapse, so force ≥30° hue gap.
+  local STAR_RED STAR_SKY STAR_MAUVE
+  read -r STAR_RED STAR_SKY STAR_MAUVE < <(ensure_hue_separation "$ACCENT_PINK" "$ACCENT_SKY" "$ACCENT_PURPLE" 30)
+
   # Update palette values
   sed -i \
     -e "s/^crust = .*/crust = \"${BG0}\"/" \
@@ -1333,14 +1408,14 @@ generate_starship() {
     -e "s/^rosewater = .*/rosewater = \"${FG1}\"/" \
     -e "s/^flamingo = .*/flamingo = \"${ACCENT_MAGENTA}\"/" \
     -e "s/^pink = .*/pink = \"${ACCENT_MAGENTA}\"/" \
-    -e "s/^mauve = .*/mauve = \"${ACCENT_PURPLE}\"/" \
-    -e "s/^red = .*/red = \"${ACCENT_PINK}\"/" \
+    -e "s/^mauve = .*/mauve = \"${STAR_MAUVE}\"/" \
+    -e "s/^red = .*/red = \"${STAR_RED}\"/" \
     -e "s/^maroon = .*/maroon = \"${ACCENT_MAGENTA}\"/" \
     -e "s/^peach = .*/peach = \"${ACCENT_MAGENTA}\"/" \
     -e "s/^yellow = .*/yellow = \"$(lighten_color "$ACCENT_MAGENTA" 20)\"/" \
     -e "s/^green = .*/green = \"${ACCENT_GREEN}\"/" \
     -e "s/^teal = .*/teal = \"${ACCENT_TEAL}\"/" \
-    -e "s/^sky = .*/sky = \"${ACCENT_SKY}\"/" \
+    -e "s/^sky = .*/sky = \"${STAR_SKY}\"/" \
     -e "s/^sapphire = .*/sapphire = \"${ACCENT_BLUE}\"/" \
     -e "s/^blue = .*/blue = \"${ACCENT_BLUE}\"/" \
     -e "s/^lavender = .*/lavender = \"${ACCENT_PURPLE}\"/" \
