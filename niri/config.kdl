@@ -236,13 +236,13 @@ binds {
 spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
 spawn-sh-at-startup "waybar"
 spawn-sh-at-startup "awww-daemon" // Wallpaper daemon
-spawn-sh-at-startup "sleep 0.5 && awww img ~/Pictures/wallpapers/sushi-2.jpg"// Set wallpaper
+// spawn-sh-at-startup "sleep 0.5 && awww img ~/Pictures/wallpapers/sushi-2.jpg"// Set wallpaper
 spawn-sh-at-startup "dunst"
 spawn-sh-at-startup "swayidle -w timeout 900 'hyprlock' timeout 930 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' before-sleep 'hyprlock'" // Auto-lock 15min, screen off 15:30, lock on suspend
 spawn-sh-at-startup "firefox"
-spawn-sh-at-startup "steam"
+spawn-sh-at-startup "steam -no-browser"
 spawn-sh-at-startup "vesktop"
-spawn-sh-at-startup "via"
+// spawn-sh-at-startup "via"
 spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
 
     prefer-no-csd // Disable program decorations
