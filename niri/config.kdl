@@ -238,7 +238,8 @@ spawn-sh-at-startup "waybar"
 spawn-sh-at-startup "awww-daemon" // Wallpaper daemon
 // spawn-sh-at-startup "sleep 0.5 && awww img ~/Pictures/wallpapers/sushi-2.jpg"// Set wallpaper
 spawn-sh-at-startup "dunst"
-spawn-sh-at-startup "swayidle -w timeout 900 'hyprlock' timeout 930 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors' before-sleep 'hyprlock'" // Auto-lock 15min, screen off 15:30, lock on suspend
+spawn-at-startup "hypridle" // Auto-lock 15min, screen off 15:30, lock on suspend — see ~/.config/hypr/hypridle.conf
+spawn-at-startup "ghostty"
 spawn-sh-at-startup "firefox"
 spawn-sh-at-startup "steam -no-browser"
 spawn-sh-at-startup "vesktop"
@@ -253,7 +254,7 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 
     layout {
-        gaps 16 // Gap between windows
+        gaps 8 // Gap between windows
         center-focused-column "never" // Don’t auto-center focused column
 
         preset-column-widths {
@@ -458,9 +459,14 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
         open-focused true
         default-column-width { proportion 0.5; }
         opacity 0.9
+    }
+
+    window-rule{
         match title="Solaar"
         match app-id="solaar"
 	    open-on-output "DP-1"
+        open-on-workspace "Discord"
+        opacity 0.9
     }
 
     window-rule{
@@ -512,4 +518,5 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
         passes 2
         offset 0.75
     }
+
 include "./colors.kdl"
