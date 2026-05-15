@@ -515,7 +515,7 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
     }
 
     blur {
-        passes 2
+        passes 4
         offset 0.75
     }
 
