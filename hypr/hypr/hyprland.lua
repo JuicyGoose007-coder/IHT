@@ -1,11 +1,12 @@
 require("modules.monitors")
+require("modules.programs")
 require("modules.keybinds")
 require("modules.autostart")
 require("modules.env")
-require("modules.programs")
 require("modules.permissions")
 require("modules.windowrule")
 require("modules.workspace")
+
 -----------------------
 ---- LOOK AND FEEL ----
 -----------------------
@@ -13,7 +14,7 @@ require("modules.workspace")
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
 	general = {
-		gaps_in = 10,
+		gaps_in = 5,
 		gaps_out = 10,
 
 		border_size = 2,
@@ -30,8 +31,6 @@ hl.config({
 		allow_tearing = false,
 
 		layout = "scrolling",
-
-		no_csd = true,
 	},
 
 	decoration = {
@@ -48,12 +47,11 @@ hl.config({
 			render_power = 3,
 			color = 0x70000000,
 		},
-		shadow_offset = "0 5",
 
 		blur = {
 			enabled = true,
 			size = 3,
-			passes = 4,
+			passes = 3,
 			vibrancy = 0.1696,
 		},
 	},
@@ -91,24 +89,6 @@ hl.animation({ leaf = "workspacesIn", enabled = true, speed = 1.21, bezier = "al
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" })
 
--- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
--- "Smart gaps" / "No gaps when only"
--- uncomment all if you wish to use that.
--- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
--- hl.window_rule({
---     name  = "no-gaps-wtv1",
---     match = { float = false, workspace = "w[tv1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
--- hl.window_rule({
---     name  = "no-gaps-f1",
---     match = { float = false, workspace = "f[1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
-
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
 	dwindle = {
@@ -138,8 +118,14 @@ hl.config({
 
 hl.config({
 	misc = {
-		force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
-		disable_hyprland_logo = false, -- If true disables the random hyprland logo / anime girl background. :(
+		force_default_wallpaper = 1,
+		disable_hyprland_logo = true,
+	},
+})
+
+hl.config({
+	cursor = {
+		min_refresh_rate = 24,
 	},
 })
 
@@ -162,7 +148,7 @@ hl.config({
 		numlock_by_default = true,
 
 		touchpad = {
-			tap = true,
+			tap_to_click = true,
 			natural_scroll = true,
 		},
 	},
@@ -174,9 +160,9 @@ hl.gesture({
 	action = "workspace",
 })
 
--- Example per-device config
+-- Example per-device config (commented out)
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
-hl.device({
-	name = "epic-mouse-v1",
-	sensitivity = -0.5,
-})
+-- hl.device({
+-- 	name = "epic-mouse-v1",
+-- 	sensitivity = -0.5,
+-- })

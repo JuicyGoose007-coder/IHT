@@ -39,97 +39,94 @@ hl.window_rule({
 })
 
 hl.window_rule({
-	name = "float-xdg-portal",
-	match = { class = "^xdg-desktop-portal$" },
-	float = true,
+	name = "steam-client",
+	match = { class = "^(steam|Steam)$" },
+	workspace = "name:Gaming",
 })
 
 hl.window_rule({
-	name = "steam-client",
-	match = { class = "^steam$" },
-	no_focus = true,
-	workspace = "Gaming",
+	name = "steam-games",
+	match = { class = "^(steam|Steam)$", title = "^(?!Steam$)" },
+	workspace = "name:Gaming",
 })
 
 hl.window_rule({
 	name = "battlenet",
 	match = { class = "steam_app_0", title = "Battle.net" },
 	no_focus = true,
-	workspace = "Gaming",
+	workspace = "name:Gaming",
 })
 
 hl.window_rule({
 	name = "battlenet-login",
 	match = { class = "steam_app_0", title = "Battle\\.net Login" },
 	no_focus = true,
-	workspace = "Gaming",
+	workspace = "name:Gaming",
 })
 
 hl.window_rule({
 	name = "tidal",
 	match = { class = "tidal-hifi" },
-	workspace = "Discord",
+	workspace = "name:Discord",
 })
 
 hl.window_rule({
 	name = "discord",
 	match = { title = "Discord" },
 	no_focus = true,
-	workspace = "Discord",
-	inactive_opacity = 0.9,
+	workspace = "name:Discord",
+})
+
+hl.window_rule({
+	name = "discord",
+	match = { title = "Discord" },
+	no_focus = true,
+	workspace = "name:Discord",
 })
 
 hl.window_rule({
 	name = "ghostty",
 	match = { title = "ghostty" },
 	fullscreen = false,
-	focus = true,
-	inactive_opacity = 0.9,
+	opacity = 0.9,
 })
 
 hl.window_rule({
 	name = "ghostty-appid",
 	match = { class = "com\\.mitchellh\\.ghostty" },
 	fullscreen = false,
-	focus = true,
-	inactive_opacity = 0.9,
+	opacity = 0.9,
 })
 
 hl.window_rule({
 	name = "kitty",
 	match = { title = "kitty" },
 	fullscreen = false,
-	focus = true,
-	inactive_opacity = 0.9,
 })
 
 hl.window_rule({
 	name = "solaar",
 	match = { class = "solaar" },
-	workspace = "Discord",
-	inactive_opacity = 0.9,
+	workspace = "name:Discord",
 })
 
 hl.window_rule({
 	name = "gamescope",
 	match = { class = "gamescope" },
 	fullscreen = true,
-	workspace = "Gaming",
-	focus = true,
+	workspace = "name:Gaming",
 })
 
 hl.window_rule({
 	name = "kdevelop",
 	match = { class = "org\\.kde\\.kdevelop" },
-	fullscreen = 2,
-	focus = true,
-	inactive_opacity = 0.9,
+	fullscreen = true,
 })
 
 hl.window_rule({
 	name = "via",
 	match = { class = "via-nativia", title = "Via" },
-	workspace = "Discord",
+	workspace = "name:Discord",
 })
 
 hl.window_rule({
@@ -156,4 +153,16 @@ hl.window_rule({
 	match = { class = "hyprland-run" },
 	move = "20 monitor_h-120",
 	float = true,
+})
+
+hl.window_rule({
+	name = "firefox",
+	match = { class = "^firefox$" },
+	workspace = "name:Main",
+})
+
+hl.window_rule({
+	name = "vesktop",
+	match = { class = "^vesktop$" },
+	workspace = "name:Discord",
 })

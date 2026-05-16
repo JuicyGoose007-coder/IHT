@@ -7,6 +7,13 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close(), { repeating = false })
 
+-- Opacity toggle (like Niri's MOD+T: toggle-window-rule-opacity)
+local opacity_toggled = false
+hl.bind(mainMod .. " + T", function()
+	opacity_toggled = not opacity_toggled
+	hl.config({ decoration = { inactive_opacity = opacity_toggled and 1.0 or 0.9 } })
+end)
+
 -- Applications
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
@@ -20,16 +27,16 @@ hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("ghostty -e zsh -ic yazi"))
 
 -- Window Management
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd("/mnt/storage/scripts/killgamescope.sh"), { repeating = false })
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.fullscreen(2))
-hl.bind(mainMod .. " + F", hl.dsp.fullscreen())
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen())
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + SHIFT + V", hl.dsp.focus({ floating = true }))
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.focus({ last = true }))
 hl.bind(mainMod .. " + W", hl.dsp.layout("togglegroup"))
 
 -- Sizing & Layout (scrolling layout equivalents)
 hl.bind(mainMod .. " + R", hl.dsp.layout("colresize +conf"))
 hl.bind(mainMod .. " + SHIFT + R", hl.dsp.layout("colresize -conf"))
-hl.bind(mainMod .. " + CTRL + F", hl.dsp.fullscreen(0))
+hl.bind(mainMod .. " + CTRL + F", hl.dsp.window.fullscreen(0))
 hl.bind(mainMod .. " + C", hl.dsp.layout("fit active"))
 hl.bind(mainMod .. " + CTRL + C", hl.dsp.layout("fit visible"))
 
@@ -37,9 +44,15 @@ hl.bind(mainMod .. " + CTRL + C", hl.dsp.layout("fit visible"))
 hl.bind(mainMod .. " + Minus", hl.dsp.layout("colresize -0.1"))
 hl.bind(mainMod .. " + Equal", hl.dsp.layout("colresize +0.1"))
 
+-- Swap window positions on current monitor (Niri-style with hjkl)
+hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.move({ direction = "down" }))
+
 -- Column management (Niri-style)
-hl.bind(mainMod .. " + bracket_left", hl.dsp.layout("consume_or_expel prev"))
-hl.bind(mainMod .. " + bracket_right", hl.dsp.layout("consume_or_expel next"))
+hl.bind(mainMod .. " + bracketleft", hl.dsp.layout("consume_or_expel prev"))
+hl.bind(mainMod .. " + bracketright", hl.dsp.layout("consume_or_expel next"))
 hl.bind(mainMod .. " + Period", hl.dsp.layout("promote"))
 
 -- Column scroll navigation
@@ -49,7 +62,12 @@ hl.bind(mainMod .. " + CTRL + mouse_right", hl.dsp.layout("move +col"))
 hl.bind(mainMod .. " + CTRL + mouse_left", hl.dsp.layout("move -col"))
 
 -- Toggle between scrolling, dwindle, master
-hl.bind(mainMod .. " + T", hl.dsp.layout("cycle"))
+local layouts = { "scrolling", "dwindle", "master" }
+local current_layout = 1
+hl.bind(mainMod .. " + U", function()
+	current_layout = (current_layout % #layouts) + 1
+	hl.config({ general = { layout = layouts[current_layout] } })
+end)
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
@@ -72,6 +90,10 @@ end
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
+-- Discord workspace (on DP-1)
+hl.bind(mainMod .. " + I", hl.dsp.focus({ workspace = "name:Discord" }))
+hl.bind(mainMod .. " + SHIFT + I", hl.dsp.window.move({ workspace = "name:Discord" }))
+
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
@@ -79,6 +101,12 @@ hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+-- Move window to adjacent monitor (Niri-style with hjkl)
+hl.bind(mainMod .. " + CTRL + h", hl.dsp.window.move({ monitor = "l" }))
+hl.bind(mainMod .. " + CTRL + l", hl.dsp.window.move({ monitor = "r" }))
+hl.bind(mainMod .. " + CTRL + k", hl.dsp.window.move({ monitor = "u" }))
+hl.bind(mainMod .. " + CTRL + j", hl.dsp.window.move({ monitor = "d" }))
 
 -- System (Niri-style)
 -- Screenshots: requires grim + slurp
