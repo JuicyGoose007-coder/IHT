@@ -41,27 +41,21 @@ hl.window_rule({
 hl.window_rule({
 	name = "steam-client",
 	match = { class = "^(steam|Steam)$" },
-	workspace = "1",
-})
-
-hl.window_rule({
-	name = "steam-games",
-	match = { class = "^(steam|Steam)$", title = "^(?!Steam$)" },
-	workspace = "1",
+	workspace = "name:Gaming",
 })
 
 hl.window_rule({
 	name = "battlenet",
 	match = { class = "steam_app_0", title = "Battle.net" },
 	no_focus = true,
-	workspace = "1",
+	workspace = "name:Gaming",
 })
 
 hl.window_rule({
 	name = "battlenet-login",
 	match = { class = "steam_app_0", title = "Battle\\.net Login" },
 	no_focus = true,
-	workspace = "1",
+	workspace = "name:Gaming",
 })
 
 hl.window_rule({
@@ -100,7 +94,25 @@ hl.window_rule({
 	name = "gamescope",
 	match = { class = "gamescope" },
 	fullscreen = true,
-	workspace = "1",
+	workspace = "name:Gaming",
+})
+
+hl.window_rule({
+	name = "lutris",
+	match = { class = "^lutris$" },
+	workspace = "name:Gaming",
+})
+
+hl.window_rule({
+	name = "bottles",
+	match = { class = "^bottles$" },
+	workspace = "name:Gaming",
+})
+
+hl.window_rule({
+	name = "faugus",
+	match = { class = "^faugus-launcher$" },
+	workspace = "name:Gaming",
 })
 
 hl.window_rule({

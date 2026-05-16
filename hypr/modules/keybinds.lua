@@ -79,8 +79,12 @@ hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
 
--- Niri-style numbered workspaces: G=1, M=2, N=3, 4-9=4-9
-local ws_keys = { "G", "M", "N", "4", "5", "6", "7", "8", "9" }
+-- Gaming workspace (named)
+hl.bind(mainMod .. " + G", hl.dsp.focus({ workspace = "name:Gaming" }))
+hl.bind(mainMod .. " + SHIFT + G", hl.dsp.window.move({ workspace = "name:Gaming" }))
+
+-- Niri-style numbered workspaces: M=2, N=3, 4-9=4-9
+local ws_keys = { "M", "N", "4", "5", "6", "7", "8", "9" }
 for i, key in ipairs(ws_keys) do
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
 	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
@@ -110,7 +114,12 @@ hl.bind(mainMod .. " + CTRL + j", hl.dsp.window.move({ monitor = "d" }))
 
 -- System (Niri-style)
 -- Screenshots: requires grim + slurp
-hl.bind("CTRL + P", hl.dsp.exec_cmd("grim -g \"$(slurp)\" \"$HOME/Pictures/screenshots/Screenshot from $(date '+%Y-%m-%d %H-%M-%S').png\""))
+hl.bind(
+	"CTRL + P",
+	hl.dsp.exec_cmd(
+		'grim -g "$(slurp)" "$HOME/Pictures/screenshots/Screenshot from $(date \'+%Y-%m-%d %H-%M-%S\').png"'
+	)
+)
 hl.bind(
 	"CTRL + SHIFT + P",
 	hl.dsp.exec_cmd(
@@ -119,7 +128,9 @@ hl.bind(
 )
 hl.bind(
 	"CTRL + SHIFT + W",
-	hl.dsp.exec_cmd([=[grim -g "$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')" "$HOME/Pictures/screenshots/Screenshot from $(date '+%Y-%m-%d %H-%M-%S').png"]=])
+	hl.dsp.exec_cmd(
+		[=[grim -g "$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')" "$HOME/Pictures/screenshots/Screenshot from $(date '+%Y-%m-%d %H-%M-%S').png"]=]
+	)
 )
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exit())
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprctl dispatch dpms off"))
