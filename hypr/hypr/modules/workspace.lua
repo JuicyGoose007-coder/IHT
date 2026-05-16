@@ -4,12 +4,12 @@
 
 -- Niri-style named workspaces on specific monitors
 hl.workspace_rule({
-	workspace = "name:Main",
+	workspace = "1",
 	monitor = "DP-2",
 })
 
 hl.workspace_rule({
-	workspace = "name:Gaming",
+	workspace = "2",
 	monitor = "DP-2",
 })
 

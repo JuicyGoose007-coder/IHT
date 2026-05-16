@@ -41,27 +41,27 @@ hl.window_rule({
 hl.window_rule({
 	name = "steam-client",
 	match = { class = "^(steam|Steam)$" },
-	workspace = "name:Gaming",
+	workspace = "1",
 })
 
 hl.window_rule({
 	name = "steam-games",
 	match = { class = "^(steam|Steam)$", title = "^(?!Steam$)" },
-	workspace = "name:Gaming",
+	workspace = "1",
 })
 
 hl.window_rule({
 	name = "battlenet",
 	match = { class = "steam_app_0", title = "Battle.net" },
 	no_focus = true,
-	workspace = "name:Gaming",
+	workspace = "1",
 })
 
 hl.window_rule({
 	name = "battlenet-login",
 	match = { class = "steam_app_0", title = "Battle\\.net Login" },
 	no_focus = true,
-	workspace = "name:Gaming",
+	workspace = "1",
 })
 
 hl.window_rule({
@@ -75,20 +75,6 @@ hl.window_rule({
 	match = { title = "Discord" },
 	no_focus = true,
 	workspace = "name:Discord",
-})
-
-hl.window_rule({
-	name = "discord",
-	match = { title = "Discord" },
-	no_focus = true,
-	workspace = "name:Discord",
-})
-
-hl.window_rule({
-	name = "ghostty",
-	match = { title = "ghostty" },
-	fullscreen = false,
-	opacity = 0.9,
 })
 
 hl.window_rule({
@@ -114,7 +100,7 @@ hl.window_rule({
 	name = "gamescope",
 	match = { class = "gamescope" },
 	fullscreen = true,
-	workspace = "name:Gaming",
+	workspace = "1",
 })
 
 hl.window_rule({
@@ -158,7 +144,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "firefox",
 	match = { class = "^firefox$" },
-	workspace = "name:Main",
+	workspace = "2",
 })
 
 hl.window_rule({
