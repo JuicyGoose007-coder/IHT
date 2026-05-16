@@ -110,16 +110,16 @@ hl.bind(mainMod .. " + CTRL + j", hl.dsp.window.move({ monitor = "d" }))
 
 -- System (Niri-style)
 -- Screenshots: requires grim + slurp
-hl.bind("CTRL + P", hl.dsp.exec_cmd("grim ~/Pictures/screenshots/Screenshot from $(date '+%Y-%m-%d %H-%M-%S').png"))
+hl.bind("CTRL + P", hl.dsp.exec_cmd("grim -g \"$(slurp)\" \"$HOME/Pictures/screenshots/Screenshot from $(date '+%Y-%m-%d %H-%M-%S').png\""))
 hl.bind(
 	"CTRL + SHIFT + P",
 	hl.dsp.exec_cmd(
-		"grim -o \"$(hyprctl monitors -j | gojq -r '.[] | select(.focused).name')\" ~/Pictures/screenshots/Screenshot from $(date '+%Y-%m-%d %H-%M-%S').png"
+		"grim -o \"$(hyprctl monitors -j | jq -r '.[] | select(.focused).name')\" \"$HOME/Pictures/screenshots/Screenshot from $(date '+%Y-%m-%d %H-%M-%S').png\""
 	)
 )
 hl.bind(
 	"CTRL + SHIFT + W",
-	hl.dsp.exec_cmd("grim -g \"$(slurp)\" ~/Pictures/screenshots/Screenshot from $(date '+%Y-%m-%d %H-%M-%S').png")
+	hl.dsp.exec_cmd([=[grim -g "$(hyprctl activewindow -j | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')" "$HOME/Pictures/screenshots/Screenshot from $(date '+%Y-%m-%d %H-%M-%S').png"]=])
 )
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exit())
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprctl dispatch dpms off"))
