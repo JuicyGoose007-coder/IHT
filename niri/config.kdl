@@ -234,7 +234,7 @@ binds {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-sh-at-startup
 
 spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &" // Polkit
-spawn-sh-at-startup "waybar"
+// spawn-sh-at-startup "waybar"
 spawn-sh-at-startup "awww-daemon" // Wallpaper daemon
 // spawn-sh-at-startup "sleep 0.5 && awww img ~/Pictures/wallpapers/sushi-2.jpg"// Set wallpaper
 spawn-sh-at-startup "dunst"
@@ -254,7 +254,7 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 
     layout {
-        gaps 8 // Gap between windows
+        gaps 10 // Gap between windows
         center-focused-column "never" // Don’t auto-center focused column
 
         preset-column-widths {
@@ -384,11 +384,6 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "Main"
         match app-id=r#"firefox$"# title="^Picture-in-Picture$"
         match app-id="zoom"
         open-floating true
-    }
-
-    window-rule {
-        geometry-corner-radius 12
-        clip-to-geometry true
     }
 
     //Added 10/27/25 to run steam games in fullscreen
