@@ -6,10 +6,12 @@
   "control-center-layer": "top",
   "layer-shell": true,
   "cssPriority": "user",
+  "control-center-positionX": "center",
   "control-center-margin-top": 8,
   "control-center-margin-bottom": 8,
   "control-center-margin-right": 8,
   "control-center-margin-left": 0,
+  "notification-window-preferred-output": "DP-1",
   "notification-2fa-action": true,
   "notification-inline-replies": false,
   "notification-body-image-height": 100,
@@ -67,7 +69,7 @@
       "actions": [
         {
           "label": "",
-          "command": "kitty"
+          "command": "ghostty"
         },
         {
           "label": "",
@@ -87,7 +89,7 @@
         },
         {
           "label": "",
-          "command": "rofi -show drun"
+          "command": "~/.config/rofi/launcher.sh"
         }
       ]
     },
