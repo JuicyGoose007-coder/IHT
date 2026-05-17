@@ -779,7 +779,7 @@ color12 ${ACCENT_LBLUE}
 color13 ${ACCENT_MAGENTA}
 color14 ${ACCENT_TEAL}
 color15 #ffffff
-background ${BG0}
+background #000000
 selection_foreground ${BG0}
 cursor ${FG1}
 cursor_text_color ${BG0}
@@ -817,7 +817,7 @@ palette = 12=${ACCENT_LBLUE}
 palette = 13=${ACCENT_MAGENTA}
 palette = 14=${ACCENT_TEAL}
 palette = 15=#ffffff
-background = ${BG0}
+background = #000000
 foreground = ${FG1}
 cursor-color = ${FG1}
 cursor-text = ${BG0}
@@ -2145,9 +2145,9 @@ reload_all() {
   # each open pty so currently-running shells repaint future output too.
   ghostty_live_update() {
     local osc=""
-    osc+="\033]11;${BG0}\033\\"
     osc+="\033]10;${FG1}\033\\"
     osc+="\033]12;${FG1}\033\\"
+    osc+="\033]11;#000000\033\\"
     osc+="\033]4;0;${BG1}\033\\"
     osc+="\033]4;1;${ACCENT_PINK}\033\\"
     osc+="\033]4;2;${ACCENT_GREEN}\033\\"
