@@ -5,119 +5,129 @@
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close(), { repeating = false })
+local closeWindowBind = hl.bind("SUPER + Q", hl.dsp.window.close(), { repeating = false })
 
 -- Opacity toggle (like Niri's MOD+T: toggle-window-rule-opacity)
 local opacity_toggled = false
-hl.bind(mainMod .. " + T", function()
+hl.bind("SUPER + T", function()
 	opacity_toggled = not opacity_toggled
 	hl.config({ decoration = { inactive_opacity = opacity_toggled and 1.0 or 0.9 } })
 end)
 
 -- Applications
-hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("~/.config/rofi/launcher.sh"))
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("firefox"))
-hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("brave"))
-hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("~/.config/rofi/wallpaper-switcher.sh"))
-hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("~/.config/rofi/theme-switcher-hyprland.sh"))
-hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("ghostty -e zsh -ic yazi"))
+hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(terminal))
+hl.bind("SUPER + E", hl.dsp.exec_cmd(fileManager))
+hl.bind("SUPER + D", hl.dsp.exec_cmd("~/.config/rofi/launcher.sh"))
+hl.bind("SUPER + B", hl.dsp.exec_cmd("firefox"))
+hl.bind("SUPER + O", hl.dsp.exec_cmd("brave"))
+hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind("SUPER + P", hl.dsp.exec_cmd("~/.config/rofi/wallpaper-switcher.sh"))
+hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd("~/.config/rofi/theme-switcher-hyprland.sh"))
+-- hl.bind("SUPER + Y", hl.dsp.exec_cmd("ghostty -e zsh -ic yazi"))
+hl.bind("SUPER + Y", hl.dsp.exec_cmd("ghostty -e zsh -ic yazi"))
+
+-- Hymission overview
+hl.bind("SUPER + TAB", hl.plugin.hymission.toggle)
+hl.bind("SUPER + A", function()
+	hl.plugin.hymission.toggle("forceall")
+end)
+hl.bind("SUPER + S", function()
+	hl.plugin.hymission.open("onlycurrentworkspace")
+end)
+hl.bind("SUPER + Escape", hl.plugin.hymission.close)
 
 -- Waybar layout switcher
-hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("~/.config/rofi/waybar-layout-switcher.sh"))
+hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("~/.config/rofi/waybar-layout-switcher.sh"))
 
 -- Notification center
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("swaync-client -t"))
+hl.bind("SUPER + V", hl.dsp.exec_cmd("swaync-client -t"))
 
 -- Window Management
-hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd("/mnt/storage/scripts/killgamescope.sh"), { repeating = false })
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen())
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
-hl.bind(mainMod .. " + SHIFT + T", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + SHIFT + V", hl.dsp.focus({ last = true }))
-hl.bind(mainMod .. " + W", hl.dsp.layout("togglegroup"))
+hl.bind("SUPER + SHIFT + F", hl.dsp.window.fullscreen())
+hl.bind("SUPER + F", hl.dsp.window.fullscreen())
+hl.bind("SUPER + SHIFT + T", hl.dsp.window.float({ action = "toggle" }))
+hl.bind("SUPER + SHIFT + V", hl.dsp.focus({ last = true }))
+hl.bind("SUPER + W", hl.dsp.layout("togglegroup"))
 
 -- Sizing & Layout (scrolling layout equivalents)
-hl.bind(mainMod .. " + R", hl.dsp.layout("colresize +conf"))
-hl.bind(mainMod .. " + SHIFT + R", hl.dsp.layout("colresize -conf"))
-hl.bind(mainMod .. " + CTRL + F", hl.dsp.window.fullscreen(0))
-hl.bind(mainMod .. " + C", hl.dsp.layout("fit active"))
-hl.bind(mainMod .. " + CTRL + C", hl.dsp.layout("fit visible"))
+hl.bind("SUPER + R", hl.dsp.layout("colresize +conf"))
+hl.bind("SUPER + SHIFT + R", hl.dsp.layout("colresize -conf"))
+hl.bind("SUPER + CTRL + F", hl.dsp.window.fullscreen(0))
+hl.bind("SUPER + C", hl.dsp.layout("fit active"))
+hl.bind("SUPER + CTRL + C", hl.dsp.layout("fit visible"))
 
 -- Manual column sizing
-hl.bind(mainMod .. " + Minus", hl.dsp.layout("colresize -0.1"))
-hl.bind(mainMod .. " + Equal", hl.dsp.layout("colresize +0.1"))
+hl.bind("SUPER + Minus", hl.dsp.layout("colresize -0.1"))
+hl.bind("SUPER + Equal", hl.dsp.layout("colresize +0.1"))
 
 -- Swap window positions on current monitor (Niri-style with hjkl)
-hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.move({ direction = "left" }))
-hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.move({ direction = "right" }))
-hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.move({ direction = "up" }))
-hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.move({ direction = "down" }))
+hl.bind("SUPER + SHIFT + h", hl.dsp.window.move({ direction = "left" }))
+hl.bind("SUPER + SHIFT + l", hl.dsp.window.move({ direction = "right" }))
+hl.bind("SUPER + SHIFT + k", hl.dsp.window.move({ direction = "up" }))
+hl.bind("SUPER + SHIFT + j", hl.dsp.window.move({ direction = "down" }))
 
 -- Column management (Niri-style)
-hl.bind(mainMod .. " + bracketleft", hl.dsp.layout("consume_or_expel prev"))
-hl.bind(mainMod .. " + bracketright", hl.dsp.layout("consume_or_expel next"))
-hl.bind(mainMod .. " + Period", hl.dsp.layout("promote"))
+hl.bind("SUPER + bracketleft", hl.dsp.layout("consume_or_expel prev"))
+hl.bind("SUPER + bracketright", hl.dsp.layout("consume_or_expel next"))
+hl.bind("SUPER + Period", hl.dsp.layout("promote"))
 
 -- Column scroll navigation
-hl.bind(mainMod .. " + mouse_right", hl.dsp.layout("focus r"))
-hl.bind(mainMod .. " + mouse_left", hl.dsp.layout("focus l"))
-hl.bind(mainMod .. " + CTRL + mouse_right", hl.dsp.layout("move +col"))
-hl.bind(mainMod .. " + CTRL + mouse_left", hl.dsp.layout("move -col"))
+hl.bind("SUPER + mouse_right", hl.dsp.layout("focus r"))
+hl.bind("SUPER + mouse_left", hl.dsp.layout("focus l"))
+hl.bind("SUPER + CTRL + mouse_right", hl.dsp.layout("move +col"))
+hl.bind("SUPER + CTRL + mouse_left", hl.dsp.layout("move -col"))
 
 -- Toggle between scrolling, dwindle, master
 local layouts = { "scrolling", "dwindle", "master" }
 local current_layout = 1
-hl.bind(mainMod .. " + U", function()
-	current_layout = (current_layout % #layouts) + 1
+hl.bind("SUPER + U", function()
+	current_layout = (current_layout % #layouts)
 	hl.config({ general = { layout = layouts[current_layout] } })
 	os.execute("notify-send -t 2000 'Window Layout' '" .. layouts[current_layout] .. "' &")
 end)
 
 -- Move focus with mainMod + arrow keys
-hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
-hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
+hl.bind("SUPER + left", hl.dsp.focus({ direction = "left" }))
+hl.bind("SUPER + right", hl.dsp.focus({ direction = "right" }))
+hl.bind("SUPER + up", hl.dsp.focus({ direction = "up" }))
+hl.bind("SUPER + down", hl.dsp.focus({ direction = "down" }))
+hl.bind("SUPER + h", hl.dsp.focus({ direction = "left" }))
+hl.bind("SUPER + l", hl.dsp.focus({ direction = "right" }))
+hl.bind("SUPER + k", hl.dsp.focus({ direction = "up" }))
+hl.bind("SUPER + j", hl.dsp.focus({ direction = "down" }))
 
 -- Named workspaces
-hl.bind(mainMod .. " + G", hl.dsp.focus({ workspace = "name:Gaming" }))
-hl.bind(mainMod .. " + SHIFT + G", hl.dsp.window.move({ workspace = "name:Gaming" }))
-hl.bind(mainMod .. " + M", hl.dsp.focus({ workspace = "name:Main" }))
-hl.bind(mainMod .. " + SHIFT + M", hl.dsp.window.move({ workspace = "name:Main" }))
-hl.bind(mainMod .. " + I", hl.dsp.focus({ workspace = "name:Discord" }))
-hl.bind(mainMod .. " + SHIFT + I", hl.dsp.window.move({ workspace = "name:Discord" }))
+hl.bind("SUPER + G", hl.dsp.focus({ workspace = "name:Gaming" }))
+hl.bind("SUPER + SHIFT + G", hl.dsp.window.move({ workspace = "name:Gaming" }))
+hl.bind("SUPER + M", hl.dsp.focus({ workspace = "name:Main" }))
+hl.bind("SUPER + SHIFT + M", hl.dsp.window.move({ workspace = "name:Main" }))
+hl.bind("SUPER + I", hl.dsp.focus({ workspace = "name:Discord" }))
+hl.bind("SUPER + SHIFT + I", hl.dsp.window.move({ workspace = "name:Discord" }))
 
 -- Niri-style numbered workspaces: N=2, 4-9=4-9
-local ws_keys = { "N", "3", "4", "5", "6", "7", "8", "9" }
+local ws_keys = { "N", "2", "3", "4", "5", "6", "7", "8", "9" }
 for i, key in ipairs(ws_keys) do
-	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+	hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = i }))
+	hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
 -- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind("SUPER + COMMA", hl.dsp.workspace.toggle_special("magic"))
+hl.bind("SUPER + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Move window to adjacent monitor (Niri-style with hjkl)
-hl.bind(mainMod .. " + CTRL + h", hl.dsp.window.move({ monitor = "l" }))
-hl.bind(mainMod .. " + CTRL + l", hl.dsp.window.move({ monitor = "r" }))
-hl.bind(mainMod .. " + CTRL + k", hl.dsp.window.move({ monitor = "u" }))
-hl.bind(mainMod .. " + CTRL + j", hl.dsp.window.move({ monitor = "d" }))
+hl.bind("SUPER + CTRL + h", hl.dsp.window.move({ monitor = "l" }))
+hl.bind("SUPER + CTRL + l", hl.dsp.window.move({ monitor = "r" }))
+hl.bind("SUPER + CTRL + k", hl.dsp.window.move({ monitor = "u" }))
+hl.bind("SUPER + CTRL + j", hl.dsp.window.move({ monitor = "d" }))
 
 -- System (Niri-style)
 -- Screenshots: requires grim + slurp
@@ -140,8 +150,8 @@ hl.bind(
 	)
 )
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exit())
-hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprctl dispatch dpms off"))
-hl.bind(mainMod .. " + SHIFT + ESCAPE", hl.dsp.exec_cmd("~/.config/rofi/keybinds.sh"))
+hl.bind("SUPER + SHIFT + P", hl.dsp.exec_cmd("hyprctl dispatch dpms off"))
+hl.bind("SUPER + SHIFT + ESCAPE", hl.dsp.exec_cmd("~/.config/rofi/keybinds.sh"))
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(
