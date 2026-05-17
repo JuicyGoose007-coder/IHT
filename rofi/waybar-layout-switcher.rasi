@@ -1,0 +1,113 @@
+@import "/home/juicygoose007/.config/rofi/colors.rasi"
+/* waybar layout switcher */
+
+configuration {
+    show-icons:          false;
+    display-dmenu:       " Layout";
+    case-sensitive:      false;
+}
+
+* {
+    font:          "JetBrainsMono Nerd Font 11";
+
+    base:          @r-base;
+    surface:       @r-surface;
+    overlay:       @r-overlay;
+    muted:         @r-muted;
+    text:          @r-text;
+    subtext:       @r-subtext;
+    blue:          @r-blue;
+    purple:        @r-purple;
+    teal:          @r-teal;
+
+    transparent:   #00000000;
+    blue-dim:      @r-blue-dim;
+    blue-border:   @r-blue-border;
+    purple-dim:    @r-purple-dim;
+    purple-border: @r-purple-border;
+}
+
+window {
+    background-color: @transparent;
+    border:           0;
+    width:            400px;
+    location:         center;
+    anchor:           center;
+}
+
+mainbox {
+    background-color: @surface;
+    border-radius:    20px;
+    border:           2px solid;
+    border-color:     @blue-border;
+    padding:          18px;
+    spacing:          0;
+    children:         [inputbar, listview];
+}
+
+inputbar {
+    background-color: @surface;
+    border-radius:    16px;
+    border:           1px solid;
+    border-color:     @purple-border;
+    padding:          12px 16px;
+    margin:           0 0 12px 0;
+    children:         [prompt, entry];
+    spacing:          10px;
+}
+
+prompt {
+    background-color: @transparent;
+    text-color:       @purple;
+    font:             "JetBrainsMono Nerd Font Bold 12";
+}
+
+entry {
+    background-color: @transparent;
+    text-color:       @teal;
+    cursor:           text;
+}
+
+listview {
+    background-color: @transparent;
+    columns:          1;
+    lines:            2;
+    scrollbar:        false;
+    spacing:          4px;
+    fixed-height:     true;
+}
+
+element {
+    background-color: @transparent;
+    border-radius:    12px;
+    border:           1px solid;
+    border-color:     @transparent;
+    padding:          10px 14px;
+    spacing:          14px;
+}
+
+element selected normal {
+    background-color: @purple-dim;
+    border-color:     @purple-border;
+}
+
+element selected urgent {
+    background-color: @blue-dim;
+    border-color:     @blue-border;
+}
+
+element selected active {
+    background-color: @purple-dim;
+    border-color:     @purple-border;
+}
+
+element-text {
+    background-color: @transparent;
+    text-color:       @blue;
+    font:             "JetBrainsMono Nerd Font Bold 13";
+    vertical-align:   0.5;
+}
+
+element-text selected {
+    text-color: @teal;
+}
