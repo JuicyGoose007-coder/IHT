@@ -9,7 +9,7 @@ hl.workspace_rule({
 })
 
 hl.workspace_rule({
-	workspace = "2",
+	workspace = "Main",
 	monitor = "DP-2",
 })
 

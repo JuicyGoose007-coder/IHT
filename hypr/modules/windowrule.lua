@@ -153,11 +153,11 @@ hl.window_rule({
 	float = true,
 })
 
-hl.window_rule({
-	name = "firefox",
-	match = { class = "^firefox$" },
-	workspace = "2",
-})
+-- hl.window_rule({
+-- 	name = "firefox",
+-- 	match = { class = "^firefox$" },
+-- 	workspace = "2",
+-- })
 
 hl.window_rule({
 	name = "vesktop",

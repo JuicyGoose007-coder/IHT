@@ -97,24 +97,18 @@ while IFS= read -r line; do
 
         [[ "$action" == "spawn" || "$action" == "spawn-sh" ]] && continue
 
-        # Workspace actions: include arg in dedup key and description
-        if [[ "$action" == "focus-workspace" || "$action" == "move-column-to-workspace" ]]; then
-            ws_arg="${tmp#* }"; ws_arg="${ws_arg%%;*}"; ws_arg="${ws_arg%% }"
-            dedup_key="${action}:${ws_arg}"
-            if [[ -z "${seen_actions[$dedup_key]}" ]]; then
-                seen_actions["$dedup_key"]=1
-                flush_header
-                title_case "$action"
-                add_entry "$keys" "$_entry $ws_arg"
-            fi
-            continue
-        fi
+        # Capture first arg if any (set-column-width "+10%", focus-workspace 3, etc.)
+        rest="${tmp#"$action"}"
+        rest="${rest#"${rest%%[! ]*}"}"
+        arg="${rest%%;*}"
+        arg="${arg%"${arg##*[! ]}"}"
 
-        if [[ -z "${seen_actions[$action]}" ]]; then
-            seen_actions["$action"]=1
+        dedup_key="${action}${arg:+:$arg}"
+        if [[ -z "${seen_actions[$dedup_key]}" ]]; then
+            seen_actions["$dedup_key"]=1
             flush_header
             title_case "$action"
-            add_entry "$keys" "$_entry"
+            add_entry "$keys" "${_entry}${arg:+ $arg}"
         fi
     fi
 done < "$CONFIG"

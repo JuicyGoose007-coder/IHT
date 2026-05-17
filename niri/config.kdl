@@ -64,7 +64,7 @@ binds {
     MOD+O                               hotkey-overlay-title="Open Browser: brave" { spawn-sh "brave"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: hyprlock" { spawn-sh "hyprlock"; }
     MOD+P                               hotkey-overlay-title="Wallpaper Switcher" { spawn-sh "~/.config/rofi/wallpaper-switcher.sh"; }
-    MOD+SHIFT+D                         hotkey-overlay-title="Theme Switcher" { spawn-sh "~/.config/rofi/theme-switcher.sh"; }
+    MOD+SHIFT+D                         hotkey-overlay-title="Theme Switcher" { spawn-sh "~/.config/rofi/theme-switcher-niri.sh"; }
     MOD+T                               hotkey-overlay-title="Toggle Opacity" { toggle-window-rule-opacity; }
 
     

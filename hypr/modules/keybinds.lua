@@ -22,8 +22,11 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("firefox"))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("brave"))
 hl.bind(mainMod .. " + ALT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("~/.config/rofi/wallpaper-switcher.sh"))
-hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("~/.config/rofi/theme-switcher.sh"))
+hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("~/.config/rofi/theme-switcher-hyprland.sh"))
 hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("ghostty -e zsh -ic yazi"))
+
+-- Notification center
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("swaync-client -t"))
 
 -- Window Management
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd("/mnt/storage/scripts/killgamescope.sh"), { repeating = false })
