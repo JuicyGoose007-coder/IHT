@@ -2277,6 +2277,7 @@ main() {
     -kb-clear-line "Alt+c,slash") || true
 
   [[ -z "$selection" ]] && exit 0
+  exec 9>&-
 
   # Parse selection
   THEME_NAME="$selection"
