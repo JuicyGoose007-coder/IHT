@@ -25,6 +25,7 @@ CACHE_DIR="$HOME/.cache/theme-switcher"
 THUMB_DIR="$CACHE_DIR/thumbs"
 STYLE="$HOME/.config/rofi/theme-switcher.rasi"
 TRANSITIONS=("simple" "fade" "left" "right" "top" "bottom" "wipe" "wave" "grow" "center" "any" "outer" "random")
+WAYBAR_LAYOUT_FILE="$CACHE_DIR/waybar-layout"
 
 mkdir -p "$THUMB_DIR"
 
@@ -258,10 +259,26 @@ extract_palette() {
 }
 
 # ── Template generators ─────────────────────────────────────────────
-generate_waybar() {
-  local file="$HOME/.config/waybar/style.css"
-  [[ -f "$file" ]] || return 0
+get_waybar_layout() {
+  [[ -f "$WAYBAR_LAYOUT_FILE" ]] && printf '%s' "$(cat "$WAYBAR_LAYOUT_FILE")" || printf 'full'
+}
 
+restart_waybar() {
+  local layout config style
+  layout=$(get_waybar_layout)
+  if [[ "$layout" == "wsonly" ]]; then
+    config="config-hyprland-wsonly"
+    style="style-wsonly.css"
+  else
+    config="config-hyprland"
+    style="style.css"
+  fi
+  pkill -x waybar 2>/dev/null || true
+  while pgrep -x waybar >/dev/null 2>&1; do sleep 0.2; done
+  waybar -c "$HOME/.config/waybar/$config" -s "$HOME/.config/waybar/$style" &
+}
+
+generate_waybar() {
   local header
   header=$(
     cat <<EOF
@@ -284,10 +301,23 @@ generate_waybar() {
 @define-color sky     ${ACCENT_SKY};
 EOF
   )
-  # Keep everything after the @define-color block (line 18+)
-  local body
-  body=$(sed -n '18,$p' "$file")
-  printf '%s\n\n%s\n' "$header" "$body" >"$file"
+
+  # Write to style.css (full layout)
+  local file_full="$HOME/.config/waybar/style.css"
+  if [[ -f "$file_full" ]]; then
+    local body
+    body=$(sed -n '18,$p' "$file_full")
+    printf '%s\n\n%s\n' "$header" "$body" >"$file_full"
+  fi
+
+  # Write to style-wsonly.css (workspaces-only layout)
+  local file_ws="$HOME/.config/waybar/style-wsonly.css"
+  local ws_base="$HOME/.config/waybar/style-wsonly-base.css"
+  if [[ -f "$ws_base" ]]; then
+    local body_ws
+    body_ws=$(cat "$ws_base")
+    printf '%s\n\n%s\n' "$header" "$body_ws" >"$file_ws"
+  fi
 }
 
 generate_rofi_colors() {
@@ -2134,8 +2164,8 @@ generate_all() {
 
 # ── Reload running applications ─────────────────────────────────────
 reload_all() {
-  # Waybar: SIGUSR2 reloads CSS
-  pkill -SIGUSR2 waybar 2>/dev/null || true
+  # Waybar: restart with current layout config
+  restart_waybar
 
   # Hyprland: update border colors immediately (lua parser requires eval, not keyword)
   hyprctl eval "hl.config({ general = { col = { active_border = \"rgba(${ACCENT_LBLUE#\#}ff)\", inactive_border = \"rgba(${BG0#\#}ff)\" } } })" 2>/dev/null || true

@@ -1,0 +1,48 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family:
+        "JetBrainsMono Nerd Font Propo", "Inter Medium", "Font Awesome 7 Free",
+        Roboto, sans-serif;
+    font-size: 20px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+#workspaces,
+#niri-workspaces {
+    background-color: alpha(@bg0, 0.85);
+    border-radius: 20px;
+    padding: 2px 10px;
+    margin: 2px 0;
+}
+
+#workspaces button,
+#niri-workspaces button {
+    background: transparent;
+    color: @bg2;
+    padding: 0 12px;
+    border-radius: 16px;
+    margin: 0 3px;
+    font-size: 20px;
+    min-height: 24px;
+}
+
+#workspaces button.empty,
+#niri-workspaces button.empty {
+    color: @bg1;
+}
+
+#workspaces button:hover,
+#niri-workspaces button:hover {
+    color: @fg0;
+}
+
+#workspaces button.active,
+#niri-workspaces button.active {
+    color: @purple;
+    box-shadow: inset 0 -2px @purple;
+}
