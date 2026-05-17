@@ -14,7 +14,6 @@ vim.pack.add({ { src = "https://github.com/ibhagwan/fzf-lua" } }, { load = true 
 vim.pack.add({ { src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" } }, { load = true })
 vim.pack.add({ { src = "https://github.com/lukas-reineke/indent-blankline.nvim" } }, { load = true })
 vim.pack.add({ { src = "https://github.com/folke/which-key.nvim" } }, { load = true })
--- vim.pack.add({ { src = "https://github.com/stevearc/oil.nvim" } }, { load = true })
 vim.pack.add({ { src = "https://github.com/nvimdev/dashboard-nvim" } }, { load = true })
 vim.pack.add({ { src = "https://github.com/mg979/vim-visual-multi" } }, { load = true })
 vim.pack.add({ { src = "https://github.com/mikavilpas/yazi.nvim" } }, { load = true })
@@ -47,6 +46,8 @@ vim.opt.cursorline = true
 
 -- Colorscheme
 vim.cmd.colorscheme("oxocarbon")
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 require("vim._core.ui2").enable({
 	enable = true, -- Whether to enable or disable the UI.
@@ -225,9 +226,6 @@ require("ibl").setup({
 require("yazi").setup({
 	view_options = { show_hidden = true },
 })
--- require("oil").setup({
--- 	view_options = { show_hidden = true },
--- })
 
 -- Undotree
 require("undotree").setup()
@@ -320,8 +318,8 @@ require("conform").setup({
 -- Keymaps
 
 -- Save / quit
-vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save" })
-vim.keymap.set("n", "<C-q>", "<cmd>q<cr>", { desc = "Quit" })
+vim.keymap.set("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
+vim.keymap.set("n", "<leader>ww", "<cmd>w<cr>", { desc = "Save" })
 vim.keymap.set("n", "<leader>wq", "<cmd>wq<cr>", { desc = "Save and quit" })
 vim.keymap.set("n", "<leader>so", "<cmd>so %<cr>", { desc = "Source file" })
 vim.keymap.set("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart nvim" })
