@@ -276,6 +276,7 @@ Rectangle {
 
             // Session selector
             Column {
+                z: 1
                 width: parent.width
                 spacing: 6
 
@@ -298,6 +299,7 @@ Rectangle {
                     focusColor: "#33b1ff"
                     hoverColor: "#333333"
                     textColor: "#dde1e6"
+                    menuColor: "#161616"
 
                     model: sessionModel
                     index: sessionModel.lastIndex
