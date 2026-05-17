@@ -67,6 +67,7 @@ local current_layout = 1
 hl.bind(mainMod .. " + U", function()
 	current_layout = (current_layout % #layouts) + 1
 	hl.config({ general = { layout = layouts[current_layout] } })
+	os.execute("notify-send -t 2000 'Window Layout' '" .. layouts[current_layout] .. "' &")
 end)
 
 -- Move focus with mainMod + arrow keys
@@ -115,7 +116,7 @@ hl.bind(mainMod .. " + CTRL + j", hl.dsp.window.move({ monitor = "d" }))
 -- System (Niri-style)
 -- Screenshots: requires grim + slurp
 hl.bind(
-	"CTRL + P",
+	"CTRL + S",
 	hl.dsp.exec_cmd(
 		'grim -g "$(slurp)" "$HOME/Pictures/screenshots/Screenshot from $(date \'+%Y-%m-%d %H-%M-%S\').png"'
 	)
