@@ -83,12 +83,16 @@ hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
 
--- Gaming workspace (named)
+-- Named workspaces
 hl.bind(mainMod .. " + G", hl.dsp.focus({ workspace = "name:Gaming" }))
 hl.bind(mainMod .. " + SHIFT + G", hl.dsp.window.move({ workspace = "name:Gaming" }))
+hl.bind(mainMod .. " + M", hl.dsp.focus({ workspace = "name:Main" }))
+hl.bind(mainMod .. " + SHIFT + M", hl.dsp.window.move({ workspace = "name:Main" }))
+hl.bind(mainMod .. " + I", hl.dsp.focus({ workspace = "name:Discord" }))
+hl.bind(mainMod .. " + SHIFT + I", hl.dsp.window.move({ workspace = "name:Discord" }))
 
 -- Niri-style numbered workspaces: M=2, N=3, 4-9=4-9
-local ws_keys = { "M", "N", "4", "5", "6", "7", "8", "9" }
+local ws_keys = { "N", "3", "4", "5", "6", "7", "8", "9" }
 for i, key in ipairs(ws_keys) do
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
 	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
@@ -97,10 +101,6 @@ end
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
-
--- Discord workspace (on DP-1)
-hl.bind(mainMod .. " + I", hl.dsp.focus({ workspace = "name:Discord" }))
-hl.bind(mainMod .. " + SHIFT + I", hl.dsp.window.move({ workspace = "name:Discord" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
