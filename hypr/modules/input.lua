@@ -23,8 +23,45 @@ hl.config({
 	},
 })
 
-hl.gesture({
+-- hl.gesture({
+-- 	fingers = 3,
+-- 	direction = "horizontal",
+-- 	action = "workspace",
+-- })
+
+hl.plugin.hymission.gesture({
+	fingers = 4,
+	direction = "vertical",
+	action = "toggle",
+	args = "forceall",
+})
+
+hl.plugin.hymission.gesture({
+	fingers = 4,
+	direction = "vertical",
+	action = "toggle",
+	recommand = true,
+})
+
+hl.plugin.hymission.gesture({
+	fingers = 4,
+	direction = "vertical",
+	action = "open",
+	scope = "onlycurrentworkspace",
+})
+
+hl.plugin.hymission.gesture({
 	fingers = 3,
 	direction = "horizontal",
+	action = "scroll",
+	mode = "layout",
+})
+
+-- Native alternative:
+-- hl.gesture({ fingers = 3, direction = "horizontal", action = "scroll_move" })
+
+hl.plugin.hymission.gesture({
+	fingers = 3,
+	direction = "vertical",
 	action = "workspace",
 })
