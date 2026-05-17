@@ -25,6 +25,9 @@ hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("~/.config/rofi/wallpaper-switcher.sh
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("~/.config/rofi/theme-switcher-hyprland.sh"))
 hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("ghostty -e zsh -ic yazi"))
 
+-- Waybar layout switcher
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd("~/.config/rofi/waybar-layout-switcher.sh"))
+
 -- Notification center
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("swaync-client -t"))
 
@@ -91,7 +94,7 @@ hl.bind(mainMod .. " + SHIFT + M", hl.dsp.window.move({ workspace = "name:Main" 
 hl.bind(mainMod .. " + I", hl.dsp.focus({ workspace = "name:Discord" }))
 hl.bind(mainMod .. " + SHIFT + I", hl.dsp.window.move({ workspace = "name:Discord" }))
 
--- Niri-style numbered workspaces: M=2, N=3, 4-9=4-9
+-- Niri-style numbered workspaces: N=2, 4-9=4-9
 local ws_keys = { "N", "3", "4", "5", "6", "7", "8", "9" }
 for i, key in ipairs(ws_keys) do
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))

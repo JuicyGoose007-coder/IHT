@@ -71,7 +71,7 @@ binds {
     // Please choose your own file manager
     MOD+E                             hotkey-overlay-title="File Manager: Nautilus" { spawn-sh "nautilus"; }
     MOD+Y                               hotkey-overlay-title="Open File Manager: Yazi"{ spawn "ghostty" "-e" "zsh" "-ic" "yazi"; }
-    
+    MOD+SHIFT+W                         hotkey-overlay-title="Waybar Layout Switcher" { spawn-sh "~/.config/rofi/waybar-layout-switcher.sh"; }
 
     // ─── Audio Controls ───
     // Example volume keys mappings for PipeWire & WirePlumber.
