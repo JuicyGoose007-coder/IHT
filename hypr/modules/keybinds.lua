@@ -23,7 +23,6 @@ hl.bind("SUPER + O", hl.dsp.exec_cmd("brave"))
 hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind("SUPER + P", hl.dsp.exec_cmd("~/.config/rofi/wallpaper-switcher.sh"))
 hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd("~/.config/rofi/theme-switcher-hyprland.sh"))
--- hl.bind("SUPER + Y", hl.dsp.exec_cmd("ghostty -e zsh -ic yazi"))
 hl.bind("SUPER + Y", hl.dsp.exec_cmd("ghostty -e zsh -ic yazi"))
 
 -- Hymission overview
@@ -81,7 +80,7 @@ hl.bind("SUPER + CTRL + mouse_left", hl.dsp.layout("move -col"))
 local layouts = { "scrolling", "dwindle", "master" }
 local current_layout = 1
 hl.bind("SUPER + U", function()
-	current_layout = (current_layout % #layouts)
+	current_layout = (current_layout % #layouts) + 1
 	hl.config({ general = { layout = layouts[current_layout] } })
 	os.execute("notify-send -t 2000 'Window Layout' '" .. layouts[current_layout] .. "' &")
 end)
