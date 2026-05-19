@@ -34,11 +34,14 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_VERIFY
 setopt SHARE_HISTORY
+setopt HIST_REDUCE_BLANKS
 
 # ============================================================================
 # PLUGINS & TOOLS (via Zinit)
@@ -96,7 +99,7 @@ fi
 
 # Re-apply custom keybindings after zsh-vi-mode initialises
 function zvm_after_init {
-   export VIM_INSERT="I"
+  export VIM_INSERT="I"
 
   _accept_suggestion() { zle autosuggest-accept }
   zle -N _accept_suggestion
@@ -125,6 +128,9 @@ function zvm_after_init {
 # Sudo
 alias sudo='sudo '
 
+# Update
+alias update='paru -Syu'
+
 if command -v eza >/dev/null 2>&1; then
     alias ls='eza --color=always'
     alias ll='eza -la --color=always'
@@ -148,6 +154,11 @@ alias y='yazi'
 alias nv='nvim'
 alias rb='reboot'
 
+# Install/Remove
+alias install='paru -S '
+alias remove='sudo pacman -Rs '
+alias remove-all='sudo pacman -Rns '
+
 alias g='git'
 alias gs='git status'
 alias ga='git add'
@@ -155,6 +166,9 @@ alias gc='git commit'
 alias gp='git push'
 alias gl='git log --oneline'
 alias gd='git diff'
+
+# Lazygit
+alias lg='lazygit'
 
 alias rm='rm -i'
 alias cp='cp -i'
@@ -222,6 +236,14 @@ function zvm_after_select_vi_mode {
   esac
 }
 
+# if [[ -o interactive ]]; then 
+#     if [[ -z "$TMUX" ]]; then
+#         fastfetch
+#     elif [[ "$(tmux display -p '#{pane_index}')" == "$(tmux show -gv pane-base-index)" ]]; then
+#         fastfetch
+#     fi
+# fi
+
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
@@ -235,8 +257,7 @@ if command -v zoxide >/dev/null 2>&1; then
     alias cd='z'
 fi
 
-export GITHUB_PERSONAL_ACCESS_TOKEN=ghp_yourtokenhere
-
+export GITHUB_PERSONAL_ACCESS_TOKEN=
 # bun completions
 [ -s "/home/juicygoose007/.bun/_bun" ] && source "/home/juicygoose007/.bun/_bun"
 
