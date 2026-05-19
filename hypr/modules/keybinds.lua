@@ -25,6 +25,14 @@ hl.bind("SUPER + P", hl.dsp.exec_cmd("~/.config/rofi/wallpaper-switcher.sh"))
 hl.bind("SUPER + SHIFT + D", hl.dsp.exec_cmd("~/.config/rofi/theme-switcher-hyprland.sh"))
 hl.bind("SUPER + Y", hl.dsp.exec_cmd("ghostty -e zsh -ic yazi"))
 
+-- Cliphist
+hl.bind(
+	"SUPER + ALT + V",
+	hl.dsp.exec_cmd(
+		"cliphist list | rofi -dmenu -theme ~/.config/rofi/cliphist.rasi -display-columns 2 | cliphist decode | wl-copy"
+	)
+)
+
 -- Hymission overview
 hl.bind("SUPER + TAB", hl.plugin.hymission.toggle)
 hl.bind("SUPER + A", function()
@@ -150,7 +158,7 @@ hl.bind(
 )
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exit())
 hl.bind("SUPER + SHIFT + P", hl.dsp.exec_cmd("hyprctl dispatch dpms off"))
-hl.bind("SUPER + SHIFT + ESCAPE", hl.dsp.exec_cmd("~/.config/rofi/keybinds.sh"))
+hl.bind("SUPER + SHIFT + ESCAPE", hl.dsp.exec_cmd("~/.config/rofi/hypr-keybinds.sh"))
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(
