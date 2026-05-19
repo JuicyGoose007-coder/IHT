@@ -44,8 +44,8 @@ title_case() {
 
 add_entry() {
     local keys="$1" desc="$2"
-    printf -v _entry "%-${KEY_WIDTH}s" "$keys"
-    _entry="${C_KEY}${_entry}${C_END}  ${C_DESC}${desc}${C_END}"
+    printf -v _entry "%-${KEY_WIDTH}s" "$desc"
+    _entry="${C_DESC}${_entry}${C_END}  ${C_KEY}${keys}${C_END}"
     entries+=("$_entry")
 }
 
@@ -118,7 +118,8 @@ lines=$(( (total + 1) / 2 ))
 
 printf '%s\n' "${entries[@]}" | rofi \
     -dmenu \
-    -p "" \
+    -i \
+    -p "Search" \
     -mesg "Keybinds" \
     -theme "$STYLE" \
     -monitor focused \
@@ -126,6 +127,4 @@ printf '%s\n' "${entries[@]}" | rofi \
     -markup-rows \
     -lines "$lines" \
     -kb-move-char-back    "" \
-    -kb-move-char-forward "" \
-    -kb-row-up   "Alt+k,Up" \
-    -kb-row-down "Alt+j,Down"
+    -kb-move-char-forward ""

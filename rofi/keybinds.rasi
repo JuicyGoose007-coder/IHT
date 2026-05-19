@@ -16,6 +16,7 @@ configuration {
     subtext:       @r-subtext;
     blue:          @r-blue;
     purple:        @r-purple;
+    teal:          @r-teal;
 
     transparent:   #00000000;
     blue-dim:      @r-blue-dim;
@@ -39,7 +40,32 @@ mainbox {
     border-color:     @blue-border;
     padding:          18px;
     spacing:          0;
-    children:         [message, listview];
+    children:         [inputbar, message, listview];
+}
+
+inputbar {
+    background-color: @surface;
+    border-radius:    16px;
+    border:           1px solid;
+    border-color:     @purple-border;
+    padding:          12px 16px;
+    margin:           0 0 12px 0;
+    children:         [prompt, entry];
+    spacing:          10px;
+}
+
+prompt {
+    background-color: @transparent;
+    text-color:       @purple;
+    font:             "JetBrainsMono Nerd Font Bold 12";
+}
+
+entry {
+    background-color: @transparent;
+    text-color:       @teal;
+    cursor:           text;
+    placeholder:      "Search keybinds…";
+    placeholder-color: @muted;
 }
 
 message {
